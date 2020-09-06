@@ -1,0 +1,1883 @@
+*
+  margin 0
+  padding 0
+
+html, body
+  font-family Acrom
+  color white
+  text-align -webkit-center
+  background #f5f5fd no-repeat
+  background-size cover
+
+.wrapper
+  display table
+  height 100%
+  max-width 1250px
+  width 1250px
+
+.header-block
+  margin-top 89px
+  display flex
+  height 62px
+  place-content center
+
+.footer
+  margin-top 84px
+  height 344px
+  background-position-x 104px
+  display flex
+  background-image url(../../img/left-right-down-block.png)
+  place-content center
+
+.main-content
+  display inline-table
+  width 100%
+
+.error-block
+  color black
+  margin-top 25px
+  font-family AcromBold
+
+.rules_name
+  background #b41d1d
+  padding 10px
+  color white
+
+.error-panel
+  padding 10px
+  border solid 2px #b41d1d
+  background white
+  font-size 14px
+
+.overlay
+  width 100%
+  min-height 100vh
+  z-index 2
+  display flex
+  justify-content center
+  align-items center
+  flex-direction column
+  position fixed
+  top 0
+  left 0
+  background rgba(0, 0, 0, 0.75)
+  opacity 0
+  pointer-events none
+  transition 0.35s ease-in-out
+  max-height 100vh
+  overflow-y auto
+
+  &.open
+    opacity 1
+    pointer-events inherit
+
+  .modal
+    background white
+    text-align center
+    padding 40px 80px
+    box-shadow 0px 1px 10px rgba(255, 255, 255, 0.35)
+    max-width 450px
+    opacity 0
+    pointer-events none
+    transition 0.35s ease-in-out
+    max-height 100vh
+    overflow-y auto
+
+    &.open
+      opacity 1
+      pointer-events inherit
+
+      .content_modal
+        transform translate(0, 0px)
+        opacity 1
+
+    .content_modal
+      transform translate(0, -10px)
+      opacity 0
+      transition 0.35s ease-in-out
+
+    .title
+      margin-top 0
+
+.loading-history
+  text-align center
+  font-family AcromBold
+  font-size 25px
+  color black
+  margin-top inherit
+
+.decoration_main-content-e
+  background-image url(../../img/decoration_main-content-e.png)
+  position absolute
+  width 158px
+  height 159px
+  margin-top 148px
+  margin-left 30px
+
+.footer-top-content-right
+  width 100%
+  justify-content center
+  position absolute
+  display flex
+
+.info-shop
+  color black
+  font-family AcromBold
+  font-size 23px
+
+.lobibox-notify
+  .lobibox-notify-title
+    text-align left
+
+.data-donate
+  display none
+
+.lobibox-notify-msg
+  text-align left
+
+.input-sum
+  margin-bottom 40px
+
+.shop-notfound
+  color black
+  font-family AcromBold
+  font-size 23px
+  margin 25px
+
+input
+  &.sum-inputer
+    padding 11px
+    width 100%
+    font-family AcromBold
+    font-size 17px
+    border solid 1px #c7c7c7
+
+.buy-text-pay
+  color black
+  font-size 25px
+  font-family AcromBold
+  margin-bottom 36px
+
+.next-page
+  background-image url(../../img/next-page.png)
+  width 272px
+  height 56px
+  margin-top -86px
+  cursor pointer
+  margin-right 55px
+  margin-left auto
+
+.block-info-user
+  background white
+  width 344px
+  height 403px
+  margin-left 83px
+
+.block-info-stats
+  color #ffffff
+  font-size 16.31px
+  transition 0.3s
+  margin-top 1px
+  cursor pointer
+  width 100px
+  padding 2px
+  text-align center
+  background #ffbc00
+  font-family AcromBold
+
+  &:hover
+    background #ca2121
+
+.select-server-category-shop
+  font-family GilroyBlack
+  text-transform uppercase
+  font-size 13.67px
+  cursor pointer
+  display block
+  color #ced5e1
+  letter-spacing 1px
+  margin-top 51px
+  margin-left 58px
+
+.up-block-category-shop
+  display flex
+
+.block-info-user-b
+  margin-left 24px
+  margin-top 36px
+
+.block-info-name
+  font-family AcromBold
+  font-size 19.94px
+  color black
+
+.user-info-c
+  padding-left 44px
+  margin-top 44px
+
+.user-ai
+  display flex
+  margin-bottom 29px
+
+.user-ai-1
+  font-family AcromBold
+  font-size 16.18px
+  color black
+
+.select-server-category-shop-b
+  background-image url(../../img/select-server-category-shop-b.png)
+  width 16px
+  margin-left 20px
+  margin-top 3px
+  height 8px
+
+.balance-a
+  background-image url(../../img/balance-a.png)
+  width 193px
+  height 176px
+  background-position-x -8px
+  margin-top 43px
+
+.block-info-balance
+  background white
+  width 344px
+  text-align -webkit-center
+  height 403px
+  display flow-root
+  margin-left 34px
+
+.user-ai-2
+  font-size 16.18px
+  color black
+  margin-left 13px
+
+.avatar-user
+  background-image url(https://minecraft-inside.ru/uploads/nick/ValeriaRR07.png)
+  width 44px
+  height 43px
+  background-size 348px
+  background-position-y -45px
+  background-position-x -44px
+  image-rendering pixelated
+  margin-top 13px
+
+.block-info-user-a
+  display flex
+
+.stats-user-a
+  width 25%
+  text-align center
+  font-family AcromBold
+  color black
+  font-size 19.37px
+  padding 20px
+
+.stats-user-info
+  background #ececf8
+  display flex
+  margin-left 81px
+  margin-right 81px
+  margin-top 70px
+
+.stats-user-b
+  width 25%
+  text-align center
+  font-family AcromBold
+  color #96a0ba
+  font-size 22.91px
+  padding 20px
+
+.block-info-avatar
+  background-image url(../../img/avatar-case.png)
+  width 66px
+  height 56px
+  text-align -webkit-center
+  margin-left 46px
+  margin-top 28px
+
+.history-info-name
+  font-family AcromBold
+  font-size 12.45px
+  color #c3c3de
+  padding-left 32px
+  padding-top 3px
+
+.history-info-time
+  font-family AcromBold
+  font-size 14.32px
+  color black
+  text-align left
+  padding-left 30px
+
+.history-info-left
+  padding-top 14px
+  margin-left -3px
+
+.history-info-img
+  background-image url(../../img/pex-test.png)
+  width 45px
+  height 43px
+  margin-left auto
+  margin-top 11px
+  margin-right 23px
+
+.history-info
+  background-image url(../../img/history-info.png)
+  background #ffffff
+  width 252px
+  box-shadow 3px 10px 44px 13px #c7c7e08c
+  height 68px
+  display flex
+  margin-bottom 21px
+  background-position-x -9px
+
+.block-info-history
+  background white
+  width 344px
+  text-align -webkit-center
+  height 403px
+  margin-left 42px
+
+
+.buttom-button-link
+  font-size 14px
+  transition 0.3s
+  font-family AcromExtraBold
+  color black
+  margin-top 113px
+  margin-right 74px
+  height 18px
+  text-transform uppercase
+  text-decoration none
+
+  &:hover
+    transform matrix(1, 0, 0, 1, 0, -3)
+
+.news-content-b1
+  &:hover
+    filter brightness(0.7)
+
+.news-content-b1-1
+  &:hover
+    filter brightness(0.7)
+
+.news-content-b2-2
+  &:hover
+    filter brightness(0.7)
+
+.news-content-c
+  &:hover
+    filter brightness(0.7)
+
+.news-content-b2
+  &:hover
+    filter brightness(0.7)
+
+.news-content-a
+  &:hover
+    filter brightness(0.7)
+
+.button-main-start
+  background-image url(../../img/button-main-start.png)
+  width 418px
+  height 179px
+  transition 0.3s
+  outline none
+  display block
+  cursor pointer
+  margin-top 66px
+  margin-left 39px
+
+  &:hover
+    opacity 0.8
+
+.start-game-1-button
+  background-image url(../../img/startgame-1-button.png)
+  width 227px
+  height 106px
+  transition 0.3s
+  display block
+  position absolute
+  margin-top 314px
+  margin-left 57px
+
+  &:hover
+    transform scale(1.04)
+
+.start-game-2-button
+  background-image url(../../img/startgame-2-button.png)
+  width 227px
+  height 106px
+  display block
+  margin-top 310px
+  cursor pointer
+  position absolute
+  transition 0.3s
+  margin-left 57px
+
+  &:hover
+    transform scale(1.04)
+
+.button-a-href
+  color white
+  display block
+  place-content center
+  font-size 22px
+  transition 0.3s
+  display flex
+  padding 15px
+  text-decoration none
+  text-align center
+
+  &:hover
+    color orange
+    padding-left 20px
+
+.start-game-3-button
+  background-image url(../../img/startgame-3-button.png)
+  width 227px
+  height 106px
+  display block
+  margin-top 308px
+  transition 0.3s
+  position absolute
+  margin-left 57px
+
+  &:hover
+    transform scale(1.04)
+
+.button-head
+  text-align -webkit-center
+  font-size 15.24px
+  color #000000
+  font-family AcromBold
+  position relative
+  margin-right 91px
+  display block
+  text-decoration none
+  margin-top 49px
+  height 50px
+
+  &:hover
+    color #676767
+    transition 0.3s
+
+.animation-head-a
+  &::before
+    left 50%
+
+  &::after
+    right 50%
+
+.studio-cop-link
+  background-image url(../../img/UniversalStudio.png)
+  width 147px
+  margin-top -1px
+  height 27px
+  margin-left 34px
+  display block
+
+.logo-vk-link
+  background-image url(../../img/vk.png)
+  width 31px
+  margin-top 5px
+  height 18px
+  display block
+
+.contentact-1
+  &:hover
+    opacity 0.8
+    transform matrix(1, 0, 0, 1, 0, -5)
+
+.contentact-2
+  &:hover
+    opacity 0.8
+    transform matrix(1, 0, 0, 1, 0, -5)
+
+.contentact-3
+  &:hover
+    opacity 0.8
+    transform matrix(1, 0, 0, 1, 0, -5)
+
+.btn
+  font-size 25px
+  background linear-gradient(to top, #5057c9, #8089ee)
+  color white
+  height 41px
+  width 150px
+  text-decoration none
+  padding 10px
+  cursor pointer
+  font-family AcromBold
+  margin-top 4px
+  text-align center
+
+.button-buy
+  background-image url(../../img/add-balance.png)
+  width 166px
+  height 47px
+  margin-top 37px
+  cursor pointer
+
+.balance-info
+  font-family AcromBold
+  font-size 22.38px
+  padding-top 75px
+
+.name-block-balance
+  font-family AcromBold
+  font-size 19.25px
+  color black
+  margin-top 40px
+  text-align center
+
+.block-info-all
+  margin-top 47px
+  display flex
+
+.footer-top-line
+  background-image url(../../img/up.png)
+  width 53px
+  height 49px
+  cursor pointer
+  margin-top 97px
+  margin-right 84px
+
+.footer-top-logo
+  background-image url(../../img/logo-down.png)
+  width 347px
+  height 90px
+  margin-right -12px
+  background-repeat no-repeat
+  margin-left 65px
+  margin-top 77px
+
+.info-donates
+  text-align -webkit-center
+  margin-top 91px
+
+.text-info-donate
+  text-align left
+  margin-top 71px
+  padding-left 25px
+  padding-right 25px
+  margin-bottom 86px
+
+.info-donate-main
+  cursor pointer
+
+.block-info-text
+  max-width 748px
+  font-size 21.91px
+  font-family AcromMedium
+  position relative
+  display flex
+  margin-left 25px
+  margin-right 25px
+  color #b3bccf
+  place-content center
+  background #ffffff
+
+.info-donate-ico
+  background-image url(../../img/info-1.png)
+  min-width 120px
+  margin-left 78px
+  height 115px
+  margin-top -43px
+  background-repeat no-repeat
+
+.info-donate-text
+  font-family AcromBold
+  color black
+  margin-top 23px
+  padding-bottom 17px
+  margin-right 58px
+  margin-left 107px
+  display flex
+  text-align left
+  font-size 27.02px
+
+.info-donate-textr
+  font-family AcromBold
+  font-weight bold
+  display contents
+  font-family AcromBold
+  font-weight bold
+
+.info-donate
+  max-width 748px
+  min-height 84px
+  position relative
+  display flex
+  margin-left 25px
+  margin-right 25px
+  background #ffc300
+
+.info-donate-cross
+  background-image url(../../img/info-cross.png)
+  width 24px
+  height 24px
+  position absolute
+  margin-left 90%
+  margin-top 32px
+
+.footer-content-center
+  background-image url(../../img/center-buttom-down-block.png)
+  width 425px
+  background-position center
+  background-repeat no-repeat
+  background-position-y 200px
+
+.news-content
+  margin-left 55px
+  margin-top 71px
+  display flex
+
+.news-content-b1
+  background-image url(../../img/news-id2.png)
+  width 385px
+  height 233px
+  display block
+  transition 0.3s
+  color white
+
+.decoration-block-a-b1
+  background-image url(../../img/news-id7.png)
+  width 9px
+  height 66px
+  margin-left -4px
+  position absolute
+  margin-top 147px
+
+.decoration-block-a-b1-1
+  background-image url(../../img/news-id7.png)
+  width 9px
+  height 66px
+  margin-left -4px
+  position absolute
+  margin-top 147px
+
+.text1-block-a-c
+  font-family AcromBold
+  font-size 27.85px
+  margin-top 373px
+  margin-left 44px
+  display block
+  color white
+  text-decoration none
+  position absolute
+
+.text2-block-a-c
+  font-family AcromBold
+  font-size 15.21px
+  margin-top 9px
+  color #ced5e1
+  margin-top 415px
+  margin-left 44px
+  position absolute
+
+.decoration-block-a-b2
+  background-image url(../../img/news-id7.png)
+  width 9px
+  height 66px
+  margin-left -4px
+  position absolute
+  margin-top 147px
+
+.decoration-block-a-c-1
+  background-image url(../../img/news-id8.png)
+  width 100%
+  height 9px
+  background-repeat no-repeat
+  background-position center
+  position absolute
+  margin-top 277px
+
+.decoration-block-a-b2-2
+  background-image url(../../img/news-id7.png)
+  width 9px
+  height 66px
+  margin-left -4px
+  position absolute
+  margin-top 147px
+
+.news-content-c
+  background-image url(../../img/news-id6.png)
+  width 1152px
+  height 281px
+  position relative
+  margin-left 55px
+  transition 0.3s
+  display block
+
+.news-content-b2
+  background-image url(../../img/news-id4.png)
+  width 385px
+  height 233px
+  transition 0.3s
+  display block
+  color white
+  text-decoration none
+
+.news-content-b1-1
+  background-image url(../../img/news-id3.png)
+  width 385px
+  height 233px
+  display block
+  transition 0.3s
+  color white
+  text-decoration none
+
+.news-content-b
+  display flex
+  display flex
+
+.news-content-b2-2
+  background-image url(../../img/news-id5.png)
+  width 385px
+  height 233px
+  display block
+  transition 0.3s
+  color white
+  text-decoration none
+
+.news-content-a
+  transition 0.3s
+  background-image url(../../img/news-id1.png)
+  width 384px
+  display block
+  height 466px
+
+.sell-content-b
+  background-color white
+  width 244px
+  height 244px
+  margin-top 36px
+  margin-right -6px
+  margin-left 38px
+
+.name-title-id7
+  padding-top 31px
+  font-size 29px
+  letter-spacing 1px
+  color black
+  margin-top 13px
+  position absolute
+  text-align left
+  font-family GilroyBlack
+  padding-left 61px
+  max-width 253px
+
+.decoration_main-content-8
+  background-image url(../../img/decoration_main-content-8.png)
+  width 56px
+  height 42px
+  position absolute
+  margin-left 275px
+  margin-top 60px
+
+.name-title-id8
+  padding-top 66px
+  font-size 15px
+  letter-spacing 2px
+  color #e8e8e8
+  margin-top 13px
+  width 187px
+  position absolute
+  text-align left
+  font-family AcromMedium
+  padding-left 62px
+  max-width 253px
+
+.liner-sell-content-b
+  display flex
+
+.decoration_main-content-6
+  background-image url(../../img/decoration_main-content-6.png)
+  width 244px
+  height 146px
+  position absolute
+  margin-left 72px
+  margin-top 29px
+  background-repeat no-repeat
+
+.sell-content-c
+  width 217px
+  margin-left 41px
+  height 527px
+  margin-top 78px
+  background white
+
+.contents-sell
+  width 100%
+  display flex
+  margin-bottom 62px
+
+.decoration_main-content-3
+  background-image url(../../img/decoration_main-content-3.png)
+  width 244px
+  height 146px
+  position absolute
+  margin-left 33px
+  margin-top 86px
+  background-repeat no-repeat
+
+.name-title-id3
+  position absolute
+  width 217px
+  color black
+  letter-spacing 2px
+  text-align center
+  margin-top 268px
+  font-size 28px
+  font-family GilroyBlack
+
+.decoration_main-content-3-b
+  background-image url(../../img/decoration_main-content-3-b.png)
+  width 112px
+  height 146px
+  position absolute
+  margin-left 100px
+  margin-top 249px
+  background-repeat no-repeat
+
+.cost-a-id3-1
+  background radial-gradient(circle farthest-corner at 7px 24px, #9f53ee, #1b77ea)
+  height 35px
+  width 81px
+  letter-spacing 2px
+  text-align center
+  position absolute
+  padding 5px
+  padding-left 27px
+  padding-right 27px
+  margin-left 42px
+  margin-top 355px
+  font-size 28px
+  font-family GilroyBlack
+
+.content-right-1
+  width 375px
+  margin-left 27px
+  height 167px
+  margin-top 17px
+  background white
+
+.decoration_main-content-4
+  background-image url(../../img/decoration_main-content-4.png)
+  width 104px
+  position absolute
+  margin-left 227px
+  margin-top 51px
+  height 73px
+
+.cost-a-id3-2-sell
+  background #e8e8f4
+  height 35px
+  width 80px
+  letter-spacing 2px
+  text-align center
+  position absolute
+  text-decoration line-through
+  padding 5px
+  padding-left 27px
+  padding-right 27px
+  color #cfcfe1
+  margin-left 42px
+  margin-top 400px
+  font-size 27px
+  font-family GilroyBlack
+
+.name-title-id2
+  position absolute
+  width 242px
+  color black
+  letter-spacing 2px
+  text-align center
+  margin-top 149px
+  font-size 28px
+  font-family GilroyBlack
+
+.name-content-a-id2
+  font-family AcromMedium
+  color #dddce7
+  width 242px
+  font-size 15.9px
+  text-align center
+  position absolute
+  margin-top 183px
+
+.decoration_main-content-5
+  background-image url(../../img/decoration_main-content-5.png)
+  width 244px
+  height 146px
+  position absolute
+  margin-left 105px
+  margin-top 29px
+  background-repeat no-repeat
+
+.decoration_main-content-f
+  background-image url(../../img/decoration_main-content-f.png)
+  width 165px
+  height 85px
+  margin-top 12px
+  margin-left 29px
+  position absolute
+
+.decoration_main-content-g
+  background-image url(../../img/decoration_main-content-g.png)
+  width 70px
+  height 8px
+  margin-left 92px
+  margin-top 89px
+  position absolute
+
+.title-page-b
+  font-family AcromExtraBold
+  color black
+  font-size 31.76px
+  position absolute
+  margin-top -75px
+  margin-left 89px
+
+.title-page-a
+  font-family ProximaNovaBlack
+  font-size 96.43px
+  color #ebebf9
+  margin-left 63px
+  margin-top 35px
+
+.payments-type-block
+  display flex
+  margin-top 39px
+  margin-left 118px
+
+.paymeny-type-block-1
+  background-image url(../../img/paymeny-type-block-1.png)
+  width 216px
+  height 27px
+
+.paymeny-type-block-2
+  background-image url(../../img/paymeny-type-block-2.png)
+  width 249px
+  height 29px
+  margin-left 26px
+
+.sell-content-a
+  max-width 520px
+  height 248px
+  margin-top 77px
+  background white
+
+.sell-content
+  margin-left 39px
+
+.line-slide-sell-content-1
+  width 34px
+  height 4px
+  margin-right 27px
+  background #e6e6e6
+
+.name-title-id4
+  padding-top 31px
+  font-size 32px
+  letter-spacing 2px
+  color black
+  text-align left
+  font-family GilroyBlack
+  padding-left 68px
+  max-width 253px
+
+.content-right-2
+  width 375px
+  margin-left 27px
+  height 167px
+  margin-top 78px
+  background white
+
+.name-title-id5
+  padding-top 31px
+  font-size 24px
+  letter-spacing 2px
+  color black
+  margin-top 13px
+  position absolute
+  text-align left
+  font-family GilroyBlack
+  padding-left 165px
+  max-width 253px
+
+.content-right-3
+  width 375px
+  margin-left 27px
+  height 161px
+  margin-top 16px
+  background white
+
+.name-title-id6
+  padding-top 66px
+  font-size 25px
+  letter-spacing 2px
+  color #e8e8e8
+  margin-top 13px
+  width 199px
+  position absolute
+  text-align left
+  font-family GilroyBlack
+  padding-left 175px
+  max-width 253px
+
+.decoration_main-content-7
+  background-image url(../../img/decoration_main-content-7.png)
+  width 135px
+  margin-left 22px
+  height 130px
+  margin-top 28px
+  position absolute
+  background-repeat no-repeat
+
+.cost-a-id4-1
+  background radial-gradient(circle farthest-corner at 7px 24px, #9f53ee, #1b77ea)
+  height 35px
+  width 81px
+  letter-spacing 2px
+  text-align center
+  position absolute
+  padding 5px
+  padding-left 27px
+  padding-right 27px
+  margin-left 68px
+  margin-top 16px
+  font-size 28px
+  font-family GilroyBlack
+
+.line-sliders-sell-content-1
+  position absolute
+  margin-top 219px
+  display flex
+  margin-left 198px
+
+.decoration_main-content-1
+  background-image url(../../img/decoration_main-content-1.png)
+  width 184px
+  height 181px
+  position absolute
+  margin-top -55px
+  margin-left 76px
+
+.panel-server
+  place-content center
+  text-align center
+  display block
+  margin-top 30px
+  justify-content center
+
+g
+  &.server-a-check
+    &:hover
+      background #fbd65c
+
+.server-a-check
+  background #ffc300
+  padding 15px
+  margin 16px
+  color black
+  display inline-block
+  width 187px
+  transition 0.3s
+  cursor pointer
+  font-size 25px
+  font-family AcromBold
+
+.sell-content-title-1
+  padding-top 89px
+  font-size 32px
+  letter-spacing 2px
+  color black
+  text-align left
+  font-family GilroyBlack
+  padding-left 191px
+  max-width 253px
+
+.sell-content-title-2
+  font-family AcromMedium
+  color #e6e5ed
+  text-align center
+  font-size 18.47px
+  padding-left 191px
+  margin-top -3px
+  text-align left
+  max-width 253px
+
+.decoration_main-content-2
+  background-image url(../../img/decoration_main-content-2.png)
+  width 50px
+  height 73px
+  position absolute
+  margin-top 97px
+  margin-left 93px
+
+.title-menu-2
+  font-family AcromMedium
+  color black
+  font-size 24.91px
+  max-width 487px
+  margin-left 92px
+  margin-top 50px
+
+.main-title
+  font-family ProximaNovaBlack
+  font-size 131px
+  color #ebebf9
+  margin-top 97px
+  margin-left 15px
+  text-transform uppercase
+
+.title-menu
+  font-family AcromExtraBold
+  color black
+  font-size 31px
+  max-width 700px
+  margin-left 88px
+  margin-top -65px
+
+.ico-user
+  background-image url(../../img/ico-user.png)
+  width 20px
+  height 22px
+  margin-top -4px
+  margin-right 10px
+
+  &.nn
+    filter invert(1)
+
+.head-menu
+  display flex
+  margin-left 93px
+
+.start-game-content
+  margin-top 60px
+  margin-left 100px
+  display flex
+
+.start-game-1
+  background-image url(../../img/startgame-1.png)
+  width 342px
+  height 432px
+  display block
+  margin-right 30px
+
+.start-game-2
+  background-image url(../../img/startgame-2.png)
+  width 342px
+  height 428px
+  margin-top 4px
+  display block
+
+.start-game-3
+  background-image url(../../img/startgame-3.png)
+  width 342px
+  height 425px
+  display block
+  margin-top 6px
+  margin-left 30px
+
+.right-hamburger-menu
+  width 100%
+  background #0000009e
+  margin-left auto
+  display block
+  height 100%
+
+.header-shop-image
+  background-image url(../../img/shop-header.png)
+  width 100%
+  background-size 95%
+  background-repeat no-repeat
+  height 667px
+  margin-top 19px
+
+.shop-header-decor1
+  background-image url(../../img/shop-header-decor1.png)
+  width 159px
+  height 158px
+  position absolute
+  margin-left 289px
+
+.shop-header-decor2
+  background-image url(../../img/shop-header-decor2.png)
+  width 44px
+  height 44px
+  position absolute
+  margin-left 192px
+  margin-top 121px
+
+.shop-header-decor3
+  background-image url(../../img/shop-header-decor3.png)
+  width 37px
+  height 37px
+  position absolute
+  margin-left 1016px
+  margin-top 108px
+
+.button-a-href-g
+  padding 20px
+  font-family AcromBold
+  font-size 23px
+  padding-top 56px
+  text-align center
+
+.hamburger-menu
+  background #0000008c
+  width 100%
+  height 100%
+  z-index 2
+  position fixed
+
+.buy-text-2
+  font-family Acrom
+  font-size 22px
+  color #afafaf
+  margin-bottom 44px
+  margin-top 10px
+
+.buy-text-3
+  font-family AcromMedium
+  font-size 22px
+  color #000000
+  margin-bottom 44px
+  margin-top 6px
+
+.buy-text-1
+  color black
+  font-size 25px
+  font-family AcromBold
+
+a.animation-head-a::before,
+a.animation-head-a::after
+  content ''
+  position absolute
+  top 81%
+  width 0%
+  height 7px
+  background linear-gradient(to top, #12ff2d, #33ff77)
+  transition .3s
+
+a.animation-head-a-on::before,
+a.animation-head-a-on::after
+  width 60% !important
+
+a.animation-head-a::hover:before,
+a.animation-head-a::hover:after
+  width 50%
+
+.label-buttonHead
+  margin-top 9px
+  position relative
+  z-index 1
+
+.content-head
+  display flex
+  height 100%
+  text-align left
+
+.content
+  display flex
+  height 100%
+  text-align left
+
+.ico-buttonHead
+  background-position center
+  background-repeat no-repeat
+
+.home-head-ico
+  background-image url(../../img/ico-buttonHead-home.png)
+  width 27px
+  height 23px
+
+.cart-head-ico
+  background-image url(../../img/ico-buttonHead-cart.png)
+  width 27px
+  height 23px
+
+.donate-head-ico
+  background-image url(../../img/ico-buttonHead-donate.png)
+  width 27px
+  height 23px
+
+.news-head-ico
+  background-image url(../../img/ico-buttonHead-news.png)
+  width 27px
+  height 23px
+
+.rules-head-ico
+  background-image url(../../img/ico-buttonHead-rules.png)
+  width 27px
+  height 23px
+
+.head-conent
+  background-image url(../../img/head-block.png)
+  height 137px
+  width 100%
+  background-repeat-y no-repeat
+  text-align -webkit-center
+
+.cabinet-button
+  background-image url(../../img/button-head.png)
+  width 233px
+  height 50px
+  color #303030
+  font-size 16.63px
+  display flex
+  text-decoration none
+  text-align center
+  place-content center
+  transition 0.3s
+  cursor pointer
+  margin-top 51px
+  padding-top 12px
+  font-family AcromBold
+  background-repeat no-repeat
+
+  &:hover
+    opacity 0.85
+
+.decoration_main-content-a
+  background-image url(../../img/decoration_main-content-a.png)
+  width 47px
+  height 46px
+  position absolute
+  margin-left 199px
+  margin-top 69px
+
+.decoration_main-content-b
+  background-image url(../../img/decoration_main-content-b.png)
+  width 47px
+  height 46px
+  position absolute
+  margin-left 667px
+  margin-top 53px
+
+.decoration_main-content-c
+  background-image url(../../img/decoration_main-content-c.png)
+  width 258px
+  height 258px
+  position absolute
+  margin-left 416px
+  margin-top 305px
+
+.mon-id-2
+  background-image url(../../img/server-2-a.png)
+  width 47px
+  height 65px
+  margin-left 65px
+  position absolute
+  margin-top 40px
+
+  &.off
+    background-image url(../../img/server-3-a.png)
+    width 53px
+    height 53px
+    margin-top 48px
+    margin-left 68px
+
+.mon-id-5
+  position absolute
+  letter-spacing 2px
+  font-size 14px
+  margin-left 154px
+  margin-top 70px
+  color #ced5e1
+  font-family AcromMedium
+
+.mon-id-6
+  width 208px
+  height 7px
+  margin-left 152px
+  margin-top 97px
+  position absolute
+  background-image url(../../img/progress-a.png)
+
+.footer-down-content-right
+  margin-top 275px
+  position absolute
+  display flex
+  font-size 18px
+  margin-left 513px
+
+.footer-down-content-left
+  position absolute
+  color #bdbdbd
+  margin-top 275px
+  font-size 18px
+  margin-left -421px
+  font-family AcromBold
+
+.mon-id-7-progress
+  width 121px
+  height 7px
+  float left
+  background-image url(../../img/progress-b.png)
+
+.img-user-shop
+  background-image url(https://minecraft-inside.ru/uploads/nick/ValeriaRR07.png)
+  width 38px
+  height 36px
+  margin-left 57px
+  background-size 331px
+  background-position-y -45px
+  background-position-x -44px
+  image-rendering pixelated
+  margin-top 11px
+
+.history-block-shop
+  background-image url(../../img/history-a.png)
+  width 260px
+  height 63px
+  display flex
+  margin-right 22px
+  margin-top 74px
+
+.checkbox-img
+  height 29px
+  background-image url(../../img/inp-0.png)
+  width 31px
+
+.up-block-category
+  display flex
+
+.select-server-category-shop-a
+  text-decoration underline
+
+.server
+  padding 4px
+  transition 0.3s
+  padding-left 10px
+  border-bottom solid 1px #ced5e1
+
+  &:hover
+    color #ffb900
+    background aliceblue
+
+.down-category-shop
+  background #efeefe
+  color #bac0ca
+  text-decoration none
+  width 160px
+  position absolute
+  margin-top -3px
+  border-left solid 1px #ced5e1
+  border-right solid 1px #ced5e1
+  border-top solid 1px #ced5e1
+
+.checkbox-select-all
+  justify-content center
+  margin-left 78px
+
+.checkbox-select
+  margin-top 23px
+  margin-right 28px
+  width 150px
+  cursor pointer
+  transition 0.3s
+  display flex
+  float left
+
+.checkbox-text
+  font-size 15.47px
+  font-family AcromMedium
+  color black
+  font-weight bold
+  margin-left 17px
+  margin-top 5px
+
+.time-buy-shop
+  font-family AcromMedium
+  font-size 8.24px
+  text-align left
+
+.user-info-shop
+  text-align-last left
+  margin-left 23px
+
+.what-buy-shop
+  font-size 8.5px
+  margin-top -1px
+  FONT-WEIGHT 500
+
+.name-block-category-shop
+  font-family AcromExtraBold
+  font-size 21.2px
+  color black
+  margin-left 75px
+  padding-top 44px
+
+.user-name-shop
+  font-size 14.11px
+  margin-top 9px
+  font-family AcromBold
+
+.block-category-shop
+  background white
+  max-width 471px
+  margin-right 100px
+  margin-top -263px
+  height 222px
+  margin-left auto
+
+.name-item
+  font-family AcromBold
+  font-size 27.26px
+  color black
+  place-content center
+  padding-top 51px
+  display flex
+
+.ico-item
+  background-image url(https://jesuscraft.ru/img/ico-item.png)
+  width 20px
+  margin-left 24px
+  margin-top 7px
+  height 20px
+
+.shop-item
+  background white
+  max-width 320px
+  height 363px
+  margin-right 46px
+  margin-bottom 47px
+  float left
+  text-align -webkit-center
+
+.buy-item
+  font-size 29px
+  background linear-gradient(to top, #5057c9, #8089ee)
+  width 166px
+  height 41px
+  padding-top 6px
+  cursor pointer
+  font-family AcromBold
+  margin-top 4px
+  text-align center
+
+.img-item
+  background-image url(https://jesuscraft.ru/img/shop/premium.png)
+  width 321px
+  background-repeat no-repeat
+  background-position center
+  height 177px
+
+.shop-list
+  margin-left 48px
+  margin-top 93px
+
+.shop-stats
+  background-image url(../../img/button-buy-all.png)
+  width 371px
+  height 160px
+  line-height 120px
+  text-align center
+  font-size 23.93px
+  font-family AcromExtraBold
+  color black
+  margin-top -9px
+  margin-left 45px
+
+.history-buy-shop
+  background-image url(../../img/react-shop.png)
+  width 100%
+  display flex
+  place-content center
+  min-height 213px
+  margin-top 96px
+
+.mon-id-3
+  background-image url(../../img/server-1-a.png)
+  width 78px
+  height 108px
+  margin-left 90px
+  position absolute
+  margin-top 20px
+
+.close
+  background-image url(../../img/close.svg)
+  width 22px
+  height 21px
+  background-repeat no-repeat
+  background-size 21px
+  cursor pointer
+  transition 0.3s
+  filter brightness(0.5)
+  filter invert(1)
+  margin-left auto
+  margin-right 35px
+  margin-top 35px
+
+  &:hover
+    opacity 0.8
+
+.contentact-main
+  display flex
+  margin-left 55px
+  margin-top 48px
+  text-align -webkit-center
+
+.contentact-1
+  background-image url(../../img/contact-1.png)
+  width 376px
+  transition 0.3s
+  display block
+  margin-right 11px
+  margin-bottom 15px
+  height 233px
+
+.contentact-2
+  background-image url(../../img/contact-2.png)
+  width 376px
+  height 233px
+  display block
+  margin-right 11px
+  transition 0.3s
+  margin-bottom 15px
+
+.contentact-3
+  background-image url(../../img/contact-3.png)
+  width 376px
+  display block
+  height 233px
+  transition 0.3s
+
+.progress-absolution-id3
+  font-size 25.57px
+  letter-spacing 2px
+  text-transform uppercase
+  font-family GilroyBlack
+
+.progress-absolution-id1
+  background-image url(../../img/monitoring.png)
+  width 315px
+  position absolute
+  height 85px
+  margin-left 13px
+  display flex
+  place-items center
+  justify-content center
+  margin-top 310px
+
+.shop-header-text-3
+  font-size 21.76px
+  font-family Acrom
+  color black
+  margin-top 23px
+
+.shop-header-text-2
+  font-family AcromExtraBold
+  color black
+  font-size 31.76px
+  text-align center
+  display block
+  text-align left
+  max-width 687px
+  margin-top -154px
+  margin-left 97px
+
+.shop-header-text-1
+  font-family ProximaNovaBlack
+  font-size 127.7px
+  color #ebebf9
+  margin-left -16px
+  margin-top -9px
+
+.shop-header-text
+  text-align -webkit-center
+
+.progress-absolution-id2
+  background-image url(../../img/ico-online.png)
+  width 34px
+  height 34px
+  margin-right 9px
+  margin-top -7px
+
+.progress-absolution
+  background-image url(../../img/monitoring-1-a.png)
+  width 340px
+  position absolute
+  height 486px
+  margin-left 475px
+  z-index 1
+  background-position-y 19px
+  margin-top 27px
+
+.content-monitoring-center
+  margin-left 120px
+  margin-top 64px
+
+.content-monitoring
+  display flex
+  margin-bottom 57px
+
+.mon-id-4
+  font-family AcromBold
+  font-size 29.55px
+  color black
+  margin-left 150px
+  margin-top 32px
+  text-transform uppercase
+  position absolute
+
+.mon-id-1
+  background-image url(../../img/server-4-a.png)
+  width 481px
+  height 131px
+  margin-left 84px
+  margin-top 42px
+  background-repeat no-repeat
+
+.decoration_main-content-d
+  background-image url(../../img/decoration_main-content-d.png)
+  width 598px
+  height 779px
+  position absolute
+  margin-left 675px
+  margin-top 47px
+
+.logotype-wrapper
+  width 84px
+  height 74px
+  margin-top 34px
+  margin-left 35px
+
+.logotype
+  width 100%
+  height 100%
+  font-family AcromBold
+  position relative
+  background-image linear-gradient(180deg, rgb(13 218 65) 17%, rgba(18, 125, 22, 1) 100%)
+  text-transform uppercase
+  color #404040
+  letter-spacing 1px
+  text-decoration none
+  display flex
+  justify-content center
+  align-items center
+  font-weight bold
+  font-size 26px
+  border-radius 0 1px .2rem 0
+  box-shadow -5px 5px 30px 1px #43a73b
+
+  &::before
+    content ""
+    position absolute
+    width 9px
+    height 100%
+    background-color #30b828
+    background-image linear-gradient(180deg, rgb(61 232 104) 17%, rgb(39 117 42) 100%)
+    top .27rem
+    left -9px
+    transform skewY(-45deg)
+
+  &::after
+    content ""
+    position absolute
+    bottom -.53rem
+    right 0.27rem
+    width 100%
+    height 9px
+    background-color #156f0e
+    border-radius 0 1px 0 0
+    transform skewX(-45deg)
+
+.rules-arrow-content-block
+  margin-left 92.3%
+  margin-top 48px
+  background-image url(../../img/arrow-down.png)
+  width 19px
+  position absolute
+  height 11px
+
+  &.open-rules
+    background-image url(../../img/arrow-up.png)
+
+.rules-main-content-block
+  text-align -webkit-center
+
+.rules-content-block-title
+  max-width 893px
+  min-height 100px
+  position relative
+  display flex
+  margin-left 25px
+  margin-right 25px
+  cursor pointer
+  background white
+  margin-top 31px
+
+.rules-content-block-info
+  font-family AcromMedium
+  font-size 14.51px
+  text-align left
+  display inline-flex
+  margin-right 255px
+  margin-left 70px
+  margin-top 26px
+  margin-bottom 34px
+  color #ceceed
+
+.rules-ico-content-block
+  background-image url(../../img/rules-1.png)
+  min-width 63px
+  height 62px
+  margin-left 72px
+  margin-top 18px
+
+.rules-name-content-block
+  color black
+  font-family AcromBold
+  font-size 21.16px
+  margin-left 63px
+  margin-top 36px
+  text-align left
+  margin-right 38px
+
+.ham
+  cursor pointer
+  -webkit-tap-highlight-color transparent
+  transition transform 400ms
+  -moz-user-select none
+  -webkit-user-select none
+  -ms-user-select none
+  user-select none
+  float right
+  width 87px
+  display none
+  margin-top -83px
+  margin-right 18px
+
+.hamRotate
+  &.active
+    transform rotate(45deg)
+
+.hamRotate180
+  &.active
+    transform rotate(180deg)
+
+.line
+  fill none
+  transition stroke-dasharray 400ms, stroke-dashoffset 400ms
+  stroke #000
+  stroke-width 5.5
+  stroke-linecap round
+
+.ham4
+  .top
+    stroke-dasharray 40 121
+
+  .bottom
+    stroke-dasharray 40 121
+
+  &.active
+    .top
+      stroke-dashoffset -68px
+
+    .bottom
+      stroke-dashoffset -68px

@@ -1,0 +1,30 @@
+@import 'shared/variables.styl'
+@import 'shared/reset.styl'
+@import 'shared/fonts.styl'
+
+body
+  background #f5f5fd
+
+.text-underline::before,
+.text-underline::after 
+  content ''
+  position absolute
+  top 81%
+  width 0
+  height 7px
+  background linear-gradient(to top, #12ff2d, #33ff77)
+  transition .3s
+
+.text-underline-hovered::before,
+.text-underline-hovered::after 
+  width 60% !important
+
+.text-underline::before 
+  left 50%
+
+.text-underline::after 
+  right 50%
+
+.text-underline::hover:before,
+.text-underline::hover:after 
+  width 50%
