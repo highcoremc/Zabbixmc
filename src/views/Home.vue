@@ -164,6 +164,7 @@ export default class extends Vue {
   background-color #FFFFFF
   position relative
   text-align center
+  height 100%
   padding 20px
   content ''
 
@@ -360,10 +361,9 @@ export default class extends Vue {
   display flex
 
   &__card
-    width 33.3333%
-    padding 20px
-    height 100%
     position relative
+    width 33.3333%
+    padding 15px
 
     &-badge
       background #000
