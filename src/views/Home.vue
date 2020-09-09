@@ -59,12 +59,8 @@
                 <div class="offers__card-title">Кейсы</div>
                 <div class="offers__card-subtitle">Выбей топовый шмот за фикс прайс.</div>
                 <div class="offers__card-badge-price">
-                  <div class="badge badge-price">
-                    50 ₽
-                  </div>
-                  <div class="badge badge-price-old">
-                    150 ₽
-                  </div>
+                  <div class="badge badge-price">50 ₽</div>
+                  <div class="badge badge-price-old">150 ₽</div>
                 </div>
               </div>
             </div>
@@ -97,6 +93,47 @@
           </div>
         </div>
       </div>
+
+      <svg width="0" height="0">
+        <linearGradient id="contact-gradient" x1="100%" y1="100%" x2="0%" y2="0%" >
+          <stop offset="17%" style="stop-color:rgb(0,255,64);stop-opacity:1" />
+          <stop offset="100%" style="stop-color:rgb(18,125,22);stop-opacity:1" />
+        </linearGradient>
+      </svg>
+
+      <div class="col-md-12">
+        <Subtitle :title="'связь с нами'" :content="'наши контакты'"/>
+        <div class="contacts">
+          <div class="contacts__card contacts__discord">
+            <div class="contacts__card-badge">
+              <i class="fab fa-discord"></i>
+            </div>
+            <div class="card-content">
+              <div class="card-title">Discord сервер</div>
+              <div class="card-subtitle">Общаемся, тусим и флексим с админами на нашем ламповом DS сервере.</div>
+            </div>
+          </div>
+          <div class="contacts__card contacts__telegram">
+            <div class="contacts__card-badge">
+              <i class="fab fa-telegram"></i>
+            </div>
+            <div class="card-content">
+              <div class="card-title">Telegram канал</div>
+              <div class="card-subtitle">Мемы, приколы, новости и скидки публикуются в Телеграм канале.</div>
+            </div>
+          </div>
+          <div class="contacts__card contacts__vk">
+            <div class="contacts__card-badge">
+              <i class="fab fa-vk"></i>
+            </div>
+            <div class="card-content">
+              <div class="card-title">Сообщество Vk</div>
+              <div class="card-subtitle">Лента новостей, свежие апдейты и конкурсы, все это в нашей группе вконтакте.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -115,6 +152,27 @@ export default class extends Vue {
 </script>
 
 <style lang="stylus">
+
+.card-subtitle
+  font-family AcromMedium, sans-serif
+  letter-spacing .02rem
+  color #e6e5ed
+  padding-top 10px
+  font-size 1rem
+
+.card-content
+  background-color #FFFFFF
+  position relative
+  text-align center
+  padding 20px
+  content ''
+
+.card-title
+  font-family GilroyBlack, sans-serif
+  letter-spacing .08rem
+  font-size 1.75rem
+  color black
+
 .offers
   //align-items flex-start
   flex-direction row
@@ -150,25 +208,13 @@ export default class extends Vue {
     padding 15px
 
     &-content
-      text-align center
-      content ''
-      padding 20px
-      background-color #FFFFFF
-      position relative
-
+      @extend .card-content
 
     &-title
-      font-family GilroyBlack, sans-serif
-      color black
-      font-size 1.75rem
-      letter-spacing .08rem
+      @extend .card-title
 
     &-subtitle
-      font-family AcromMedium, sans-serif
-      letter-spacing .02rem
-      padding-top 10px
-      font-size 1rem
-      color #e6e5ed
+      @extend .card-subtitle
 
     &-clans &-content,
     &-youtube &-content
@@ -310,6 +356,42 @@ export default class extends Vue {
         background-size contain
         position: absolute
 
+.contacts
+  display flex
+
+  &__card
+    width 33.3333%
+    padding 20px
+    height 100%
+    position relative
+
+    &-badge
+      background #000
+      width 60px
+      height 60px
+      text-align center
+      line-height 5.2rem
+      border-radius 2px
+      position absolute
+      top 62px
+      z-index 1
+      left calc(20px + 33px)
+      i
+        font-size 2.5rem
+        background linear-gradient(to top, #2F80ED, #56CCF2)
+        -webkit-background-clip text
+        -webkit-text-fill-color transparent
+
+    .card-title
+      text-transform uppercase
+      font-size 1.3rem
+
+    .card-subtitle
+      font-size .8rem
+
+    .card-content
+      text-align left
+      padding 40px 25px 40px 125px
 
 .game-start
   margin 4rem 5.8rem
