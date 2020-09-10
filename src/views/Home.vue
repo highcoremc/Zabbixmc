@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="row">
-      <div class="col-md-8 col-sm-12">
+      <div class="col-md-12">
         <div class="title">
           <div class="title__background">zabbixmc</div>
           <div class="title__content">Почувствуй себя настоящим майнкрафтером!</div>
@@ -11,17 +11,13 @@
         </div>
       </div>
 
-      <div class="col-md-4">
-        {image}
-      </div>
-
       <div class="col-md-12">
         <div class="game-start">
           <div class="btn btn-primary btn-title">
             <i class="icon">
               <img src="~@mojang/web-theme-bootstrap/assets/svg/icons/color-steve-alex.svg" alt="">
             </i>
-            Начать игру
+            В магазин
           </div>
         </div>
       </div>
@@ -94,44 +90,41 @@
         </div>
       </div>
 
-      <svg width="0" height="0">
-        <linearGradient id="contact-gradient" x1="100%" y1="100%" x2="0%" y2="0%" >
-          <stop offset="17%" style="stop-color:rgb(0,255,64);stop-opacity:1" />
-          <stop offset="100%" style="stop-color:rgb(18,125,22);stop-opacity:1" />
-        </linearGradient>
-      </svg>
-
       <div class="col-md-12">
         <Subtitle :title="'связь с нами'" :content="'наши контакты'"/>
         <div class="contacts">
-          <div class="contacts__card contacts__discord">
+          <a href="#" class="contacts__card contacts__discord">
             <div class="contacts__card-badge">
               <i class="fab fa-discord"></i>
             </div>
             <div class="card-content">
               <div class="card-title">Discord сервер</div>
               <div class="card-subtitle">Общаемся, тусим и флексим с админами на нашем ламповом DS сервере.</div>
+              <a href="#" class="card-link">Написать в Discord</a>
             </div>
-          </div>
-          <div class="contacts__card contacts__telegram">
+          </a>
+          <a href="#" class="contacts__card contacts__telegram">
             <div class="contacts__card-badge">
-              <i class="fab fa-telegram"></i>
+              <i class="fab fa-telegram-plane"></i>
             </div>
             <div class="card-content">
               <div class="card-title">Telegram канал</div>
               <div class="card-subtitle">Мемы, приколы, новости и скидки публикуются в Телеграм канале.</div>
+              <div class="card-link">Написать в Telegram</div>
             </div>
-          </div>
-          <div class="contacts__card contacts__vk">
+          </a>
+          <a href="#" class="contacts__card contacts__vk">
             <div class="contacts__card-badge">
               <i class="fab fa-vk"></i>
             </div>
             <div class="card-content">
               <div class="card-title">Сообщество Vk</div>
               <div class="card-subtitle">Лента новостей, свежие апдейты и конкурсы, все это в нашей группе вконтакте.</div>
+              <div class="card-link">Написать в Vk</div>
             </div>
-          </div>
+          </a>
         </div>
+        <div class="contacts__footer-title">Тех-Поддержка 24/7</div>
       </div>
 
     </div>
@@ -152,27 +145,52 @@ export default class extends Vue {
 </script>
 
 <style lang="stylus">
+@import '~@/styles/common.styl'
 
-.card-subtitle
-  font-family AcromMedium, sans-serif
-  letter-spacing .02rem
-  color #e6e5ed
-  padding-top 10px
-  font-size 1rem
+.home
+  position: relative
+  &:before
+    background-image url("~@/assets/images/pirate.png")
+    background-repeat no-repeat
+    background-size contain
+    width 25%
+    right 0
+    top -6rem
+    position absolute
+    content ''
+    height 100%
 
-.card-content
-  background-color #FFFFFF
-  position relative
-  text-align center
-  height 100%
-  padding 20px
-  content ''
+.card
+  &-link
+    font-family AcromBold, sans-serif
+    letter-spacing -1px
+    text-decoration underline
+    color #000
+    &:hover
+      text-decoration none
+      color #000
 
-.card-title
-  font-family GilroyBlack, sans-serif
-  letter-spacing .08rem
-  font-size 1.75rem
-  color black
+  &-content
+    background-color #FFFFFF
+    position relative
+    text-align center
+    height 100%
+    padding 20px
+    content ''
+
+  &-title
+    font-family GilroyBlack, sans-serif
+    letter-spacing .08rem
+    font-size 1.75rem
+    color black
+
+  &-subtitle
+    font-family AcromMedium, sans-serif
+    letter-spacing .02rem
+    color #e6e5ed
+    padding-top 10px
+    font-size 1rem
+    height 55px
 
 .offers
   //align-items flex-start
@@ -360,10 +378,26 @@ export default class extends Vue {
 .contacts
   display flex
 
+  &__footer-title
+    text-align center
+    font-family AcromExtraBold, sans-serif
+    text-transform uppercase
+    font-size 1.3rem
+    color #c4c4d6
+    @extend .disable-highlight
+
   &__card
+    transition all .4s
     position relative
     width 33.3333%
     padding 15px
+
+    &:hover
+      transform matrix(1, 0, 0, 1, 0, -8)
+      text-decoration none
+
+    &:hover .card-link
+      text-decoration none
 
     &-badge
       background #000
@@ -373,7 +407,7 @@ export default class extends Vue {
       line-height 5.2rem
       border-radius 2px
       position absolute
-      top 62px
+      top 57px
       z-index 1
       left calc(20px + 33px)
       i
@@ -442,7 +476,7 @@ export default class extends Vue {
       top 34px
       left 20px
 
-    &::after
+    &:after
       background-image url('~@/assets/images/cross.png')
       background-repeat no-repeat
       content ''
@@ -450,7 +484,7 @@ export default class extends Vue {
       width 47px
       height 46px
       top -36px
-      right 70px
+      right 38%
 
   &__subtitle
     font-family AcromMedium, sans-serif
@@ -460,4 +494,9 @@ export default class extends Vue {
     margin-left 92px
     margin-top 80px
 
+@media screen and (max-width: 1024px)
+  .home:before
+    display none
+  .offers-center
+    display none
 </style>

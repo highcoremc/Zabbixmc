@@ -39,14 +39,6 @@ const routes: Array<RouteConfig> = [
             icon: 'far fa-minus-circle fa-lg',
         },
     },
-    {
-        path: '/agreement',
-        name: 'Соглашение',
-        component: Agreement,
-        meta: {
-            icon: 'far fa-exclamation-circle fa-lg',
-        },
-    },
 ]
 
 export default routes;

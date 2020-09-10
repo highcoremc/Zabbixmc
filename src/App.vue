@@ -3,8 +3,8 @@
     <div class="container">
       <div class="bar">
         <div class="row">
-          <div class="col-md-2">
-            <LightGreenBadge :title="'ZMC'"/>
+          <div class="col-xs-2">
+            <a href="/" class="logotype"></a>
           </div>
           <div class="col-md-10">
             <ul class="navigation">
@@ -21,14 +21,67 @@
           </div>
         </div>
       </div>
-      <router-view/>
+    </div>
+    <div class="container">
+      <div class="content">
+        <router-view/>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer__content container">
+        <div class="footer__item footer__social">
+          <a href="/" class="logotype"></a>
+          <div class="footer__social-links">
+            <a href="#" class="footer__social-links__link"><i class="fab fa-discord"></i></a>
+            <a href="#" class="footer__social-links__link"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#" class="footer__social-links__link"><i class="fab fa-vk"></i></a>
+          </div>
+        </div>
+        <div class="footer__item footer__navigation">
+          <div class="footer__item-title">Навигация</div>
+          <ul class="footer__navigation--list">
+            <li class="footer__navigation--item" v-for="(route, i) in $router.options.routes" :key="i">
+              <router-link :to="route.path" class="footer__navigation--item_link">{{ route.name }}</router-link>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__item footer__navigation">
+          <div class="footer__item-title">Помощь</div>
+          <ul class="footer__navigation--list">
+            <li class="footer__navigation--item">
+              <a href="#" class="footer__navigation--item_link">Discord</a>
+            </li>
+            <li class="footer__navigation--item">
+              <a href="#" class="footer__navigation--item_link">Telegram</a>
+            </li>
+            <li class="footer__navigation--item">
+              <a href="#" class="footer__navigation--item_link">VK</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__item footer__navigation">
+          <div class="footer__item-title">Почитать</div>
+          <ul class="footer__navigation--list">
+            <li class="footer__navigation--item">
+              <a href="#" class="footer__navigation--item_link">Публичная оферта</a>
+            </li>
+            <li class="footer__navigation--item">
+              <a href="#" class="footer__navigation--item_link">Политика обработки персональных данных</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__copyright">
+        <div class="text">ZabbixMC Все права защищены</div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import LightGreenBadge from "@/components/LightGreenBadge.vue";
+
 
 @Component({
   components: {
@@ -47,6 +100,33 @@ export default class App extends Vue {
   -moz-osx-font-smoothing grayscale
   color #232121
 
+.text-underline::before,
+.text-underline::after
+  content ''
+  position absolute
+  top 81%
+  width 0
+  height 7px
+  background linear-gradient(to top, #12ff2d, #33ff77)
+  transition .3s
+
+.text-underline-hovered::before,
+.text-underline-hovered::after
+  width 60% !important
+
+.text-underline::before
+  left 50%
+
+.text-underline::after
+  right 50%
+
+.text-underline::hover:before,
+.text-underline::hover:after
+  width 50%
+
+.content
+  min-height 75vh
+
 .ico-buttonHead
   background-position center
   background-repeat no-repeat
@@ -58,17 +138,38 @@ export default class App extends Vue {
 
 .bar
   min-height 150px
+  position relative
+
+  .logotype
+    top 75px
+    padding 60px
+
+.logotype
+  content ''
+  background-image url("~@/assets/images/logotype.png")
+  background-repeat no-repeat
+  background-size contain
+  position relative
+  text-align center
+  padding 70px
+  transition all .2s
+
+  &:hover
+    opacity .85
 
 .navigation
-  list-style-type none
+  justify-content center
+  display flex
   padding 0
   overflow hidden
   margin-top 49px
+  list-style-type none
 
   &__item
     float left
     text-align center
     margin 0 45px 0
+    padding-top 5px
 
     > i
       font-size 5rem
@@ -81,12 +182,15 @@ export default class App extends Vue {
     text-decoration none
     position relative
     display inline-block
+    background-color transparent
 
-    &:hover
+    &:hover,
+    &:focus,
+    &:active
       color #5b5b77
       transition 0.3s
-      background-color transparent
       text-decoration none
+      background-color transparent
 
     &::before
       left 50%
@@ -94,4 +198,113 @@ export default class App extends Vue {
     &::after
       right 50%
 
+.footer
+  background-color #FFFFFF
+  margin-top 120px
+  background-image url("~@/assets/images/bg-grid.jpg")
+  background-repeat repeat-x
+  background-size 60%
+  position relative
+
+  &:before
+    content ''
+    width 100%
+    height 100%
+    top 0
+    left 0
+    z-index 0
+    position: absolute
+    background-image linear-gradient(to right top, rgba(255, 255, 255, 0.3), transparent)
+
+  &__content
+    display flex
+    align-items flex-start
+    position relative
+
+    > *
+      z-index 1
+
+  &__item
+    display inline-flex
+    padding 60px 80px
+
+    &:first-child
+      padding 60px 80px 60px 0
+
+    &-title
+      font-size .9rem
+      font-family AcromBold, sans-serif
+      text-transform uppercase
+      padding 10px 0
+
+  &__copyright
+    font-family AcromBold, sans-serif
+    color #acacb9
+    position relative
+    align-self flex-end
+    width 100%
+    padding 20px 0
+    display flex
+    background-image radial-gradient(circle at center, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5))
+    justify-content center
+
+    .text
+      position relative
+
+    .text:before
+      content '©'
+      top -1px
+      color #b1b4bc
+      left -17px
+      font-size 1.35rem
+      position absolute
+
+  &__social
+    flex-direction column
+    align-items center
+    flex-wrap wrap
+    display flex
+
+    &-links
+      margin-top 5px
+      &__link
+        display inline-flex
+        margin 5px
+        color #929598
+        justify-content center
+        align-items center
+        transition all .5s
+
+        &:hover,
+        &:active,
+        &:focus
+          text-decoration none
+          color #404040
+
+        > i
+          font-size 1.5rem
+
+  &__navigation
+    flex-direction column
+    align-items flex-start
+    display flex
+    max-width 450px
+
+    &--item
+      padding 5px 0
+      transition all .3s
+
+      &:hover
+        transform matrix(1, 0, 0, 1, 0, -3)
+
+      &_link
+        color #000000
+        font-family Acrom
+
+        &:hover,
+        &:focus,
+        &:active
+          text-decoration none
+          background transparent
+          color #000000
 </style>
