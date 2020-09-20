@@ -41,7 +41,8 @@
         <div class="footer__item footer__navigation">
           <div class="footer__item-title">Навигация</div>
           <ul class="footer__navigation--list">
-            <li class="footer__navigation--item" v-for="(route, i) in navigation" :key="'footer_' + route.name + '_' + i">
+            <li class="footer__navigation--item" v-for="(route, i) in navigation"
+                :key="'footer_' + route.name + '_' + i">
               <router-link :to="route.path" class="footer__navigation--item_link">{{ route.title }}</router-link>
             </li>
           </ul>
@@ -82,22 +83,15 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import LightGreenBadge from "@/components/LightGreenBadge.vue"
-import navigation from '@/resources/navigation'
-import NavigationItem from "@/router/NavigationItem"
+import { MAIN_NAVIGATION, getRouteNavList } from '@/resources/navigation'
+import NavigationItem from "@/router/NavigationItem";
 
 @Component({
-  components: {
-    LightGreenBadge
-  }
+  components: {LightGreenBadge}
 })
 export default class App extends Vue {
+  public navigation?: Array<NavigationItem> = getRouteNavList(MAIN_NAVIGATION)
   public activeIndex: number = -1
-  public navigation: Array<NavigationItem>
-
-  public constructor() {
-    super()
-    this.navigation = navigation
-  }
 }
 </script>
 
@@ -274,6 +268,7 @@ export default class App extends Vue {
 
     &-links
       margin-top 5px
+
       &__link
         display inline-flex
         margin 5px

@@ -7,139 +7,27 @@
 
         <div class="col-md-12">
           <ul class="categories">
-            <li class="categories__category categories__category-active categories__category-privileges">
-              <a href="#">
-                Привилегии
-              </a>
-            </li>
-            <li class="categories__category categories__category-cases">
-              <a href="#">
-                Кейсы
-              </a>
-            </li>
-            <li class="categories__category categories__category-amount">
-              <a href="#">
-                Валюта
-              </a></li>
-            <li class="categories__category categories__category-others">
-              <a href="#">
-                Разное
-              </a>
+            <li v-for="item in navigation" :key="'shop_nav_' + item.name" class="categories__category"
+                @click="changeActiveItem(item.name)"
+                :class="[{'categories__category-active': item.name === activeCategory}, `categories__category-${item.meta.key}`]">
+              <router-link :to="item.path">
+                {{ item.title }}
+              </router-link>
             </li>
           </ul>
         </div>
 
-        <div class="col-md-12">
-          <div class="products">
-            <div class="products__product products__product-light">
-              <div class="products__product-title">
-                Hero
-              </div>
-              <img src="~@/assets/images/privileges/builder.png" alt="">
-              <div class="products__product-price">
-                50 rub
-              </div>
-            </div>
-            <div class="products__product products__product-light">
-              <div class="products__product-title">
-                Hero+
-              </div>
-              <img src="~@/assets/images/privileges/opaxe.png" alt="">
-              <div class="products__product-price">
-                150 rub
-              </div>
-            </div>
-            <div class="products__product products__product-light">
-              <div class="products__product-title">
-                Ninja
-              </div>
-              <img src="~@/assets/images/privileges/ninja.png" alt="">
-              <div class="products__product-price">
-                300 rub
-              </div>
-            </div>
-            <div class="products__product products__product-medium">
-              <div class="products__product-title">
-                Lord
-              </div>
-              <img src="~@/assets/images/privileges/lord.png" alt="">
-              <div class="products__product-price">
-                600 rub
-              </div>
-            </div>
-            <div class="products__product products__product-medium">
-              <div class="products__product-title">
-                Oper
-              </div>
-              <img src="~@/assets/images/privileges/oper.png" alt="">
-              <div class="products__product-price">
-                900 rub
-              </div>
-            </div>
-            <div class="products__product products__product-medium">
-              <div class="products__product-title">
-                Legend
-              </div>
-              <img src="~@/assets/images/privileges/legend.png" alt="">
-              <div class="products__product-price">
-                1200 rub
-              </div>
-            </div>
-            <div class="products__product products__product-high">
-              <div class="products__product-title">
-                Halk
-              </div>
-              <img src="~@/assets/images/privileges/halk.png" alt="">
-              <div class="products__product-price">
-                1500 rub
-              </div>
-            </div>
-            <div class="products__product products__product-high">
-              <div class="products__product-title">
-                Immortal
-              </div>
-              <img src="~@/assets/images/privileges/immortal.png" alt="">
-              <div class="products__product-price">
-                2500 rub
-              </div>
-            </div>
-            <div class="products__product products__product-hard">
-              <div class="products__product-title">
-                Czar
-              </div>
-              <img src="~@/assets/images/privileges/czar.png" alt="">
-              <div class="products__product-price">
-                3000 rub
-              </div>
-            </div>
-            <div class="products__product products__product-hard">
-              <div class="products__product-title">
-                King
-              </div>
-              <img src="~@/assets/images/privileges/king.png" alt="">
-              <div class="products__product-price">
-                4000 rub
-              </div>
-            </div>
-            <div class="products__product products__product-hard">
-              <div class="products__product-title">
-                Major
-              </div>
-              <img src="~@/assets/images/privileges/major.png" alt="">
-              <div class="products__product-price">
-                6000 rub
-              </div>
-            </div>
-          </div>
-        </div>
+        <router-view></router-view>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator'
+import { SHOP_NAVIGATION, getRouteNavList } from '@/resources/navigation'
 import Title from '@/components/Title.vue'
+import { RouteNavigationItem } from "@/router/RouteNavigationItem";
 
 @Component({
   components: {
@@ -147,12 +35,31 @@ import Title from '@/components/Title.vue'
   }
 })
 export default class extends Vue {
+  public navigation: Array<RouteNavigationItem> = getRouteNavList(SHOP_NAVIGATION)
+  public activeCategory: string = ''
+
+  public created(): void
+  {
+    if (!this.navigation  || this.navigation.length === 0) {
+      return;
+    }
+
+    let firstRoute = this.navigation[0];
+    this.activeCategory = firstRoute.name;
+
+    if (this.$route.name === 'shop') {
+      this.$router.replace(firstRoute.path);
+    }
+  }
+
+  public changeActiveItem(name: string) {
+    this.activeCategory = name;
+  }
 }
 </script>
 
 <style lang="stylus" scoped>
 @import "~@/styles/common.styl"
-
 
 .categories
   display flex
@@ -196,7 +103,7 @@ export default class extends Vue {
     &-amount a:before
       -webkit-mask-image url("~@mojang/web-theme-bootstrap/assets/svg/icons/line-wallet.svg")
 
-    &-others a:before
+    &-other a:before
       -webkit-mask-image url("~@mojang/web-theme-bootstrap/assets/svg/icons/pixel-play.svg")
 
     &-active
@@ -208,6 +115,10 @@ export default class extends Vue {
 
         &:before
           background-color #7f7f9b
+</style>
+
+<style lang="stylus">
+@import "~@/styles/common.styl"
 
 .products
   display flex
@@ -252,39 +163,5 @@ export default class extends Vue {
       font-weight 700
       color #0f0f0f
       width 100%
-
-    &-price
-      z-index 5
-      font-family AcromBold, sans-serif
-      padding 18px 30px
-      width 100%
-      color #FFFFFF
-      font-size 1.3rem
-      text-transform uppercase
-      border-radius 0 10px 0 10px
-
-    //&-light &-price
-    //  background-image linear-gradient(to right, #313dbb, #8286f9)
-    //  text-shadow 2px 2px 8px #383db5
-
-    &-light &-price
-      background-color #0d8298
-      background-image linear-gradient(to right, #0d8298 0%, #21b4cc 80%)
-      text-shadow 2px 2px 8px #137084
-
-    &-medium &-price
-      background-color #ffdd00
-      background-image linear-gradient(315deg, #ffdd00 0%, #fbb034 74%)
-      text-shadow 2px 2px 8px #bd811e
-
-    &-high &-price
-      background-color #fd0
-      background-image linear-gradient(315deg, #f79f00 0%, #fb8234 90%)
-      text-shadow 2px 2px 8px #cc8c10
-
-    &-hard &-price
-      background-color #ff2a00
-      background-image linear-gradient(315deg, #ff2a00 0%, #ce1717 60%)
-      text-shadow 2px 2px 8px #f3dcdc
 </style>
 

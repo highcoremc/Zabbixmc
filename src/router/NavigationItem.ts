@@ -1,7 +1,7 @@
-import { _RouteConfigBase, Component } from "vue-router/types/router";
-
-export default interface NavigationItem extends _RouteConfigBase {
-    title: string;
-    component?: Component;
-    icon?: string;
+export default interface NavigationItem {
+    meta?: Object,
+    class?: string,
+    title: string
+    icon?: string
+    name: string,
 }

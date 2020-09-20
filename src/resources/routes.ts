@@ -1,14 +1,10 @@
 import { RouteConfig } from "vue-router"
-import navItems from './navigation'
+import routeList from './main/routes'
 
 const routes: Array<RouteConfig> = [];
 
-for (let item of navItems) {
-    routes.push({
-        path: item.path,
-        name: item.name,
-        component: item.component
-    })
+for (const item of routeList) {
+    routes.push(item)
 }
 
 export default routes;
