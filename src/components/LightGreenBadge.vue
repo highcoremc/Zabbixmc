@@ -14,7 +14,7 @@ export default class extends Vue {
 </script>
 
 
-<style scoped lang="stylus">
+<style lang="stylus" scoped>
 
 .logo-badge
     width 84px

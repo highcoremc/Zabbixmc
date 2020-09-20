@@ -8,13 +8,14 @@
           </div>
           <div class="col-md-10">
             <ul class="navigation">
-              <li class="navigation__item" v-for="(route, i) in $router.options.routes" :key="i"
+              <li class="navigation__item" v-for="(route, i) in navigation"
+                  :key="'nav_' + route.name + '_' + i"
                   @mouseover="activeIndex = i"
                   @mouseout="activeIndex = -1">
                 <router-link :to="route.path" class="navigation__link text-underline"
                              :class="{'text-underline-hovered': activeIndex === i}">
-                  <i :class="route.meta.icon"></i>
-                  <div class="label-buttonHead">{{ route.name }}</div>
+                  <i :class="route.icon"></i>
+                  <div class="label-buttonHead">{{ route.title }}</div>
                 </router-link>
               </li>
             </ul>
@@ -40,8 +41,8 @@
         <div class="footer__item footer__navigation">
           <div class="footer__item-title">Навигация</div>
           <ul class="footer__navigation--list">
-            <li class="footer__navigation--item" v-for="(route, i) in $router.options.routes" :key="i">
-              <router-link :to="route.path" class="footer__navigation--item_link">{{ route.name }}</router-link>
+            <li class="footer__navigation--item" v-for="(route, i) in navigation" :key="'footer_' + route.name + '_' + i">
+              <router-link :to="route.path" class="footer__navigation--item_link">{{ route.title }}</router-link>
             </li>
           </ul>
         </div>
@@ -79,9 +80,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import LightGreenBadge from "@/components/LightGreenBadge.vue";
-
+import { Component, Vue } from 'vue-property-decorator'
+import LightGreenBadge from "@/components/LightGreenBadge.vue"
+import navigation from '@/resources/navigation'
+import NavigationItem from "@/router/NavigationItem"
 
 @Component({
   components: {
@@ -90,6 +92,12 @@ import LightGreenBadge from "@/components/LightGreenBadge.vue";
 })
 export default class App extends Vue {
   public activeIndex: number = -1
+  public navigation: Array<NavigationItem>
+
+  public constructor() {
+    super()
+    this.navigation = navigation
+  }
 }
 </script>
 
@@ -146,12 +154,11 @@ export default class App extends Vue {
 
 .logotype
   content ''
-  background-image url("~@/assets/images/logotype.png")
-  background-repeat no-repeat
-  background-size contain
+  background-image url("~@/assets/images/logotype.png") !important
+  background-repeat no-repeat !important
+  background-size contain !important
   position relative
   text-align center
-  padding 70px
   transition all .2s
 
   &:hover

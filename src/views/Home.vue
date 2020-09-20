@@ -140,8 +140,7 @@ import Subtitle from '@/components/Subtitle.vue'
     Subtitle
   }
 })
-export default class extends Vue {
-}
+export default class extends Vue {}
 </script>
 
 <style lang="stylus">
@@ -327,7 +326,7 @@ export default class extends Vue {
       position relative
 
       &:before
-        background-image url("~@/assets/images/grid-cases.png")
+        background-image url("~@/assets/images/grid_cases.png")
         background-repeat no-repeat
         background-size contain
         position: absolute
@@ -440,7 +439,14 @@ export default class extends Vue {
     background-repeat no-repeat
     background url("~@/assets/images/green-plus.png")
 
+@media screen and (max-width: 1024px)
+  .home:before
+    display none
+  .offers-center
+    display none
+</style>
 
+<style lang="stylus" scoped>
 .title
   &__content
     font-family AcromExtraBold, sans-serif
@@ -467,7 +473,7 @@ export default class extends Vue {
     user-select none
 
     &::before
-      background-image url('~@/assets/images/grid_title.png')
+      background-image url('~@/assets/images/home_grid_title.png')
       background-repeat no-repeat
       content ''
       position absolute
@@ -494,9 +500,4 @@ export default class extends Vue {
     margin-left 92px
     margin-top 80px
 
-@media screen and (max-width: 1024px)
-  .home:before
-    display none
-  .offers-center
-    display none
 </style>
