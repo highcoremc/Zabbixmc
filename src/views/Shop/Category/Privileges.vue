@@ -1,116 +1,87 @@
 <template>
-
-
   <div class="col-md-12">
     <div class="products">
-      <div class="products__product products__product-light">
-        <div class="products__product-title">
-          Hero
-        </div>
+      <Card :title="'Hero'" class="products__product products__product-light">
         <img src="~@/assets/images/privileges/builder.png" alt="">
         <div class="products__product-price">
           50 rub
         </div>
-      </div>
-      <div class="products__product products__product-light">
-        <div class="products__product-title">
-          Hero+
-        </div>
+      </Card>
+      <Card :title="'Hero+'" class="products__product products__product-light">
         <img src="~@/assets/images/privileges/opaxe.png" alt="">
         <div class="products__product-price">
           150 rub
         </div>
-      </div>
-      <div class="products__product products__product-light">
-        <div class="products__product-title">
-          Ninja
-        </div>
+      </Card>
+      <Card :title="'Ninja'" class="products__product products__product-light">
         <img src="~@/assets/images/privileges/ninja.png" alt="">
         <div class="products__product-price">
           300 rub
         </div>
-      </div>
-      <div class="products__product products__product-medium">
-        <div class="products__product-title">
-          Lord
-        </div>
+      </Card>
+      <Card :title="'Lord'" class="products__product products__product-medium">
         <img src="~@/assets/images/privileges/lord.png" alt="">
         <div class="products__product-price">
           600 rub
         </div>
-      </div>
-      <div class="products__product products__product-medium">
-        <div class="products__product-title">
-          Oper
-        </div>
+      </Card>
+      <Card :title="'Oper'" class="products__product products__product-medium">
         <img src="~@/assets/images/privileges/oper.png" alt="">
         <div class="products__product-price">
           900 rub
         </div>
-      </div>
-      <div class="products__product products__product-medium">
-        <div class="products__product-title">
-          Legend
-        </div>
+      </Card>
+      <Card :title="'Legend'" class="products__product products__product-medium">
         <img src="~@/assets/images/privileges/legend.png" alt="">
         <div class="products__product-price">
           1200 rub
         </div>
-      </div>
-      <div class="products__product products__product-high">
-        <div class="products__product-title">
-          Halk
-        </div>
+      </Card>
+      <Card :title="'Halk'" class="products__product products__product-high">
         <img src="~@/assets/images/privileges/halk.png" alt="">
         <div class="products__product-price">
           1500 rub
         </div>
-      </div>
-      <div class="products__product products__product-high">
-        <div class="products__product-title">
-          Immortal
-        </div>
+      </Card>
+      <Card :title="'Immortal'" class="products__product products__product-high">
         <img src="~@/assets/images/privileges/immortal.png" alt="">
         <div class="products__product-price">
           2500 rub
         </div>
-      </div>
-      <div class="products__product products__product-hard">
-        <div class="products__product-title">
-          Czar
-        </div>
+      </Card>
+      <Card :title="'Czar'" class="products__product products__product-hard">
         <img src="~@/assets/images/privileges/czar.png" alt="">
         <div class="products__product-price">
           3000 rub
         </div>
-      </div>
-      <div class="products__product products__product-hard">
-        <div class="products__product-title">
-          King
-        </div>
+      </Card>
+      <Card :title="'King'" class="products__product products__product-hard">
         <img src="~@/assets/images/privileges/king.png" alt="">
         <div class="products__product-price">
           4000 rub
         </div>
-      </div>
-      <div class="products__product products__product-hard">
-        <div class="products__product-title">
-          Major
-        </div>
+      </Card>
+      <Card :title="'Major'" class="products__product products__product-hard">
         <img src="~@/assets/images/privileges/major.png" alt="">
         <div class="products__product-price">
           6000 rub
         </div>
-      </div>
+      </Card>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import Card from '@/components/Card.vue'
 
-@Component({})
-export default class extends Vue {}
+@Component({
+  components: {
+    Card
+  }
+})
+export default class extends Vue {
+}
 </script>
 
 <style lang="stylus" scoped>

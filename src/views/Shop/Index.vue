@@ -24,10 +24,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
 import { SHOP_NAVIGATION, getRouteNavList } from '@/resources/navigation'
+import { RouteNavigationItem } from "@/router/RouteNavigationItem"
+import { Component, Vue } from 'vue-property-decorator'
 import Title from '@/components/Title.vue'
-import { RouteNavigationItem } from "@/router/RouteNavigationItem";
 
 @Component({
   components: {
@@ -38,22 +38,36 @@ export default class extends Vue {
   public navigation: Array<RouteNavigationItem> = getRouteNavList(SHOP_NAVIGATION)
   public activeCategory: string = ''
 
-  public created(): void
+  public mounted(): void
   {
     if (!this.navigation  || this.navigation.length === 0) {
-      return;
+      console.log("Navigation is empty.");
+      return
     }
 
-    let firstRoute = this.navigation[0];
-    this.activeCategory = firstRoute.name;
+    const firstRoute = this.navigation[0]
 
     if (this.$route.name === 'shop') {
-      this.$router.replace(firstRoute.path);
+      this.$router.replace(firstRoute.path)
+      return
     }
+
+    this.setUpActiveCategory(firstRoute);
+  }
+
+  private setUpActiveCategory(firstRoute: RouteNavigationItem) {
+    for (let nav of this.navigation) {
+      if (this.$route.name === nav.name) {
+        this.activeCategory = nav.name
+        return
+      }
+    }
+
+    this.activeCategory = firstRoute.name
   }
 
   public changeActiveItem(name: string) {
-    this.activeCategory = name;
+    this.activeCategory = name
   }
 }
 </script>
@@ -86,7 +100,7 @@ export default class extends Vue {
 
       &:before
         background-color #acb4ca
-        -webkit-mask-size: 35px 35px;
+        -webkit-mask-size 35px 35px
         left 7px
         top 6px
         content ''
@@ -118,8 +132,6 @@ export default class extends Vue {
 </style>
 
 <style lang="stylus">
-@import "~@/styles/common.styl"
-
 .products
   display flex
   flex-wrap wrap
@@ -128,40 +140,9 @@ export default class extends Vue {
   margin-top 3rem
 
   &__product
-    background #eeeef9
-    background-image linear-gradient(to right bottom, #eeeef9, #f5f5fd)
     align-items center
     justify-content space-between
     flex-direction column
-    background-repeat no-repeat
-    background-position center
-    min-height 250px
-    margin 10px 15px
-    min-width 250px
     display flex
-    transition all .2s
-    border-radius 4px
-
-    &:hover
-      cursor pointer
-      filter blur(1px)
-
-    &:hover img
-      transform scale(1.1)
-
-    img
-      z-index 0
-      pointer-events none
-      transition all .2s
-      position relative
-      text-align center
-      @extend .disable-highlight
-
-    &-title
-      padding 30px
-      font-family AcromBold, sans-serif
-      font-weight 700
-      color #0f0f0f
-      width 100%
 </style>
 

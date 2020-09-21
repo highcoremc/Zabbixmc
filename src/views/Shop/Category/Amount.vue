@@ -1,14 +1,18 @@
 <template>
   <div>
-    <EmptyProducts/>
+    <empty-products></empty-products>
   </div>
 </template>
 
 <script lang="ts">
+import EmptyProducts from "@/components/EmptyProducts.vue"
 import { Component, Vue } from 'vue-property-decorator'
-import EmptyProducts from '@/components/EmptyProducts'
 
-@Component({components: {EmptyProducts}})
+@Component({
+  components: {
+    EmptyProducts
+  }
+})
 export default class extends Vue {
 }
 </script>
