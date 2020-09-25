@@ -26,7 +26,7 @@
 <script lang="ts">
 import { SHOP_NAVIGATION, getRouteNavList } from '@/resources/navigation'
 import { RouteNavigationItem } from "@/router/RouteNavigationItem"
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import Title from '@/components/Title.vue'
 
 @Component({
@@ -53,6 +53,15 @@ export default class extends Vue {
     }
 
     this.setUpActiveCategory(firstRoute);
+  }
+
+  @Watch('$route', { immediate: true, deep: true })
+  public onRouteChange() {
+    const firstRoute = this.navigation[0]
+
+    if (this.$route.name === 'shop') {
+      this.$router.replace(firstRoute.path)
+    }
   }
 
   private setUpActiveCategory(firstRoute: RouteNavigationItem) {
