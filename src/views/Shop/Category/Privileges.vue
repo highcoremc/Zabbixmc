@@ -1,83 +1,83 @@
 <template>
   <div class="col-md-12">
     <div class="products">
-      <Card :title="'Hero'" class="products__product products__product-light">
+      <ProductCard :title="'Hero'" class="products__product products__product-light">
         <img src="~@/assets/images/privileges/builder.png" alt="">
         <div class="products__product-price">
           50 rub
         </div>
-      </Card>
-      <Card :title="'Hero+'" class="products__product products__product-light">
+      </ProductCard>
+      <ProductCard :title="'Hero+'" class="products__product products__product-light">
         <img src="~@/assets/images/privileges/opaxe.png" alt="">
         <div class="products__product-price">
           150 rub
         </div>
-      </Card>
-      <Card :title="'Ninja'" class="products__product products__product-light">
+      </ProductCard>
+      <ProductCard :title="'Ninja'" class="products__product products__product-light">
         <img src="~@/assets/images/privileges/ninja.png" alt="">
         <div class="products__product-price">
           300 rub
         </div>
-      </Card>
-      <Card :title="'Lord'" class="products__product products__product-medium">
+      </ProductCard>
+      <ProductCard :title="'Lord'" class="products__product products__product-medium">
         <img src="~@/assets/images/privileges/lord.png" alt="">
         <div class="products__product-price">
           600 rub
         </div>
-      </Card>
-      <Card :title="'Oper'" class="products__product products__product-medium">
+      </ProductCard>
+      <ProductCard :title="'Oper'" class="products__product products__product-medium">
         <img src="~@/assets/images/privileges/oper.png" alt="">
         <div class="products__product-price">
           900 rub
         </div>
-      </Card>
-      <Card :title="'Legend'" class="products__product products__product-medium">
+      </ProductCard>
+      <ProductCard :title="'Legend'" class="products__product products__product-medium">
         <img src="~@/assets/images/privileges/legend.png" alt="">
         <div class="products__product-price">
           1200 rub
         </div>
-      </Card>
-      <Card :title="'Halk'" class="products__product products__product-high">
+      </ProductCard>
+      <ProductCard :title="'Halk'" class="products__product products__product-high">
         <img src="~@/assets/images/privileges/halk.png" alt="">
         <div class="products__product-price">
           1500 rub
         </div>
-      </Card>
-      <Card :title="'Immortal'" class="products__product products__product-high">
+      </ProductCard>
+      <ProductCard :title="'Immortal'" class="products__product products__product-high">
         <img src="~@/assets/images/privileges/immortal.png" alt="">
         <div class="products__product-price">
           2500 rub
         </div>
-      </Card>
-      <Card :title="'Czar'" class="products__product products__product-hard">
+      </ProductCard>
+      <ProductCard :title="'Czar'" class="products__product products__product-hard">
         <img src="~@/assets/images/privileges/czar.png" alt="">
         <div class="products__product-price">
           3000 rub
         </div>
-      </Card>
-      <Card :title="'King'" class="products__product products__product-hard">
+      </ProductCard>
+      <ProductCard :title="'King'" class="products__product products__product-hard">
         <img src="~@/assets/images/privileges/king.png" alt="">
         <div class="products__product-price">
           4000 rub
         </div>
-      </Card>
-      <Card :title="'Major'" class="products__product products__product-hard">
+      </ProductCard>
+      <ProductCard :title="'Major'" class="products__product products__product-hard">
         <img src="~@/assets/images/privileges/major.png" alt="">
         <div class="products__product-price">
           6000 rub
         </div>
-      </Card>
+      </ProductCard>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import Card from '@/components/Card.vue'
+import ProductCard from '@/components/ProductCard.vue'
 
 @Component({
   components: {
-    Card
+    ProductCard
   }
 })
 export default class extends Vue {
