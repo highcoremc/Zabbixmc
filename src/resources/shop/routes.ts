@@ -1,7 +1,7 @@
-import Privileges from '@/views/Shop/Category/Privileges'
-import Amount from '@/views/Shop/Category/Amount'
-import Other from '@/views/Shop/Category/Other'
-import Cases from '@/views/Shop/Category/Cases'
+import Privileges from '@/views/Shop/Category/Privileges.vue'
+import Amount from '@/views/Shop/Category/Amount.vue'
+import Other from '@/views/Shop/Category/Other.vue'
+import Cases from '@/views/Shop/Category/Cases.vue'
 
 import { RouteConfig } from 'vue-router'
 

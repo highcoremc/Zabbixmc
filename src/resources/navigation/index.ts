@@ -16,10 +16,10 @@ export function getRouteNavList(key: string): Array<RouteNavigationItem> {
         throw new Error('Navigation list is empty.');
     }
 
-    routeList.default.forEach((route: RouteConfig) => {
+    navigation.default.forEach((route: RouteConfig) => {
         let closure = (item: NavigationItem) =>
             item.name === route.name
-        const navItem = navigation.default.filter(closure).pop()
+        const navItem = routeList.default.filter(closure).pop()
 
         routes.push(_.merge(navItem, route))
     })
