@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  app:
+    image: zabbixmc/app:latest
+    command: 'npm serve'
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app:rw
