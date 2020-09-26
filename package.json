@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@mojang/web-theme-bootstrap": "^6.2.7",
+    "animate.css": "^4.1.1",
     "core-js": "^3.6.5",
     "lodash": "^4.17.20",
     "vue": "^2.6.11",

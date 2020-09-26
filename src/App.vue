@@ -151,6 +151,8 @@ export default class App extends Vue {
   background-image url("~@/assets/images/logotype.png") !important
   background-repeat no-repeat !important
   background-size contain !important
+  width 110px
+  height 110px
   position relative
   text-align center
   transition all .2s
@@ -297,7 +299,7 @@ export default class App extends Vue {
       transition all .3s
 
       &:hover
-        transform matrix(1, 0, 0, 1, 0, -3)
+        transform matrix(1, 0, 0, 1, 5, 0)
 
       &_link
         color #000000

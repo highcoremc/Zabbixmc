@@ -144,8 +144,15 @@ export default class extends Vue {}
 </script>
 
 <style lang="stylus">
-@import '~@/styles/common.styl'
-
+.contacts__footer-title
+  -webkit-touch-callout none
+  -webkit-user-select none
+  -khtml-user-select none
+  -moz-user-select none
+  -ms-user-select none
+  user-select none
+</style>
+<style lang="stylus">
 .home
   position: relative
   &:before
@@ -192,7 +199,6 @@ export default class extends Vue {}
     height 55px
 
 .offers
-  //align-items flex-start
   flex-direction row
   flex-wrap wrap
   display flex
@@ -383,7 +389,6 @@ export default class extends Vue {}
     text-transform uppercase
     font-size 1.3rem
     color #c4c4d6
-    @extend .disable-highlight
 
   &__card
     transition all .4s

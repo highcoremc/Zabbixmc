@@ -14,7 +14,6 @@ export default class extends Vue {
 
 <style lang="stylus" scoped>
   .card
-    box-shadow 3px 4px 40px #eaeaf7
     background-repeat no-repeat
     background-position center
     background #fdfdff
