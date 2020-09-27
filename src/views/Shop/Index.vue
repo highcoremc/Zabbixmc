@@ -82,8 +82,6 @@ export default class extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-@import "~@/styles/common.styl"
-
 .categories
   display flex
   flex-wrap wrap
@@ -94,10 +92,15 @@ export default class extends Vue {
   &__category
     box-shadow 15px 10px 20px #e4e4f5
     border-bottom 4px solid #e9e9f5
+    -webkit-transition -webkit-transform .2s ease-out
+    -moz-transition -moz-transform .2s ease-out
     font-family AcromBold
     border-radius 4px
     position relative
     margin 0 20px
+
+    &:hover
+      transform scale(1.05)
 
     > a
       display block
@@ -106,6 +109,9 @@ export default class extends Vue {
       color #acb4ca
       width 100%
       height 100%
+
+      &:hover, &:active, &:focus
+        background-color transparent
 
       &:before
         background-color #acb4ca

@@ -39,8 +39,7 @@ export default class extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-@import '~@/styles/shared/variables.styl'
-@import '~@/styles/shared/functions.styl'
+@import '~@/styles/common.styl'
 
 .form
   &__group
@@ -81,6 +80,7 @@ export default class extends Vue {
       font-size 1.3rem
       cursor text
       top 20px
+      @extend .disable-highlight
 
     &:focus:not(.disabled) ~ .form__label,
     &:valid:not(.disabled) ~ .form__label
@@ -99,7 +99,7 @@ export default class extends Vue {
       height 4px
 
       &:after
-        background-image linearGradient(gray, lightViolet)
+        background-image linearGradient(gray, light-violet)
         transition width .25s
         display block
         content ''

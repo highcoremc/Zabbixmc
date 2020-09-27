@@ -1,20 +1,24 @@
 <template>
   <div class="product">
     <div class="product__overview">
-      <div class="product__overview-title" :class="{'product__overview-title-light': isValidInput}">Phoenix</div>
+      <div class="product__overview-title product__overview-title-light" title="Phoenix" :class="{'disabled': !isValidInput}">Phoenix</div>
       <div class="product__overview-content card-content">
         <div class="product__overview-content__preview">
           <img src="~@/assets/images/privileges/phoenix.png" alt="">
         </div>
-        <div class="product__overview-content__description" :class="{'product__overview-content__description-light': isValidInput}">
-          <p class="product__overview-content__advantages" :class="{'product__overview-content__advantages-light': isValidInput}">Основные преимущества</p>
+        <div class="product__overview-content__description product__overview-content__description-light" :class="{'disabled': !isValidInput}">
+          <p class="product__overview-content__advantages product__overview-content__advantages-light" title="Основные преимущества"
+             :class="{'disabled': !isValidInput}"
+          >Основные преимущества</p>
           <p>Открыть личный верстак - /workbench</p>
           <p>Открыть личный эндер сундук - /ec</p>
           <p>Одеть любой блок на голову - /hat</p>
           <p>Префикс в чате/табе/над головой</p>
           <p>Включить режим АФК - /afk</p>
           <p>Зарплата 1.000 - /salary</p>
-          <p class="product__overview-content__benefits"  :class="{'product__overview-content__benefits-light': isValidInput}">Дополнительно</p>
+          <p class="product__overview-content__benefits product__overview-content__benefits-light" title="Дополнительно"
+             :class="{'disabled': !isValidInput}"
+          >Дополнительно</p>
           <p>Набор HERO - /kit hero</p>
           <p>Дополнительных слотов на аукционе - +2</p>
           <p>Доступно 2 региона для привата - /rg claim</p>
@@ -58,6 +62,7 @@ import TextInput from '@/components/TextInput.vue'
   }
 })
 export default class extends Vue {
+  public resultPrice: number = 100;
   public username: string = '';
 
   get isValidInput(): boolean
@@ -94,33 +99,42 @@ export default class extends Vue {
 
     &-title
       font-family AcromExtraBold, sans-serif
-      background-image linearGradient(gray, lightViolet)
+      background-image linearGradient(darkgray, gray)
       -webkit-text-fill-color transparent
       -webkit-background-clip text
-      font-size 1.8rem
+      font-size 3.5rem
       position relative
 
       &:after
-        background #000
+        -webkit-text-fill-color transparent
+        transition height .2s ease-in-out, text-shadow .3s ease
+        -webkit-background-clip text
+        content attr(title)
+        position absolute
         width 100%
-        height 100%
+        height 0
         top 0
-        bottom 0
         left 0
-        right 0
-        content ''
 
-      &-light
+      &-light:after
         background-image linearGradient(light-primary, light-secondary)
+        text-shadow 1px 0 20px alpha(light-primary, .3)
 
-      &-medium
+      &-medium:after
         background-image linearGradient(medium-primary, medium-secondary)
+        text-shadow 1px 0 20px alpha(medium-primary, .3)
 
-      &-high
+      &-high:after
         background-image linearGradient(high-primary, high-secondary, to right, 0%, 25%)
+        text-shadow 1px 0 20px alpha(high-primary, .3)
 
-      &-light, &-medium, &-high
-        animation Anim 20s ease infinite
+      &.disabled:after
+        text-shadow none
+
+      &-light:not(.disabled):after,
+      &-medium:not(.disabled):after,
+      &-high:not(.disabled):after
+        height 100%
 
     &-content
       justify-content space-around
@@ -131,40 +145,75 @@ export default class extends Vue {
       display flex
 
       &__benefits
-        font-family AcromMedium
         font-size 1.15rem
-        margin-left -1px
-        padding 7px 0
 
       &__advantages
-        font-family AcromMedium
         font-size 1.2rem
-        margin-left -1px
-        padding 7px 0
 
       &__advantages,
       &__benefits
+        font-family AcromMedium, sans-serif
         background-image linearGradient(gray, darkgrey)
         -webkit-text-fill-color transparent
         -webkit-background-clip text
-        &-light
+        margin 7px 0 7px -1px
+        position relative
+
+        &:after
+          -webkit-text-fill-color transparent
+          -webkit-background-clip text
+          transition width .2s linear
+          content attr(title)
+          position absolute
+          height 100%
+          width 0
+          top 0
+          left 0
+
+        &-light:after
           background-image linearGradient(light-primary, light-secondary)
-        &-medium
+        &-medium:after
           background-image linearGradient(medium-primary, medium-secondary)
-        &-high
+        &-high:after
           background-image linearGradient(high-primary, high-secondary)
 
+        &-light:not(.disabled):after,
+        &-medium:not(.disabled):after,
+        &-high:not(.disabled):after
+          width 100%
+
       &__description
-        border-left 2px solid
         padding 0 0 0 20px
+        position relative
         color gray
 
-        &-light
-          border-color alpha(light-secondary, .7)
-        &-medium
-          border-color alpha(medium-secondary, .7)
-        &-high
-          border-color alpha(high-secondary, .7)
+        &:before
+          background-image radialGradient(darkgray, medium-gray)
+          height 100%
+
+        &:after
+          transition height .2s ease-in-out
+          height 0
+
+        &:after,
+        &:before
+          position absolute
+          width 3px
+          content ''
+          left 0
+          top 0
+
+        &-light:after
+          background-image radialGradient(light-secondary, light-primary)
+        &-medium:after
+          background-image radialGradient(medium-secondary, medium-primary)
+        &-high:after
+          background-image radialGradient(high-secondary, high-primary)
+
+        &-light:not(.disabled):after,
+        &-medium:not(.disabled):after,
+        &-high:not(.disabled):after
+          height 100%
 
   &__fields
     flex-direction column

@@ -34,9 +34,11 @@ export default class extends Vue {
 <style lang="stylus" scoped>
 .product-card
   background-image linear-gradient(to right bottom, #e0e0ef, #f5f5fd)
+  transition blur .3s, ease-out .25s
   box-shadow 10px 10px 30px #e4e4f2
   border-radius 3px 15px 0 15px
-  transition blur .3s, ease-out .25s
+  background-repeat no-repeat
+  background-position center
   padding 0
 
   &:hover

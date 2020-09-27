@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="simple-card">
     <slot></slot>
   </div>
 </template>
@@ -13,9 +13,7 @@ export default class extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-  .card
-    background-repeat no-repeat
-    background-position center
+  .simple-card
     background #fdfdff
     border-radius 4px
     min-height 250px
