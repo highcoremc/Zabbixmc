@@ -3,7 +3,10 @@ import App from './App.vue'
 import Vue from 'vue'
 
 import './styles/mojang-bootstrap.scss'
-import 'animate.css/animate.css'
+import 'animate.css/animate.min.css'
+
+import './styles/shared/reset.styl'
+import './styles/shared/fonts.styl'
 import './styles/common.styl'
 
 Vue.config.productionTip = false

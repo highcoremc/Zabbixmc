@@ -67,8 +67,7 @@ export default class extends Vue {
 }
 </script>
 <style lang="stylus" scoped>
-@import '~@/styles/shared/variables.styl'
-@import '~@/styles/shared/functions.styl'
+@import '~@/styles/common'
 
 .card-content
   box-shadow 3px 4px 40px #eaeaf7
@@ -101,6 +100,16 @@ export default class extends Vue {
       font-size 1.8rem
       position relative
 
+      &:after
+        background #000
+        width 100%
+        height 100%
+        top 0
+        bottom 0
+        left 0
+        right 0
+        content ''
+
       &-light
         background-image linearGradient(light-primary, light-secondary)
 
@@ -109,6 +118,9 @@ export default class extends Vue {
 
       &-high
         background-image linearGradient(high-primary, high-secondary, to right, 0%, 25%)
+
+      &-light, &-medium, &-high
+        animation Anim 20s ease infinite
 
     &-content
       justify-content space-around
@@ -171,6 +183,7 @@ export default class extends Vue {
         box-shadow 0 -4px rgba(0, 0, 0, 0.35) inset, 0 4px rgba(255, 255, 255, 0.25) inset, -4px 0 rgba(255, 255, 255, 0.25) inset, 4px 0 rgba(0, 0, 0, 0.35) inset
       &__button
         width 100%
+        min-height 3rem
       &-light &__button:before
         background-color #2db3cb
         box-shadow 0 -4px #006375 inset, 0 4px #2be1fb inset, -4px 0 #02f1fd inset, 4px 0 #087f9a inset

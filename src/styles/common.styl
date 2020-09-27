@@ -1,10 +1,9 @@
 @import 'shared/variables.styl'
-@import 'shared/reset.styl'
-@import 'shared/fonts.styl'
+@import 'shared/functions.styl'
 
 body
   background #f5f5fd
-  
+
 .disable-highlight
   -webkit-touch-callout none
   -webkit-user-select none
@@ -14,10 +13,17 @@ body
   user-select none
 
 @media (min-width: 1600px)
- .container-xl,
- .container-lg,
- .container-md,
- .container-sm,
- .container {
-   max-width: 1300px;
- }
+  .container-xl,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container
+    max-width: 1300px
+
+@keyframes animated-background
+  0%
+    -webkit-filter hue-rotate(0deg)
+  50%
+    -webkit-filter hue-rotate(60deg)
+  0%
+    -webkit-filter hue-rotate(0deg)
