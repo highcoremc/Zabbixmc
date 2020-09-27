@@ -3,16 +3,16 @@
     <div class="row">
       <div class="col-md-12">
         <div class="title">
-          <div class="title__background">zabbixmc</div>
-          <div class="title__content">Почувствуй себя настоящим майнкрафтером!</div>
-          <div class="title__subtitle">Выживание на 1.15.2 с друзьями. Только у нас ты сможешь почувствовать всю
+          <div class="title__background animate__animated animate__fadeInDown">zabbixmc</div>
+          <div class="title__content animate__animated animate__fadeInLeft">Почувствуй себя настоящим майнкрафтером!</div>
+          <div class="title__subtitle animate__animated animate__fadeInRight">Выживание на 1.15.2 с друзьями. Только у нас ты сможешь почувствовать всю
             силу этой прекрасной игры!
           </div>
         </div>
       </div>
 
       <div class="col-md-12">
-        <div class="game-start">
+        <div class="game-start animate__animated animate__bounceIn animate__delay-1s">
           <div class="btn btn-primary btn-title">
             <i class="icon">
               <img src="~@mojang/web-theme-bootstrap/assets/svg/icons/color-steve-alex.svg" alt="">
@@ -23,8 +23,8 @@
       </div>
 
       <div class="col-md-12">
-        <Subtitle :title="'выгодные'" :content="'предложения'"/>
-        <div class="offers">
+        <Subtitle :title="'выгодные'" :content="'предложения'" class="animate__animated animate__fadeInLeft"/>
+        <div class="offers animate__animated animate__fadeInUp">
           <div class="offers-left">
             <div class="offers__card offers__card-sales">
               <div class="offers__card-content">
@@ -91,9 +91,9 @@
       </div>
 
       <div class="col-md-12">
-        <Subtitle :title="'связь с нами'" :content="'наши контакты'"/>
+        <Subtitle :title="'связь с нами'" :content="'наши контакты'" class="animate__animated animate__fadeInLeft"/>
         <div class="contacts">
-          <a href="#" class="contacts__card contacts__discord">
+          <a href="#" class="contacts__card contacts__discord animate__animated animate__fadeInLeft">
             <div class="contacts__card-badge">
               <i class="fab fa-discord"></i>
             </div>
@@ -103,7 +103,7 @@
               <a href="#" class="card-link">Написать в Discord</a>
             </div>
           </a>
-          <a href="#" class="contacts__card contacts__telegram">
+          <a href="#" class="contacts__card contacts__telegram animate__animated animate__fadeInUp">
             <div class="contacts__card-badge">
               <i class="fab fa-telegram-plane"></i>
             </div>
@@ -113,7 +113,7 @@
               <div class="card-link">Написать в Telegram</div>
             </div>
           </a>
-          <a href="#" class="contacts__card contacts__vk">
+          <a href="#" class="contacts__card contacts__vk animate__animated animate__fadeInRight">
             <div class="contacts__card-badge">
               <i class="fab fa-vk"></i>
             </div>
@@ -124,7 +124,7 @@
             </div>
           </a>
         </div>
-        <div class="contacts__footer-title">Тех-Поддержка 24/7</div>
+        <div class="contacts__footer-title animate__animated animate__fadeInUp animate__delay-1s">Тех-Поддержка 24/7</div>
       </div>
 
     </div>

@@ -1,6 +1,6 @@
 import NavigationItem from "@/router/NavigationItem";
 
-const items: Array<NavigationItem> = [
+const items: NavigationItem[] = [
     {
         name: 'home',
         title: 'Главная',

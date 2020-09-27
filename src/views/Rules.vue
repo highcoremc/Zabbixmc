@@ -2,7 +2,9 @@
   <div class="rules">
     <div class="row">
       <div class="col-md-12">
-        <Title :title="'правила'" :subtitle="'для тех, кто их читает'" :content="'Незнание правил не освобождает от ответсвенности.'"/>
+        <Title class="animate__animated animate__fadeInDown"
+               :title="'правила'" :subtitle="'для тех, кто их читает'"
+               :content="'Незнание правил не освобождает от ответсвенности.'"/>
       </div>
     </div>
   </div>

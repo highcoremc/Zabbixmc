@@ -1,5 +1,4 @@
 import { RouteConfig } from "vue-router/types/router";
-import shopRoutes from '../shop/routes'
 import Home from "@/views/Home.vue";
 import Shop from "@/views/Shop/Index.vue";
 import News from "@/views/News.vue";
@@ -14,13 +13,12 @@ const routes: Array<RouteConfig> = [
     },
     {
         name: 'shop',
-        path: '/shop',
+        path: '/shop/:category?',
         component: Shop,
-        children: shopRoutes,
     },
     {
         name: 'product.overview',
-        path: '/shop/product',
+        path: '/shop/product/:productId',
         component: Product,
     },
     {

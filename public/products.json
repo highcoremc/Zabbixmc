@@ -1,0 +1,186 @@
+{
+  "data": {
+    "type": "get-products",
+    "attributes": [
+      {
+        "id": "hero",
+        "title": "Hero",
+        "src": "/images/privileges/hero.png",
+        "meta": {
+          "category": "privileges",
+          "level": "light"
+        },
+        "price": {
+          "currency": "RUB",
+          "amount": 50.00
+        }
+      },
+      {
+        "id": "heroplus",
+        "src": "/images/privileges/heroplus.png",
+        "title": "Hero+",
+        "meta": {
+          "category": "privileges",
+          "level": "light"
+        },
+        "price": {
+          "currency": "RUB",
+          "amount": 150.00
+        }
+      },
+      {
+        "id": "deluxe",
+        "title": "Deluxe",
+        "src": "/images/privileges/deluxe.png",
+        "meta": {
+          "category": "privileges",
+          "level": "light"
+        },
+        "price": {
+          "currency": "RUB",
+          "amount": 300.00
+        }
+      },
+      {
+        "id": "legendary",
+        "title": "Legendary",
+        "src": "/images/privileges/legendary.png",
+        "meta": {
+          "category": "privileges",
+          "level": "light"
+        },
+        "price": {
+          "currency": "RUB",
+          "amount": 600.00
+        }
+      },
+      {
+        "id": "titan",
+        "title": "Titan",
+        "src": "/images/privileges/titan.png",
+        "meta": {
+          "category": "privileges",
+          "level": "medium"
+        },
+        "price": {
+          "currency": "RUB",
+          "amount": 900.00
+        }
+      },
+      {
+        "id": "hunter",
+        "title": "Hunter",
+        "src": "/images/privileges/hunter.png",
+        "meta": {
+          "category": "privileges",
+          "level": "medium"
+        },
+        "price": {
+          "currency": "RUB",
+          "amount": 1200.00
+        }
+      },
+      {
+        "id": "prime",
+        "title": "Prime",
+        "src": "/images/privileges/prime.png",
+        "meta": {
+          "category": "privileges",
+          "level": "medium"
+        },
+        "price": {
+          "currency": "RUB",
+          "amount": 1500.00
+        }
+      },
+      {
+        "id": "sponsor",
+        "title": "Sponsor",
+        "src": "/images/privileges/sponsor.png",
+        "meta": {
+          "category": "privileges",
+          "level": "medium"
+        },
+        "price": {
+          "currency": "RUB",
+          "amount": 2500.00
+        }
+      },
+      {
+        "id": "phantom",
+        "title": "Phantom",
+        "src": "/images/privileges/phantom.png",
+        "meta": {
+          "category": "privileges",
+          "level": "high"
+        },
+        "price": {
+          "currency": "RUB",
+          "amount": 3000.00
+        }
+      },
+      {
+        "id": "phoenix",
+        "title": "Phoenix",
+        "src": "/images/privileges/phoenix.png",
+        "meta": {
+          "category": "privileges",
+          "level": "high"
+        },
+        "price": {
+          "currency": "RUB",
+          "amount": 4000.00
+        }
+      },
+      {
+        "id": "major",
+        "title": "Major",
+        "src": "/images/privileges/major.png",
+        "meta": {
+          "category": "privileges",
+          "level": "high"
+        },
+        "price": {
+          "currency": "RUB",
+          "amount": 6000.00
+        }
+      },
+      {
+        "id": "simple-case",
+        "title": "Simple Case",
+        "src": "/images/privileges/simple-case.png",
+        "meta": {
+          "category": "cases"
+        },
+        "price": {
+          "currency": "RUB",
+          "amount": 50.00
+        }
+      },
+      {
+        "id": "medium-case",
+        "title": "Medium Case",
+        "src": "/images/privileges/medium-case.png",
+        "meta": {
+          "category": "cases"
+        },
+        "price": {
+          "currency": "RUB",
+          "amount": 80.00
+        }
+      },
+      {
+        "id": "high-case",
+        "title": "High Case",
+        "src": "/images/privileges/high-case.png",
+        "meta": {
+          "category": "cases"
+        },
+        "price": {
+          "currency": "RUB",
+          "amount": 100.00
+        }
+      }
+    ]
+  }
+}

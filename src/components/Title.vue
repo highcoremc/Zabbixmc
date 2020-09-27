@@ -67,6 +67,6 @@ export default class extends Vue {
       position absolute
       width 159px
       height 158px
-      top -3px
+      top 0
       left 12px
 </style>

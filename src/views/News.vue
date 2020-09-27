@@ -2,7 +2,9 @@
   <div class="news">
     <div class="row">
       <div class="col-md-12">
-        <Title :title="'новости'" :subtitle="'сервера из первых уст'" :content="'Узнавай обо-всех новостях из первых уст из верифицированного источника'"/>
+        <Title :title="'новости'" class="animate__animated animate__fadeInDown"
+               :subtitle="'сервера из первых уст'"
+               :content="'Узнавай обо-всех новостях из первых уст из верифицированного источника'"/>
       </div>
     </div>
   </div>

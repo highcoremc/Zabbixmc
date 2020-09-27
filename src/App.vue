@@ -90,7 +90,7 @@ import NavigationItem from "@/router/NavigationItem";
   components: {LightGreenBadge}
 })
 export default class App extends Vue {
-  public navigation?: Array<NavigationItem> = getRouteNavList(MAIN_NAVIGATION)
+  public navigation?: NavigationItem[] = getRouteNavList(MAIN_NAVIGATION)
   public activeIndex: number = -1
 }
 </script>
@@ -141,6 +141,8 @@ export default class App extends Vue {
 .bar
   min-height 150px
   position relative
+  background-color #f5f5fd
+  z-index 100
 
   .logotype
     top 75px

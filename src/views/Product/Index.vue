@@ -8,7 +8,7 @@
         <router-link :to="{name:'shop'}">Назад</router-link>
       </div>
       <div class="product__overview-content card-content">
-        <div class="product__overview-content__preview">
+        <div class="product__overview-content__preview" :class="{'disabled': !isValidInput}">
           <img src="/images/privileges/phoenix.png" alt="">
         </div>
         <div class="product__overview-content__description product__overview-content__description-light"
@@ -116,7 +116,7 @@ export default class extends Vue {
 
 .product
   display flex
-  padding-top 60px
+  padding-top 15px
   flex-flow wrap column
   align-items center
 
@@ -222,6 +222,15 @@ export default class extends Vue {
 
       &__advantages
         font-size 1.2rem
+        
+      &__preview
+        img
+          transition filter .2s ease-in-out
+
+        &.disabled
+          img
+            -webkit-filter grayscale(1) opacity(.5)
+            filter grayscale(1) opacity(.5)
 
       &__advantages,
       &__benefits
