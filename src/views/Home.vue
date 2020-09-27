@@ -144,15 +144,11 @@ export default class extends Vue {}
 </script>
 
 <style lang="stylus">
+@import '~@/styles/common.styl'
+
 .contacts__footer-title
-  -webkit-touch-callout none
-  -webkit-user-select none
-  -khtml-user-select none
-  -moz-user-select none
-  -ms-user-select none
-  user-select none
-</style>
-<style lang="stylus">
+  @extend .disable-highlight
+
 .home
   position: relative
   &:before

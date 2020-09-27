@@ -1,13 +1,13 @@
 <template>
   <div class="product">
     <div class="product__overview">
-      <div class="product__overview-title product__overview-title-light" title="Phoenix"
+      <div class="product__overview-title product__overview-title-light animate__animated animate__fadeInDown" title="Phoenix"
            :class="{'disabled': !isValidInput}">Phoenix
       </div>
-      <div class="product__overview--ago-button">
-        <router-link :to="{name:'shop'}">Назад</router-link>
+      <div class="product__overview--ago-button animate__animated animate__fadeInRight">
+        <a href="javascript:void(0)" @click="$router.back()">Назад</a>
       </div>
-      <div class="product__overview-content card-content">
+      <Card class="product__overview-content animate__animated animate__fadeInLeft">
         <div class="product__overview-content__preview" :class="{'disabled': !isValidInput}">
           <img src="/images/privileges/phoenix.png" alt="">
         </div>
@@ -30,7 +30,7 @@
           <p>Дополнительных слотов на аукционе - +2</p>
           <p>Доступно 2 региона для привата - /rg claim</p>
         </div>
-      </div>
+      </Card>
     </div>
 
     <div class="product__price product__price-light">
@@ -42,7 +42,7 @@
       </transition>
     </div>
 
-    <div class="product__fields card-content">
+    <Card class="product__fields animate__animated animate__fadeInRight">
       <TextInput :disabled="!isValidInput"
                  :placeholder="'Введите ваш ник на сервере'"
                  :name="'username'"
@@ -74,24 +74,26 @@
           </div>
         </transition>
       </div>
-    </div>
+    </Card>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import TextInput from '@/components/TextInput.vue'
+import Card from "@/components/Card.vue";
 
 @Component({
   components: {
-    TextInput
+    TextInput,
+    Card
   }
 })
 export default class extends Vue {
   public hasCoupon: boolean = false
   public username: string = ''
   public coupon: string = ''
-  public price: number = 100
+  public price: number = 0
 
   get isValidInput(): boolean {
     return this.username.length >= 4 && !!this.username.match(/^[A-Za-z0-9_]+$/)
@@ -105,15 +107,6 @@ export default class extends Vue {
 <style lang="stylus" scoped>
 @import '~@/styles/common'
 
-.card-content
-  box-shadow 3px 4px 40px #eaeaf7
-  font-family Acrom, sans-serif
-  background #fdfdff
-  border-radius 8px
-  text-align left
-  margin 25px 0
-  padding 50px
-
 .product
   display flex
   padding-top 15px
@@ -123,6 +116,13 @@ export default class extends Vue {
   > div
     display flex
     width 50%
+
+  &__fields,
+  &__overview-content
+    padding 30px 50px 50px
+    text-align left
+    margin 25px 0
+
 
   &__price
     align-items center
@@ -168,7 +168,9 @@ export default class extends Vue {
       right 0
       top 0
       a
-        color #000
+        font-size 1.3rem
+        font-family: AcromBold, sans-serif
+        color alpha(gray, 60%)
 
     &-title
       font-family AcromExtraBold, sans-serif

@@ -43,6 +43,7 @@ export default class extends Vue {
 
 .form
   &__group
+    @extend .disable-highlight
     position relative
     padding 15px 0 0
     margin-top 10px
@@ -50,6 +51,7 @@ export default class extends Vue {
 
   &__label
     font-family AcromBold, sans-serif
+    @extend .disable-highlight
     position absolute
     display block
     transition 0.2s
@@ -80,7 +82,6 @@ export default class extends Vue {
       font-size 1.3rem
       cursor text
       top 20px
-      @extend .disable-highlight
 
     &:focus:not(.disabled) ~ .form__label,
     &:valid:not(.disabled) ~ .form__label

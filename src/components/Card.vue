@@ -14,8 +14,10 @@ export default class extends Vue {
 
 <style lang="stylus" scoped>
   .simple-card
+    box-shadow 3px 4px 40px #eaeaf7
+    font-family Acrom, sans-serif
     background #fdfdff
-    border-radius 4px
+    border-radius 8px
     min-height 250px
     margin 10px 15px
     min-width 250px

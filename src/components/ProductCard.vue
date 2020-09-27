@@ -22,16 +22,10 @@ export default class extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-.product-card > img
-  -webkit-touch-callout none
-  -webkit-user-select none
-  -khtml-user-select none
-  -moz-user-select none
-  -ms-user-select none
-  user-select none
-</style>
+@import '~@/styles/common.styl'
 
-<style lang="stylus" scoped>
+.product-card > img
+  @extend .disable-highlight
 .product-card
   background-image linear-gradient(to right bottom, #e0e0ef, #f5f5fd)
   transition blur .3s, ease-out .25s

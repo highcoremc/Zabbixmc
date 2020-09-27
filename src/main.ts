@@ -1,3 +1,4 @@
+import Scrollbar from 'smooth-scrollbar'
 import router from './router'
 import App from './App.vue'
 import Vue from 'vue'
@@ -15,3 +16,7 @@ new Vue({
     router,
     render: (h) => h(App)
 }).$mount('#app')
+
+Scrollbar.init(<HTMLElement>document.body, {
+    damping: .1
+})
