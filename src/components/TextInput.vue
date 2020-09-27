@@ -54,17 +54,17 @@ export default class extends Vue {
     display block
     transition 0.2s
     font-size 1rem
-    color gray
+    color alpha(gray, 75%)
     top 0
 
   &__field
     font-family AcromMedium, sans-serif
     background transparent
+    color alpha(gray, 75%)
     position relative
     font-size 1.3rem
     padding 7px 0
     width 100%
-    color gray
     outline 0
     border 0
 
@@ -92,14 +92,14 @@ export default class extends Vue {
       top 0
 
     &-border
-      background gray
+      background-image linearGradient(alpha(gray, 60%), alpha(gray, 70%))
       display block
       content ''
       width 100%
       height 4px
 
       &:after
-        background-image linearGradient(gray, light-violet)
+        background-image linearGradient(default-primary, default-secondary)
         transition width .25s
         display block
         content ''
