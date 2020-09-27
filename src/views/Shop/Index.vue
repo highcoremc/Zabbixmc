@@ -10,7 +10,7 @@
           <ul class="categories">
             <li v-for="(item, i) in categories" :key="'shop_nav_' + item.name"
                 class="categories__category animate__animated"
-                @click="changeActiveItem(item.name)"
+                @click="selectAnotherCategory(item.name)"
                 :class="[
                     {'categories__category-active': item.name === activeCategory},
                     `categories__category-${item.name}`,
@@ -28,8 +28,13 @@
 
       <div class="col-md-12">
         <div class="products" v-if="products.length">
-          <div v-for="item in products" :key="'products__' + item.category"
-               :class="'products__' + item.category" v-show="item.category === activeCategory">
+          <div v-for="item in products" :key="'products__' + item.category" class="animate__animated"
+               :class="[
+                   'products__' + item.category,
+                   item.category === activeCategory
+                      ? 'animate__fadeInUp'
+                      : 'animate__fadeOutLeft'
+               ]" v-show="item.category === activeCategory">
             <router-link v-for="product in item.products" :key="'pr'+product.id"
                          :to="{name: 'product.overview', params: { productId: product.id }}">
               <ProductCard :title="product.title" class="products__product"
@@ -65,9 +70,9 @@ import axios from "axios"
 })
 export default class extends Vue {
 
-  public categories: Category[] = []
-  public activeCategory: string = ''
   private products: CategoryProducts[] = []
+  private categories: Category[] = []
+  private activeCategory: string = ''
 
   public async created() {
     await this.loadCategories()
@@ -110,13 +115,19 @@ export default class extends Vue {
     return result;
   }
 
+  public scrollTop(): void
+  {
+    window.scrollTo(0, 0)
+  }
+
   @Watch('$route', {immediate: true, deep: true})
   public onRouteChange(): void {
+    this.scrollTop()
     if (!this.categories || this.categories.length === 0) {
       return
     }
 
-    this.activeCategory = this.$route.params.category
+    this.selectAnotherCategory(this.$route.params.category)
     this.relocateIfInvalid(this.activeCategory);
     const first = this.categories[0];
 
@@ -130,7 +141,7 @@ export default class extends Vue {
     }
   }
 
-  public changeActiveItem(name: string): void {
+  public selectAnotherCategory(name: string): void {
     this.activeCategory = name
   }
 
@@ -218,8 +229,13 @@ export default class extends Vue {
 <style lang="stylus" scoped>
 @import '~@/styles/common.styl'
 
-.products
+.shop
+  overflow hidden
 
+.products
+  animation fadeInUp
+  animation-duration 1.5s
+  padding 25px
   > div
     display flex
     flex-wrap wrap

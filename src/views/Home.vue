@@ -159,12 +159,15 @@ export default class extends Vue {}
     background-image url("~@/assets/images/pirate.png")
     background-repeat no-repeat
     background-size contain
+    position absolute
+    animation fadeInRight
+    animation-duration 1.5s
+    height 100%
+    z-index 100
+    content ''
+    top -6rem
     width 25%
     right 0
-    top -6rem
-    position absolute
-    content ''
-    height 100%
 
 .card
   &-link
