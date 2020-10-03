@@ -13,12 +13,12 @@
 
       <div class="col-md-12">
         <div class="game-start animate__animated animate__bounceIn animate__delay-1s">
-          <div class="btn btn-primary btn-title">
+          <router-link :to="{name: 'shop'}" class="btn btn-primary btn-title">
             <i class="icon">
               <img src="~@mojang/web-theme-bootstrap/assets/svg/icons/color-steve-alex.svg" alt="">
             </i>
             В магазин
-          </div>
+          </router-link>
         </div>
       </div>
 
@@ -72,7 +72,7 @@
             </div>
             <div class="offers__card offers__card-tokens">
               <div class="offers__card-content">
-                <div class="offers__card-title">Tokens</div>
+                <div class="offers__card-title">Bookers</div>
                 <div class="offers__card-subtitle">
                   Любой товар на сервере можно купить за токены.
                 </div>
