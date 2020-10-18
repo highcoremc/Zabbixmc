@@ -1,7 +1,7 @@
 import Product from "@/shop/Product";
 
 export default interface Category {
-    meta?: {
+    metadata?: {
         icon?: string
     }
     title: string

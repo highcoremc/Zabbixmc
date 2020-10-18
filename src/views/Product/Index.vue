@@ -1,31 +1,26 @@
 <template>
-  <div class="product">
+  <div class="product" v-if="!!product" :class="[`product-${product.metadata.level}`, {'disabled': !isValidInput}]">
     <div class="product__overview">
-      <div class="product__overview-title product__overview-title-light animate__animated animate__fadeInDown" title="Phoenix"
-           :class="{'disabled': !isValidInput}">Phoenix
+      <div class="product__overview-title animate__animated animate__fadeInDown"
+           :title="product.title">
+        {{ product.title }}
       </div>
       <div class="product__overview--ago-button animate__animated animate__fadeInRight">
         <a href="javascript:void(0)" @click="$router.back()">Назад</a>
       </div>
       <Card class="product__overview-content animate__animated animate__fadeInLeft">
-        <div class="product__overview-content__preview" :class="{'disabled': !isValidInput}">
-          <img src="/images/privileges/phoenix.png" alt="">
+        <div class="product__overview-content__preview">
+          <img :src="product.metadata.src" alt="">
         </div>
-        <div class="product__overview-content__description product__overview-content__description-light"
-             :class="{'disabled': !isValidInput}">
-          <p class="product__overview-content__advantages product__overview-content__advantages-light"
-             title="Основные преимущества"
-             :class="{'disabled': !isValidInput}"
-          >Основные преимущества</p>
+        <div class="product__overview-content__description">
+          <p class="product__overview-content__advantages" title="Основные преимущества">Основные преимущества</p>
           <p>Открыть личный верстак - /workbench</p>
           <p>Открыть личный эндер сундук - /ec</p>
           <p>Одеть любой блок на голову - /hat</p>
           <p>Префикс в чате/табе/над головой</p>
           <p>Включить режим АФК - /afk</p>
           <p>Зарплата 1.000 - /salary</p>
-          <p class="product__overview-content__benefits product__overview-content__benefits-light" title="Дополнительно"
-             :class="{'disabled': !isValidInput}"
-          >Дополнительно</p>
+          <p class="product__overview-content__benefits" title="Дополнительно">Дополнительно</p>
           <p>Набор HERO - /kit hero</p>
           <p>Дополнительных слотов на аукционе - +2</p>
           <p>Доступно 2 региона для привата - /rg claim</p>
@@ -33,11 +28,11 @@
       </Card>
     </div>
 
-    <div class="product__price product__price-light">
+    <div class="product__price">
       <transition enter-active-class="animate__animated animate__flash"
                   leave-active-class="animate__animated animate__fadeOutUpBig">
         <div class="product__price-title" v-show="isValidInput">
-          Итого к оплате: <span class="product__price-price">{{ price }} рублей</span>
+          Итого к оплате: <span class="product__price-amount">{{ price }} рублей</span>
         </div>
       </transition>
     </div>
@@ -46,7 +41,7 @@
       <TextInput :disabled="!isValidInput"
                  :placeholder="'Введите ваш ник на сервере'"
                  :name="'username'"
-                 :category="'light'"
+                 :level="product.metadata.level"
                  v-model="username"
       />
 
@@ -59,18 +54,19 @@
           <TextInput :disabled="!isValidCoupon || !isValidInput"
                      :placeholder="'Введите купон'"
                      :name="'coupon'"
-                     :category="'light'"
+                     :level="product.metadata.level"
                      v-model="coupon"
                      v-show="hasCoupon"
           />
         </transition>
       </div>
 
-      <div class="product__fields-buy_button product__fields-buy_button-light" :class="{ 'disabled': !isValidInput }">
+      <div class="product__buy-button">
         <transition enter-active-class="animate__animated animate__bounceIn"
                     leave-active-class="animate__animated animate__fadeOutDownBig">
-          <div class="btn btn-primary product__fields-buy_button__button"
-               v-show="isValidInput">Перейти к оплате
+          <div class="btn btn-primary product__buy-button__button"
+               v-show="isValidInput" @click="submitForm">
+            Перейти к оплате
           </div>
         </transition>
       </div>
@@ -82,6 +78,10 @@
 import { Component, Vue } from 'vue-property-decorator'
 import TextInput from '@/components/TextInput.vue'
 import Card from "@/components/Card.vue";
+import HttpClient from "@/http/HttpClient";
+import ProductApi from "@/http/ProductApi";
+import Product from "@/shop/Product";
+import OrderApi from "@/http/OrderApi";
 
 @Component({
   components: {
@@ -90,17 +90,74 @@ import Card from "@/components/Card.vue";
   }
 })
 export default class extends Vue {
-  public hasCoupon: boolean = false
-  public username: string = ''
-  public coupon: string = ''
-  public price: number = 0
+  private hasCoupon: boolean = false
+  private username: string = ''
+  private coupon: string = ''
+
+  private product!: Product = null;
+  private productApi: ProductApi;
+  private orderApi: OrderApi;
+
+  constructor() {
+    super();
+    const httpClient = new HttpClient('http://dev.highpay.io/public-api/shops/shop_ydu3vYgKzWaklxb5');
+    this.productApi = new ProductApi(httpClient)
+    this.orderApi = new OrderApi(httpClient)
+  }
+
+  public async created(): Promise<void> {
+    this.product = await this.productApi.getProduct(this.$route.params.productId);
+  }
 
   get isValidInput(): boolean {
     return this.username.length >= 4 && !!this.username.match(/^[A-Za-z0-9_]+$/)
   }
 
+  get price(): number {
+    return Math.floor((this.product || {}).price)
+  }
+
   get isValidCoupon(): boolean {
     return this.coupon.length >= 4
+  }
+
+  public async submitForm(): void {
+    const result = await this.orderApi.createOrder({
+      product: {id: <string>this.product.id},
+      recipient: {name: this.username},
+      customer: {name: this.username}
+    })
+
+    if (null === result) {
+      alert('Произошла ошибка при создании заказа.')
+      return;
+    }
+
+    const formResult = await this.orderApi.processOrder(result);
+
+    if (!formResult.action || !formResult.method) {
+      alert('Произошла ошибка при проведении заказа.')
+      return;
+    }
+
+    this.createAndSubmitDynamicForm(formResult);
+  }
+
+  private createAndSubmitDynamicForm(formResult: PaymentForm) {
+    const form = document.createElement('form');
+    form.setAttribute("method", formResult.method);
+    form.setAttribute("action", formResult.action);
+    form.style.display = 'none';
+
+    for (const [name, val] of Object.entries(formResult.params)) {
+      const input = document.createElement('input');
+      input.setAttribute('name', name);
+      input.setAttribute('value', val);
+      form.appendChild(input);
+    }
+
+    document.body.append(form);
+    form.submit()
   }
 }
 </script>
@@ -112,49 +169,6 @@ export default class extends Vue {
   padding-top 15px
   flex-flow wrap column
   align-items center
-
-  > div
-    display flex
-    width 50%
-
-  &__fields,
-  &__overview-content
-    padding 30px 50px 50px
-    text-align left
-    margin 25px 0
-
-
-  &__price
-    align-items center
-    position relative
-    overflow hidden
-    min-height 50px
-    display flex
-
-    &-title
-      font-family AcromMedium, sans-serif
-      font-size 1.8rem
-      color #606079
-
-    &-price
-      background-image radialGradient(darkgray, gray)
-      text-shadow 0 0 7px alpha(gray, .4)
-      font-family AcromBold, sans-serif
-      -webkit-text-fill-color transparent
-      -webkit-background-clip text
-
-    &-light &-price
-      background-image radialGradient(darken(light-primary, 15%), darken(light-secondary, 7%))
-      text-shadow 0 0 7px alpha(light-primary, .4)
-
-    &-medium &-price
-      background-image radialGradient(darken(medium-primary, 15%), darken(medium-secondary, 10%))
-      text-shadow 0 0 7px alpha(medium-primary, .4)
-
-    &-high &-price
-      background-image radialGradient(darken(high-primary, 15%), darken(high-secondary, 10%))
-      text-shadow 0 0 7px alpha(high-primary, .4)
-
 
   &__overview
     justify-content center
@@ -191,26 +205,6 @@ export default class extends Vue {
         top 0
         left 0
 
-      &-light:after
-        background-image linearGradient(light-primary, light-secondary)
-        text-shadow 1px 0 20px alpha(light-primary, .3)
-
-      &-medium:after
-        background-image linearGradient(medium-primary, medium-secondary)
-        text-shadow 1px 0 20px alpha(medium-primary, .3)
-
-      &-high:after
-        background-image linearGradient(high-primary, high-secondary, to right, 0%, 25%)
-        text-shadow 1px 0 20px alpha(high-primary, .3)
-
-      &.disabled:after
-        text-shadow none
-
-      &-light:not(.disabled):after,
-      &-medium:not(.disabled):after,
-      &-high:not(.disabled):after
-        height 100%
-
     &-content
       justify-content space-around
       line-height 1.23rem
@@ -224,15 +218,10 @@ export default class extends Vue {
 
       &__advantages
         font-size 1.2rem
-        
+
       &__preview
         img
           transition filter .2s ease-in-out
-
-        &.disabled
-          img
-            -webkit-filter grayscale(1) opacity(.5)
-            filter grayscale(1) opacity(.5)
 
       &__advantages,
       &__benefits
@@ -254,20 +243,6 @@ export default class extends Vue {
           top 0
           left 0
 
-        &-light:after
-          background-image linearGradient(light-primary, light-secondary)
-
-        &-medium:after
-          background-image linearGradient(medium-primary, medium-secondary)
-
-        &-high:after
-          background-image linearGradient(high-primary, high-secondary)
-
-        &-light:not(.disabled):after,
-        &-medium:not(.disabled):after,
-        &-high:not(.disabled):after
-          width 100%
-
       &__description
         padding 0 0 0 20px
         position relative
@@ -288,20 +263,114 @@ export default class extends Vue {
           content ''
           left 0
           top 0
+  .disabled &__overview-content__preview
+    img
+      -webkit-filter grayscale(1) opacity(.5)
+      filter grayscale(1) opacity(.5)
 
-        &-light:after
-          background-image radialGradient(light-secondary, light-primary)
+  .disabled &__buy-button__button
+    cursor default
 
-        &-medium:after
-          background-image radialGradient(medium-secondary, medium-primary)
+  .disabled &__buy-button__button:before
+      background-color #313131
+      box-shadow 0 -4px rgba(0, 0, 0, 0.35) inset, 0 4px rgba(255, 255, 255, 0.25) inset, -4px 0 rgba(255, 255, 255, 0.25) inset, 4px 0 rgba(0, 0, 0, 0.35) inset
 
-        &-high:after
-          background-image radialGradient(high-secondary, high-primary)
 
-        &-light:not(.disabled):after,
-        &-medium:not(.disabled):after,
-        &-high:not(.disabled):after
-          height 100%
+  &:not(.disabled) &__overview-title:after,
+  &:not(.disabled) &__overview-content__description:after
+    height 100%
+
+  &:not(.disabled) &__overview-content__benefits:after,
+  &:not(.disabled) &__overview-content__advantages:after
+    width 100%
+
+  /** Description styles */
+  &-low:not(.disabled) &__overview-content__advantages:after,
+  &-low:not(.disabled) &__overview-content__benefits:after
+    background-image linearGradient(light-primary, light-secondary)
+  &-medium:not(.disabled) &__overview-content__advantages:after,
+  &-medium:not(.disabled) &__overview-content__benefits:after
+    background-image radialGradient(medium-secondary, medium-primary)
+  &-high:not(.disabled) &__overview-content__advantages:after,
+  &-high:not(.disabled) &__overview-content__benefits:after
+    background-image radialGradient(high-secondary, high-primary)
+
+  /** Advantages & Benefits styles */
+  &-low:not(.disabled) &__overview-content__description:after
+    background-image radialGradient(light-secondary, light-primary)
+  &-medium:not(.disabled) &__overview-content__description:after
+    background-image linearGradient(medium-primary, medium-secondary)
+  &-high:not(.disabled) &__overview-content__description:after
+    background-image linearGradient(high-primary, high-secondary)
+
+  .disabled &__overview-title
+    text-shadow none
+
+  /** Title styles */
+  &-low:not(.disabled) &__overview-title:after
+      background-image linearGradient(light-primary, light-secondary)
+      text-shadow 1px 0 20px alpha(light-primary, .3)
+  &-low:not(.disabled) &__price-amount
+      background-image radialGradient(darken(light-primary, 15%), darken(light-secondary, 7%))
+      text-shadow 0 0 7px alpha(light-primary, .4)
+
+  &-medium:not(.disabled) &__overview-title:after
+      background-image linearGradient(medium-primary, medium-secondary)
+      text-shadow 1px 0 20px alpha(medium-primary, .3)
+  &-medium:not(.disabled) &__price-amount
+      background-image radialGradient(darken(medium-primary, 15%), darken(medium-secondary, 10%))
+      text-shadow 0 0 7px alpha(medium-primary, .4)
+
+  &-high:not(.disabled) &__overview-title:after
+      background-image linearGradient(high-primary, high-secondary, to right, 0%, 25%)
+      text-shadow 1px 0 20px alpha(high-primary, .3)
+  &-high:not(.disabled) &__price-amount
+      background-image radialGradient(darken(high-primary, 15%), darken(high-secondary, 10%))
+      text-shadow 0 0 7px alpha(high-primary, .4)
+
+  &-low:not(.disabled) &__buy-button__button:before
+    background-color #2db3cb
+    box-shadow 0 -4px #006375 inset, 0 4px #2be1fb inset, -4px 0 #02f1fd inset, 4px 0 #087f9a inset
+
+  &-medium:not(.disabled) &__buy-button__button:before
+    background-color #f39a17
+    box-shadow 0 -4px #bf6611 inset, 0 4px #ffc500 inset, -4px 0 #fac531 inset, 4px 0 #b7690c inset
+
+  &-high:not(.disabled) &__buy-button__button:before
+    background-color #b03030
+    box-shadow 0 -4px rgb(108 0 0 / 50%) inset, 0 4px rgb(253 31 31 / 99%) inset, -4px 0 rgb(253 31 31 / 50%) inset, 4px 0 rgb(108 0 0 / 50%) inset
+
+
+  > div
+    display flex
+    width 50%
+
+  &__fields,
+  &__overview-content
+    padding 30px 50px 50px
+    text-align left
+    margin 25px 0
+
+
+  &__price
+    align-items center
+    position relative
+    overflow hidden
+    min-height 50px
+    display flex
+
+    &-title
+      font-family AcromMedium, sans-serif
+      font-size 1.8rem
+      color #606079
+
+    &-amount
+      background-image radialGradient(darkgray, gray)
+      text-shadow 0 0 7px alpha(gray, .4)
+      font-family AcromBold, sans-serif
+      -webkit-text-fill-color transparent
+      -webkit-background-clip text
+
 
   &__fields
     flex-direction column
@@ -319,34 +388,15 @@ export default class extends Vue {
         font-size 1.2rem
         color alpha(gray, 70%)
 
-    &-buy_button
-      margin-bottom -30px
-      padding-top 20px
-      overflow hidden
-      min-height 80px
+  &__buy-button
+    margin-bottom -30px
+    overflow hidden
+    width 100%
+
+    &__button
+      transition opacity .3s
+      min-height 3rem
       width 100%
-
-      &.disabled &__button
-        cursor default
-
-      &.disabled &__button:before
-        background-color #313131
-        box-shadow 0 -4px rgba(0, 0, 0, 0.35) inset, 0 4px rgba(255, 255, 255, 0.25) inset, -4px 0 rgba(255, 255, 255, 0.25) inset, 4px 0 rgba(0, 0, 0, 0.35) inset
-
-      &__button
-        width 100%
-        min-height 3rem
-
-      &-light &__button:before
-        background-color #2db3cb
-        box-shadow 0 -4px #006375 inset, 0 4px #2be1fb inset, -4px 0 #02f1fd inset, 4px 0 #087f9a inset
-
-      &-medium &__button:before
-        background-color #f39a17
-        box-shadow 0 -4px #bf6611 inset, 0 4px #ffc500 inset, -4px 0 #fac531 inset, 4px 0 #b7690c inset
-
-      &-high &__button:before
-        background-color #b03030
-        box-shadow 0 -4px rgb(108 0 0 / 50%) inset, 0 4px rgb(253 31 31 / 99%) inset, -4px 0 rgb(253 31 31 / 50%) inset, 4px 0 rgb(108 0 0 / 50%) inset
-
+      &:hover
+        opacity .8
 </style>

@@ -1,13 +1,13 @@
 export default interface Product {
-    id: string
+    id?: string
     title: string
-    src: string
-    meta?: {
-        category?: string
+    category?: string
+    description?: string
+    metadata?: {
         level?: string
+        src?: string
     }
-    price: {
-        currency: string
-        amount: number
-    }
+    type: string
+    price: number
+    currency: string
 }

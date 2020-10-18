@@ -8,7 +8,7 @@
       </div>
 
       <div class="col-md-12">
-        <div class="accordion">
+        <div class="accordion animate__animated animate__fadeInUp">
           <div v-for="(item, i) in contents" class="accordion-item" :key="i">
             <button :id="`accordion-button-${i}`" :aria-expanded="i === selectedAccordion ? 'true' : 'false'"
                     @click="changeAccordion(i)">

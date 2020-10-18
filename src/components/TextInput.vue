@@ -1,5 +1,5 @@
 <template>
-  <div class="form__group" :class="`form__${category}`">
+  <div class="form__group" :class="`form__${level}`">
     <input :class="{ 'disabled': disabled }" :name="name" :value="value"
            :placeholder="placeholder" :id="`field${name}`"
            type="text" autocomplete="off" class="form__field"
@@ -18,7 +18,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 export default class extends Vue {
   @Prop() public placeholder!: string
   @Prop() public disabled!: string
-  @Prop() public category!: string
+  @Prop() public level!: string
   @Prop() public value!: string
   @Prop() public name!: string
 
@@ -115,13 +115,13 @@ export default class extends Vue {
     &:valid:not(.disabled) + &-border:after
       width 100%
 
-  &__light &__field:focus:not(.disabled) ~ .form__label,
-  &__light &__field:valid:not(.disabled) ~ .form__label
+  &__low &__field:focus:not(.disabled) ~ .form__label,
+  &__low &__field:valid:not(.disabled) ~ .form__label
     color light-primary
-  &__light &__field:focus:not(.disabled),
-  &__light &__field:valid:not(.disabled)
+  &__low &__field:focus:not(.disabled),
+  &__low &__field:valid:not(.disabled)
     color light-primary
-  &__light &__field-border:after
+  &__low &__field-border:after
     background-image linearGradient(light-primary, light-secondary)
 
   &__medium &__field:focus:not(.disabled) ~ .form__label,

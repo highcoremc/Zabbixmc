@@ -6,7 +6,7 @@
                :content="'Ты сможешь большее с всевозможными привилегиями!'"
                :subtitle="'крутых товаров'"/>
 
-        <div class="col-md-12">
+        <div class="col-md-12" v-if="loaded">
           <ul class="categories">
             <li v-for="(item, i) in categories" :key="'shop_nav_' + item.name"
                 class="categories__category animate__animated"
@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <div class="col-md-12">
+      <div class="col-md-12" v-if="loaded">
         <div class="products" v-if="products.length">
           <div v-for="item in products" :key="'products__' + item.category" class="animate__animated"
                :class="[
@@ -38,9 +38,9 @@
             <router-link v-for="product in item.products" :key="'pr'+product.id"
                          :to="{name: 'product.overview', params: { productId: product.id }}">
               <ProductCard :title="product.title" class="products__product"
-                           :class="`products__product-${product.meta.level}`">
-                <div class="products__product-preview" :style="{backgroundImage: `url(${product.src})`}"></div>
-                <div class="products__product-price">{{ product.price.amount }} {{ product.price.currency }}</div>
+                           :class="`products__product-${product.metadata.level || ''}`">
+                <div class="products__product-preview" :style="{backgroundImage: `url(${product.metadata.src})`}"></div>
+                <div class="products__product-price">{{ product.price }} {{ product.currency }}</div>
               </ProductCard>
             </router-link>
             <EmptyProducts v-if="item.products.length === 0"></EmptyProducts>
@@ -54,12 +54,14 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import Category, { CategoryProducts } from "@/shop/Category"
+import Category, { CategoryProducts } from '@/shop/Category'
 import EmptyProducts from "@/components/EmptyProducts.vue"
 import ProductCard from "@/components/ProductCard.vue"
+import CategoryApi from '@/http/CategoryApi'
+import HttpClient from '@/http/HttpClient'
+import ProductApi from '@/http/ProductApi'
 import Title from '@/components/Title.vue'
 import Product from "@/shop/Product"
-import axios from "axios"
 
 @Component({
   components: {
@@ -74,49 +76,55 @@ export default class extends Vue {
   private categories: Category[] = []
   private activeCategory: string = ''
 
+  private categoryApi: CategoryApi;
+  private productApi: ProductApi;
+
+  private loaded: boolean = false;
+
+  constructor() {
+    super();
+    const httpClient = new HttpClient('http://dev.highpay.io/public-api/shops/shop_ydu3vYgKzWaklxb5');
+
+    this.productApi = new ProductApi(httpClient)
+    this.categoryApi = new CategoryApi(httpClient)
+  }
+
   public async created() {
     await this.loadCategories()
     await this.loadProducts()
     this.onRouteChange()
+    this.loaded = true;
   }
 
   private async loadProducts(): Promise<void> {
-    const result = await axios.get('/products.json')
-
-    if (!result.data || !result.data.data || !result.data.data.attributes) {
-      return
-    }
-
-    this.products = this.prepareProducts(<Product[]>result.data.data.attributes)
+    const result = await this.productApi.getProducts()
+    this.products = this.prepareProducts(result)
   }
 
   private async loadCategories() {
-    const result = await axios.get('/categories.json')
-
-    if (!result.data || !result.data.data || !result.data.data.attributes) {
-      return
-    }
-
-    this.categories = <Category[]>result.data.data.attributes
+    this.categories = await this.categoryApi.getCategories()
   }
 
-  private prepareProducts(input: Product[]): CategoryProducts[]
-  {
-    const result = [];
+  private prepareProducts(input: Product[]): CategoryProducts[] {
+    const result = []
 
     for (const category of this.categories) {
-      const products = input.filter(product => product.meta?.category === category.name)
+      const products = input
+          .filter(product => product.category === category.name)
+          .map(product => this.floorPrice(product))
+
       result.push({
         category: category.name,
         products: products
       })
     }
 
-    return result;
+    console.log(result)
+
+    return result
   }
 
-  public scrollTop(): void
-  {
+  public scrollTop(): void {
     window.scrollTo(0, 0)
   }
 
@@ -157,6 +165,11 @@ export default class extends Vue {
         }
       })
     }
+  }
+
+  private floorPrice(product: Product) {
+    product.price = Math.floor(product.price);
+    return product;
   }
 }
 </script>
@@ -236,6 +249,7 @@ export default class extends Vue {
   animation fadeInUp
   animation-duration 1.5s
   padding 25px
+
   > div
     display flex
     flex-wrap wrap
@@ -271,11 +285,11 @@ export default class extends Vue {
       text-transform uppercase
       border-radius 0 10px 0 10px
 
-    //&-light &-price
+    //&-low &-price
     //  background-image linear-gradient(to right, #313dbb, #8286f9)
     //  text-shadow 2px 2px 8px #383db5
 
-    &-light &-price
+    &-low &-price
       background-color light-primary
       background-image linearGradient(light-primary, light-secondary, to left, 0%, 100%)
       text-shadow 2px 2px 8px light-primary

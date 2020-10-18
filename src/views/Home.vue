@@ -44,7 +44,7 @@
               <div class="offers__card offers__card-youtube">
                 <div class="offers__card-content">
                   <div class="offers__card-title">YouTube</div>
-                  <div class="offers__card-subtitle">Снимай у нас на нашем сервере за это награду.</div>
+                  <div class="offers__card-subtitle">Снимай на нашем сервере и получай за это награду.</div>
                 </div>
               </div>
             </div>
