@@ -64,17 +64,18 @@
           <div class="offers-right">
             <div class="offers__card offers__card-tokens">
               <div class="offers__card-content">
-                <div class="offers__card-title">Tokens</div>
+                <div class="offers__card-title">Токены</div>
                 <div class="offers__card-subtitle">
-                  Любой товар на сервере можно купить за токены.
+                  Любой товар на сервере можно купить за токены.. и даже больше!
                 </div>
               </div>
             </div>
-            <div class="offers__card offers__card-tokens">
+            <div class="offers__card offers__card-enchantements">
               <div class="offers__card-content">
-                <div class="offers__card-title">Bookers</div>
+                <div class="offers__card-title">Зачарования</div>
                 <div class="offers__card-subtitle">
-                  Любой товар на сервере можно купить за токены.
+                  На сервере есть особые зачарования, которые не
+                  оставят равнодушными никого, и даже вас!
                 </div>
               </div>
             </div>
@@ -152,7 +153,7 @@ export default class extends Vue {}
 .home
   position: relative
   &:before
-    background-image url("~@/assets/images/pirate.png")
+    background-image url("~@/assets/images/pixel_painters.png")
     background-repeat no-repeat
     background-size contain
     position absolute
@@ -161,9 +162,9 @@ export default class extends Vue {}
     height 100%
     z-index 100
     content ''
-    top -6rem
-    width 25%
-    right 0
+    top 0
+    width 50%
+    right -11rem
 
 .card
   &-link
@@ -218,6 +219,17 @@ export default class extends Vue {}
 
   &-right &__card
     &-content
+      padding 35px 25px 35px 120px
+      &:after
+        transform translateY(-50%)
+        background-repeat no-repeat
+        background-size contain
+        position absolute
+        content ''
+        top 50%
+
+  &-right &__card
+    &-content
       text-align left
 
   &__group
@@ -246,9 +258,23 @@ export default class extends Vue {}
     &-cases
       height 100%
 
-    &-helps &-content,
-    &-tokens &-content
-      padding 35px 25px 35px 90px
+    &-tokens &-content:after
+      height 75px
+      width 80px
+      left 20px
+      background-image url("~@/assets/images/gold_coins.png")
+
+    &-helps &-content:after
+      width 100px
+      left 15px
+      height 100px
+      background-image url("~@/assets/images/handshake.png")
+
+    &-enchantements &-content:after
+      height 120px
+      width 120px
+      left 0
+      background-image url("~@/assets/images/magic_box.png")
 
     &-sales
       position relative
@@ -283,11 +309,11 @@ export default class extends Vue {}
 
       &:before
         content ''
-        left 75px
-        top 93px
-        height 73px
-        width 50px
-        background-image url("~@/assets/images/bottle-rainbow.png")
+        left 40px
+        top 78px
+        height 100px
+        width 115px
+        background-image url("~@/assets/images/gift.png")
         background-repeat no-repeat
         background-size contain
         position: absolute
@@ -299,13 +325,13 @@ export default class extends Vue {}
       &:before
         content ''
         top 20px
-        height 100px
-        width 58px
+        width 110px
+        height 130px
         left 0
         right 0
         margin-left auto
         margin-right auto
-        background-image url("~@/assets/images/diamond-mace.png")
+        background-image url("~@/assets/images/guilds.png")
         background-repeat no-repeat
         background-size contain
         position: absolute
