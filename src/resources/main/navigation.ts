@@ -12,11 +12,6 @@ const items: NavigationItem[] = [
         icon: 'far fa-shopping-cart fa-lg',
     },
     {
-        title: 'Новости',
-        name: 'news',
-        icon: 'far fa-newspaper fa-lg',
-    },
-    {
         title: 'Правила',
         name: 'rules',
         icon: 'far fa-minus-circle fa-lg',
