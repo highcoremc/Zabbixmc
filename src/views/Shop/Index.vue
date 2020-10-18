@@ -119,8 +119,6 @@ export default class extends Vue {
       })
     }
 
-    console.log(result)
-
     return result
   }
 
