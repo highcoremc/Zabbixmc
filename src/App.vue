@@ -33,9 +33,9 @@
         <div class="footer__item footer__social">
           <a href="/" class="logotype"></a>
           <div class="footer__social-links">
-            <a href="#" class="footer__social-links__link"><i class="fab fa-discord"></i></a>
-            <a href="#" class="footer__social-links__link"><i class="fab fa-telegram-plane"></i></a>
-            <a href="#" class="footer__social-links__link"><i class="fab fa-vk"></i></a>
+            <a href="https://discord.gg/DRJpBWP" target="_blank" class="footer__social-links__link"><i class="fab fa-discord"></i></a>
+            <a href="https://t.me/zabmc" target="_blank" class="footer__social-links__link"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://vk.com/zabmc" target="_blank" class="footer__social-links__link"><i class="fab fa-vk"></i></a>
           </div>
         </div>
         <div class="footer__item footer__navigation">
@@ -51,13 +51,13 @@
           <div class="footer__item-title">Помощь</div>
           <ul class="footer__navigation--list">
             <li class="footer__navigation--item">
-              <a href="#" class="footer__navigation--item_link">Discord</a>
+              <a href="http://discord.gg/DRJpBWP" target="_blank" class="footer__navigation--item_link">Discord</a>
             </li>
             <li class="footer__navigation--item">
-              <a href="#" class="footer__navigation--item_link">Telegram</a>
+              <a href="https://t.me/helpzabmc" target="_blank" class="footer__navigation--item_link">Telegram</a>
             </li>
             <li class="footer__navigation--item">
-              <a href="#" class="footer__navigation--item_link">VK</a>
+              <a href="https://vk.me/zabmc" target="_blank" class="footer__navigation--item_link">VK</a>
             </li>
           </ul>
         </div>

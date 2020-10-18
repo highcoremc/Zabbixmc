@@ -94,33 +94,33 @@
       <div class="col-md-12">
         <Subtitle :title="'связь с нами'" :content="'наши контакты'" class="animate__animated animate__fadeInLeft"/>
         <div class="contacts">
-          <a href="#" class="contacts__card contacts__discord animate__animated animate__fadeInLeft">
+          <a href="https://discord.gg/eUvvxhT" target="_blank" class="contacts__card contacts__discord animate__animated animate__fadeInLeft">
             <div class="contacts__card-badge">
               <i class="fab fa-discord"></i>
             </div>
             <div class="card-content">
               <div class="card-title">Discord сервер</div>
-              <div class="card-subtitle">Общаемся, тусим и флексим с админами на нашем ламповом DS сервере.</div>
+              <div class="card-subtitle">На канале help нашего Discord сервера всегда есть дежурный, напишите и мы вам поможем!</div>
               <a href="#" class="card-link">Написать в Discord</a>
             </div>
           </a>
-          <a href="#" class="contacts__card contacts__telegram animate__animated animate__fadeInUp">
+          <a href="https://t.me/helpzabmc" target="_blank" class="contacts__card contacts__telegram animate__animated animate__fadeInUp">
             <div class="contacts__card-badge">
               <i class="fab fa-telegram-plane"></i>
             </div>
             <div class="card-content">
               <div class="card-title">Telegram канал</div>
-              <div class="card-subtitle">Мемы, приколы, новости и скидки публикуются в Телеграм канале.</div>
+              <div class="card-subtitle">У вас возникла проблема? Напишите нам в Telegram и наши агенты Вам с радостью помогут!</div>
               <div class="card-link">Написать в Telegram</div>
             </div>
           </a>
-          <a href="#" class="contacts__card contacts__vk animate__animated animate__fadeInRight">
+          <a href="http://vk.me/zabmc" target="_blank" class="contacts__card contacts__vk animate__animated animate__fadeInRight">
             <div class="contacts__card-badge">
               <i class="fab fa-vk"></i>
             </div>
             <div class="card-content">
               <div class="card-title">Сообщество Vk</div>
-              <div class="card-subtitle">Лента новостей, свежие апдейты и конкурсы, все это в нашей группе вконтакте.</div>
+              <div class="card-subtitle">Если Discord и Telegram - это не для Вас, вы всегда можете написать нам в VK.</div>
               <div class="card-link">Написать в Vk</div>
             </div>
           </a>
@@ -419,6 +419,7 @@ export default class extends Vue {}
     transition all .4s
     position relative
     width 33.3333%
+    z-index 100
     padding 15px
 
     &:hover
