@@ -82,6 +82,7 @@ import HttpClient from "@/http/HttpClient";
 import ProductApi from "@/http/ProductApi";
 import Product from "@/shop/Product";
 import OrderApi from "@/http/OrderApi";
+import PaymentForm from "@/order/PaymentForm";
 
 @Component({
   components: {
@@ -94,7 +95,7 @@ export default class extends Vue {
   private username: string = ''
   private coupon: string = ''
 
-  private product!: Product = null;
+  private product?: Product = undefined;
   private productApi: ProductApi;
   private orderApi: OrderApi;
 
@@ -114,16 +115,16 @@ export default class extends Vue {
   }
 
   get price(): number {
-    return Math.floor((this.product || {}).price)
+    return !this.product ? 0 : Math.floor(this.product.price)
   }
 
   get isValidCoupon(): boolean {
     return this.coupon.length >= 4
   }
 
-  public async submitForm(): void {
+  public async submitForm(): Promise<void> {
     const result = await this.orderApi.createOrder({
-      product: {id: <string>this.product.id},
+      product: {id: <string>this.product?.id},
       recipient: {name: this.username},
       customer: {name: this.username}
     })
@@ -181,6 +182,7 @@ export default class extends Vue {
       padding-top 25px
       right 0
       top 0
+
       a
         font-size 1.3rem
         font-family: AcromBold, sans-serif
@@ -263,6 +265,7 @@ export default class extends Vue {
           content ''
           left 0
           top 0
+
   .disabled &__overview-content__preview
     img
       -webkit-filter grayscale(1) opacity(.5)
@@ -272,8 +275,8 @@ export default class extends Vue {
     cursor default
 
   .disabled &__buy-button__button:before
-      background-color #313131
-      box-shadow 0 -4px rgba(0, 0, 0, 0.35) inset, 0 4px rgba(255, 255, 255, 0.25) inset, -4px 0 rgba(255, 255, 255, 0.25) inset, 4px 0 rgba(0, 0, 0, 0.35) inset
+    background-color #313131
+    box-shadow 0 -4px rgba(0, 0, 0, 0.35) inset, 0 4px rgba(255, 255, 255, 0.25) inset, -4px 0 rgba(255, 255, 255, 0.25) inset, 4px 0 rgba(0, 0, 0, 0.35) inset
 
 
   &:not(.disabled) &__overview-title:after,
@@ -285,21 +288,27 @@ export default class extends Vue {
     width 100%
 
   /** Description styles */
+
   &-low:not(.disabled) &__overview-content__advantages:after,
   &-low:not(.disabled) &__overview-content__benefits:after
     background-image linearGradient(light-primary, light-secondary)
+
   &-medium:not(.disabled) &__overview-content__advantages:after,
   &-medium:not(.disabled) &__overview-content__benefits:after
     background-image radialGradient(medium-secondary, medium-primary)
+
   &-high:not(.disabled) &__overview-content__advantages:after,
   &-high:not(.disabled) &__overview-content__benefits:after
     background-image radialGradient(high-secondary, high-primary)
 
   /** Advantages & Benefits styles */
+
   &-low:not(.disabled) &__overview-content__description:after
     background-image radialGradient(light-secondary, light-primary)
+
   &-medium:not(.disabled) &__overview-content__description:after
     background-image linearGradient(medium-primary, medium-secondary)
+
   &-high:not(.disabled) &__overview-content__description:after
     background-image linearGradient(high-primary, high-secondary)
 
@@ -307,26 +316,30 @@ export default class extends Vue {
     text-shadow none
 
   /** Title styles */
+
   &-low:not(.disabled) &__overview-title:after
-      background-image linearGradient(light-primary, light-secondary)
-      text-shadow 1px 0 20px alpha(light-primary, .3)
+    background-image linearGradient(light-primary, light-secondary)
+    text-shadow 1px 0 20px alpha(light-primary, .3)
+
   &-low:not(.disabled) &__price-amount
-      background-image radialGradient(darken(light-primary, 15%), darken(light-secondary, 7%))
-      text-shadow 0 0 7px alpha(light-primary, .4)
+    background-image radialGradient(darken(light-primary, 15%), darken(light-secondary, 7%))
+    text-shadow 0 0 7px alpha(light-primary, .4)
 
   &-medium:not(.disabled) &__overview-title:after
-      background-image linearGradient(medium-primary, medium-secondary)
-      text-shadow 1px 0 20px alpha(medium-primary, .3)
+    background-image linearGradient(medium-primary, medium-secondary)
+    text-shadow 1px 0 20px alpha(medium-primary, .3)
+
   &-medium:not(.disabled) &__price-amount
-      background-image radialGradient(darken(medium-primary, 15%), darken(medium-secondary, 10%))
-      text-shadow 0 0 7px alpha(medium-primary, .4)
+    background-image radialGradient(darken(medium-primary, 15%), darken(medium-secondary, 10%))
+    text-shadow 0 0 7px alpha(medium-primary, .4)
 
   &-high:not(.disabled) &__overview-title:after
-      background-image linearGradient(high-primary, high-secondary, to right, 0%, 25%)
-      text-shadow 1px 0 20px alpha(high-primary, .3)
+    background-image linearGradient(high-primary, high-secondary, to right, 0%, 25%)
+    text-shadow 1px 0 20px alpha(high-primary, .3)
+
   &-high:not(.disabled) &__price-amount
-      background-image radialGradient(darken(high-primary, 15%), darken(high-secondary, 10%))
-      text-shadow 0 0 7px alpha(high-primary, .4)
+    background-image radialGradient(darken(high-primary, 15%), darken(high-secondary, 10%))
+    text-shadow 0 0 7px alpha(high-primary, .4)
 
   &-low:not(.disabled) &__buy-button__button:before
     background-color #2db3cb
@@ -397,6 +410,7 @@ export default class extends Vue {
       transition opacity .3s
       min-height 3rem
       width 100%
+
       &:hover
         opacity .8
 </style>

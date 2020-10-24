@@ -27,14 +27,4 @@ export default class CategoryApi {
 
         return result;
     }
-
-    public async getProduct(id: string): Promise<Product> {
-        const response = await this.httpClient.get<ResponseItem<Product>>(`/categories/${id}`);
-
-        if (!response.data.data) {
-            return Promise.reject();
-        }
-
-        return {id, ...response.data.data.attributes};
-    }
 }

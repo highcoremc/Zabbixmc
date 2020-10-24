@@ -27,7 +27,7 @@ export default class OrderApi {
         return response.data.id;
     }
 
-    private async processOrder(id: string): Promise<PaymentForm> {
+    public async processOrder(id: string): Promise<PaymentForm> {
         const response = await this.httpClient.post<ResponseItem<PaymentForm>>(`/orders/${id}/process`);
 
         if (!response.data) {
