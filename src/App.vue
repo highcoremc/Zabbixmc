@@ -61,17 +61,17 @@
             </li>
           </ul>
         </div>
-        <div class="footer__item footer__navigation">
-          <div class="footer__item-title">Почитать</div>
-          <ul class="footer__navigation--list">
-            <li class="footer__navigation--item">
-              <a href="#" class="footer__navigation--item_link">Публичная оферта</a>
-            </li>
-            <li class="footer__navigation--item">
-              <a href="#" class="footer__navigation--item_link">Политика обработки персональных данных</a>
-            </li>
-          </ul>
-        </div>
+<!--        <div class="footer__item footer__navigation">-->
+<!--          <div class="footer__item-title">Почитать</div>-->
+<!--          <ul class="footer__navigation&#45;&#45;list">-->
+<!--            <li class="footer__navigation&#45;&#45;item">-->
+<!--              <a href="#" class="footer__navigation&#45;&#45;item_link">Публичная оферта</a>-->
+<!--            </li>-->
+<!--            <li class="footer__navigation&#45;&#45;item">-->
+<!--              <a href="#" class="footer__navigation&#45;&#45;item_link">Политика обработки персональных данных</a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
       </div>
       <div class="footer__copyright">
         <div class="text">ZabbixMC Все права защищены</div>
