@@ -1,26 +1,48 @@
 <template>
-  <div class="product" v-if="!!product" :class="[`product-${product.metadata.level}`, {'disabled': !isValidInput}]">
+  <div
+    v-if="!!product"
+    class="product"
+    :class="[`product-${product.metadata.level}`, {'disabled': !isValidInput}]"
+  >
     <div class="product__overview">
-      <div class="product__overview-title animate__animated animate__fadeInDown"
-           :title="product.title">
+      <div
+        class="product__overview-title animate__animated animate__fadeInDown"
+        :title="product.title"
+      >
         {{ product.title }}
       </div>
       <div class="product__overview--ago-button animate__animated animate__fadeInRight">
-        <a href="javascript:void(0)" @click="$router.back()">Назад</a>
+        <a
+          href="javascript:void(0)"
+          @click="$router.back()"
+        >Назад</a>
       </div>
       <Card class="product__overview-content animate__animated animate__fadeInLeft">
         <div class="product__overview-content__preview">
-          <img :src="product.metadata.src" alt="">
+          <img
+            :src="product.metadata.src"
+            alt=""
+          >
         </div>
         <div class="product__overview-content__description">
-          <p class="product__overview-content__advantages" title="Основные преимущества">Основные преимущества</p>
+          <p
+            class="product__overview-content__advantages"
+            title="Основные преимущества"
+          >
+            Основные преимущества
+          </p>
           <p>Открыть личный верстак - /workbench</p>
           <p>Открыть личный эндер сундук - /ec</p>
           <p>Одеть любой блок на голову - /hat</p>
           <p>Префикс в чате/табе/над головой</p>
           <p>Включить режим АФК - /afk</p>
           <p>Зарплата 1.000 - /salary</p>
-          <p class="product__overview-content__benefits" title="Дополнительно">Дополнительно</p>
+          <p
+            class="product__overview-content__benefits"
+            title="Дополнительно"
+          >
+            Дополнительно
+          </p>
           <p>Набор HERO - /kit hero</p>
           <p>Дополнительных слотов на аукционе - +2</p>
           <p>Доступно 2 региона для привата - /rg claim</p>
@@ -29,43 +51,58 @@
     </div>
 
     <div class="product__price">
-      <transition enter-active-class="animate__animated animate__flash"
-                  leave-active-class="animate__animated animate__fadeOutUpBig">
-        <div class="product__price-title" v-show="isValidInput">
+      <transition
+        enter-active-class="animate__animated animate__flash"
+        leave-active-class="animate__animated animate__fadeOutUpBig"
+      >
+        <div
+          v-show="isValidInput"
+          class="product__price-title"
+        >
           Итого к оплате: <span class="product__price-amount">{{ price }} рублей</span>
         </div>
       </transition>
     </div>
 
     <Card class="product__fields animate__animated animate__fadeInRight">
-      <TextInput :disabled="!isValidInput"
-                 :placeholder="'Введите ваш ник на сервере'"
-                 :name="'username'"
-                 :level="product.metadata.level"
-                 v-model="username"
+      <TextInput
+        v-model="username"
+        :disabled="!isValidInput"
+        :placeholder="'Введите ваш ник на сервере'"
+        :name="'username'"
+        :level="product.metadata.level"
       />
 
       <div class="product__fields-coupon">
-        <a class="product__fields-coupon--active"
-           @click="hasCoupon = true" v-show="!hasCoupon"
-           href="javascript:void(0)">У меня есть купон</a>
+        <a
+          v-show="!hasCoupon"
+          class="product__fields-coupon--active"
+          href="javascript:void(0)"
+          @click="hasCoupon = true"
+        >У меня есть купон</a>
 
         <transition enter-active-class="animate__animated animate__slideInDown">
-          <TextInput :disabled="!isValidCoupon || !isValidInput"
-                     :placeholder="'Введите купон'"
-                     :name="'coupon'"
-                     :level="product.metadata.level"
-                     v-model="coupon"
-                     v-show="hasCoupon"
+          <TextInput
+            v-show="hasCoupon"
+            v-model="coupon"
+            :disabled="!isValidCoupon || !isValidInput"
+            :placeholder="'Введите купон'"
+            :name="'coupon'"
+            :level="product.metadata.level"
           />
         </transition>
       </div>
 
       <div class="product__buy-button">
-        <transition enter-active-class="animate__animated animate__bounceIn"
-                    leave-active-class="animate__animated animate__fadeOutDownBig">
-          <div class="btn btn-primary product__buy-button__button"
-               v-show="isValidInput" @click="submitForm">
+        <transition
+          enter-active-class="animate__animated animate__bounceIn"
+          leave-active-class="animate__animated animate__fadeOutDownBig"
+        >
+          <div
+            v-show="isValidInput"
+            class="btn btn-primary product__buy-button__button"
+            @click="submitForm"
+          >
             Перейти к оплате
           </div>
         </transition>
@@ -91,9 +128,9 @@ import PaymentForm from "@/order/PaymentForm";
   }
 })
 export default class extends Vue {
-  private hasCoupon: boolean = false
-  private username: string = ''
-  private coupon: string = ''
+  private hasCoupon = false
+  private username = ''
+  private coupon = ''
 
   private product?: Product = undefined;
   private productApi: ProductApi;
@@ -122,11 +159,13 @@ export default class extends Vue {
     return this.coupon.length >= 4
   }
 
-  public async submitForm(): Promise<void> {
+  public async submitForm(): Promise<void>
+  {
+    const id = this.product?.id || '';
     const result = await this.orderApi.createOrder({
-      product: {id: <string>this.product?.id},
       recipient: {name: this.username},
-      customer: {name: this.username}
+      customer: {name: this.username},
+      product: { id },
     })
 
     if (null === result) {

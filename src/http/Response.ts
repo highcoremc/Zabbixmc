@@ -1,12 +1,14 @@
-export interface ApiResponse<T = any> {
+import RelationShip from "@/http/RelationShip";
+
+export interface ApiResponse<T> {
     data?: T
-    error?: any
+    errors?: Error[]
 }
 
 export interface ResponseItem<I> {
     id: string
     type: string
     attributes: I
-    relationships: object
-    links: object
+    links: string[]
+    relationships: RelationShip[]
 }

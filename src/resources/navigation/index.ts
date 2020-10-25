@@ -1,5 +1,5 @@
 import { RouteNavigationItem } from "@/router/RouteNavigationItem";
-import NavigationItem from "@/router/NavigationItem";
+import NavigationItem from "@/router/NavigationItem"
 
 import _ from 'lodash'
 import { RouteConfig } from "vue-router";
@@ -17,7 +17,7 @@ export function getRouteNavList(key: string): Array<RouteNavigationItem> {
     }
 
     navigation.default.forEach((route: RouteConfig) => {
-        let closure = (item: NavigationItem) =>
+        const closure = (item: NavigationItem) =>
             item.name === route.name
         const navItem = routeList.default.filter(closure).pop()
 

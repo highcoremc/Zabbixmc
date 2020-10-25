@@ -22,19 +22,19 @@ export default class HttpClient {
         this._handleResponse = value;
     }
 
-    set handleError(value: (error: any) => Promise<never>) {
+    set handleError(value: (error: Error[]) => Promise<never>) {
         this._handleError = value;
     }
 
     private _handleResponse = ({data}: AxiosResponse) => data;
 
-    private _handleError = (error: any) => Promise.reject(error);
+    private _handleError = (errors: Error[]) => Promise.reject(errors);
 
-    public get = <T>(url: string, config?: AxiosRequestConfig) => this.instance.get<T>(url, config);
-    public delete = <T>(url: string, config?: AxiosRequestConfig) => this.instance.delete<T>(url, config);
-    public head = <T>(url: string, config?: AxiosRequestConfig) => this.instance.head<T>(url, config);
-    public options = <T>(url: string, config?: AxiosRequestConfig) => this.instance.options<T>(url, config);
-    public post = <T>(url: string, config?: AxiosRequestConfig) => this.instance.post<T>(url, config);
-    public put = <T>(url: string, config?: AxiosRequestConfig) => this.instance.put<T>(url, config);
-    public patch = <T>(url: string, config?: AxiosRequestConfig) => this.instance.patch<T>(url, config);
+    public get = <T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.get<T>(url, config);
+    public delete = <T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.delete<T>(url, config);
+    public head = <T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.head<T>(url, config);
+    public options = <T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.options<T>(url, config);
+    public post = <T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.post<T>(url, config);
+    public put = <T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.put<T>(url, config);
+    public patch = <T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.patch<T>(url, config);
 }

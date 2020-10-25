@@ -2,22 +2,31 @@
   <div class="shop">
     <div class="row">
       <div class="col-md-12">
-        <Title :title="'магазин'" class="animate__animated animate__fadeInDown"
-               :content="'Ты сможешь большее с всевозможными привилегиями!'"
-               :subtitle="'крутых товаров'"/>
+        <Title
+          :title="'магазин'"
+          class="animate__animated animate__fadeInDown"
+          :content="'Ты сможешь большее с всевозможными привилегиями!'"
+          :subtitle="'крутых товаров'"
+        />
 
-        <div class="col-md-12" v-if="loaded">
+        <div
+          v-if="loaded"
+          class="col-md-12"
+        >
           <ul class="categories">
-            <li v-for="(item, i) in categories" :key="'shop_nav_' + item.name"
-                class="categories__category animate__animated"
-                @click="selectAnotherCategory(item.name)"
-                :class="[
-                    {'categories__category-active': item.name === activeCategory},
-                    `categories__category-${item.name}`,
-                    i >= (categories.length / 2)
-                      ? 'animate__fadeInRight'
-                      : 'animate__fadeInLeft'
-                ]">
+            <li
+              v-for="(item, i) in categories"
+              :key="'shop_nav_' + item.name"
+              class="categories__category animate__animated"
+              :class="[
+                {'categories__category-active': item.name === activeCategory},
+                `categories__category-${item.name}`,
+                i >= (categories.length / 2)
+                  ? 'animate__fadeInRight'
+                  : 'animate__fadeInLeft'
+              ]"
+              @click="selectAnotherCategory(item.name)"
+            >
               <router-link :to="{ name: 'shop', params: { category: item.name } }">
                 {{ item.title }}
               </router-link>
@@ -26,27 +35,49 @@
         </div>
       </div>
 
-      <div class="col-md-12" v-if="loaded">
-        <div class="products" v-if="products.length">
-          <div v-for="item in products" :key="'products__' + item.category" class="animate__animated"
-               :class="[
-                   'products__' + item.category,
-                   item.category === activeCategory
-                      ? 'animate__fadeInUp'
-                      : 'animate__fadeOutLeft'
-               ]" v-show="item.category === activeCategory">
-            <router-link v-for="product in item.products" :key="'pr'+product.id"
-                         :to="{name: 'product.overview', params: { productId: product.id }}">
-              <ProductCard :title="product.title" class="products__product"
-                           :class="`products__product-${product.metadata.level || ''}`">
-                <div class="products__product-preview" :style="{backgroundImage: `url(${product.metadata.src})`}"></div>
-                <div class="products__product-price">{{ product.price }} {{ product.currency }}</div>
+      <div
+        v-if="loaded"
+        class="col-md-12"
+      >
+        <div
+          v-if="products.length"
+          class="products"
+        >
+          <div
+            v-for="item in products"
+            v-show="item.category === activeCategory"
+            :key="'products__' + item.category"
+            class="animate__animated"
+            :class="[
+              'products__' + item.category,
+              item.category === activeCategory
+                ? 'animate__fadeInUp'
+                : 'animate__fadeOutLeft'
+            ]"
+          >
+            <router-link
+              v-for="product in item.products"
+              :key="'pr'+product.id"
+              :to="{name: 'product.overview', params: { productId: product.id }}"
+            >
+              <ProductCard
+                :title="product.title"
+                class="products__product"
+                :class="`products__product-${product.metadata.level || ''}`"
+              >
+                <div
+                  class="products__product-preview"
+                  :style="{backgroundImage: `url(${product.metadata.src})`}"
+                />
+                <div class="products__product-price">
+                  {{ product.price }} {{ product.currency }}
+                </div>
               </ProductCard>
             </router-link>
-            <EmptyProducts v-if="item.products.length === 0"></EmptyProducts>
+            <EmptyProducts v-if="item.products.length === 0" />
           </div>
         </div>
-        <EmptyProducts v-else></EmptyProducts>
+        <EmptyProducts v-else />
       </div>
     </div>
   </div>
@@ -58,9 +89,9 @@ import Category, { CategoryProducts } from '@/shop/Category'
 import EmptyProducts from "@/components/EmptyProducts.vue"
 import ProductCard from "@/components/ProductCard.vue"
 import CategoryApi from '@/http/CategoryApi'
+import Title from '@/components/Title.vue'
 import HttpClient from '@/http/HttpClient'
 import ProductApi from '@/http/ProductApi'
-import Title from '@/components/Title.vue'
 import Product from "@/shop/Product"
 
 @Component({
@@ -74,12 +105,12 @@ export default class extends Vue {
 
   private products: CategoryProducts[] = []
   private categories: Category[] = []
-  private activeCategory: string = ''
+  private activeCategory = ''
 
   private categoryApi: CategoryApi;
   private productApi: ProductApi;
 
-  private loaded: boolean = false;
+  private loaded = false;
 
   constructor() {
     super();
@@ -89,7 +120,7 @@ export default class extends Vue {
     this.categoryApi = new CategoryApi(httpClient)
   }
 
-  public async created() {
+  public async created(): void {
     await this.loadCategories()
     await this.loadProducts()
     this.onRouteChange()

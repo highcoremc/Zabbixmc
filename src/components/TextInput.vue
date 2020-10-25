@@ -1,13 +1,28 @@
 <template>
-  <div class="form__group" :class="`form__${level}`">
-    <input :class="{ 'disabled': disabled }" :name="name" :value="value"
-           :placeholder="placeholder" :id="`field${name}`"
-           type="text" autocomplete="off" class="form__field"
-           spellcheck="false" required ref="text"
-           @keydown="unfocus" @input="update()"
-    />
-    <span class="form__field-border"></span>
-    <label :for="`field${name}`" class="form__label">{{ placeholder }}</label>
+  <div
+    class="form__group"
+    :class="`form__${level}`"
+  >
+    <input
+      :id="`field${name}`"
+      ref="text"
+      :class="{ 'disabled': disabled }"
+      :name="name"
+      :value="value"
+      :placeholder="placeholder"
+      type="text"
+      autocomplete="off"
+      class="form__field"
+      spellcheck="false"
+      required
+      @keydown="unfocus"
+      @input="update()"
+    >
+    <span class="form__field-border" />
+    <label
+      :for="`field${name}`"
+      class="form__label"
+    >{{ placeholder }}</label>
   </div>
 </template>
 
@@ -29,11 +44,10 @@ export default class extends Vue {
   }
 
   public unfocus(ev: KeyboardEvent): void {
-    const target: HTMLElement = <HTMLElement>ev.target;
+    const target: HTMLElement = ev.target as HTMLElement
 
-    if ('Escape' === ev.key && !!target) {
-      target.blur();
-    }
+    if ('Escape' === ev.key && !!target)
+      target.blur()
   }
 }
 </script>
@@ -118,27 +132,33 @@ export default class extends Vue {
   &__low &__field:focus:not(.disabled) ~ .form__label,
   &__low &__field:valid:not(.disabled) ~ .form__label
     color light-primary
+
   &__low &__field:focus:not(.disabled),
   &__low &__field:valid:not(.disabled)
     color light-primary
+
   &__low &__field-border:after
     background-image linearGradient(light-primary, light-secondary)
 
   &__medium &__field:focus:not(.disabled) ~ .form__label,
   &__medium &__field:valid:not(.disabled) ~ .form__label
     color medium-primary
+
   &__medium &__field:focus:not(.disabled),
   &__medium &__field:valid:not(.disabled)
     color medium-primary
+
   &__medium &__field-border:after
     background-image linearGradient(medium-primary, medium-secondary)
 
   &__high &__field:focus:not(.disabled) ~ .form__label,
   &__high &__field:valid:not(.disabled) ~ .form__label
     color high-primary
+
   &__high &__field:focus:not(.disabled),
   &__high &__field:valid:not(.disabled)
     color high-primary
+
   &__high &__field-border:after
     background-image linearGradient(high-primary, high-secondary)
 

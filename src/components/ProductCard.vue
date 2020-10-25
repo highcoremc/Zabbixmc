@@ -3,7 +3,7 @@
     <div class="product-card__title">
       {{ title }}
     </div>
-    <slot></slot>
+    <slot />
   </Card>
 </template>
 

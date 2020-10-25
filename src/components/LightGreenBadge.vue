@@ -1,7 +1,9 @@
 <template>
-    <div class="logo-badge">
-        <div class="logo-badge__text">{{ title }}</div>
+  <div class="logo-badge">
+    <div class="logo-badge__text">
+      {{ title }}
     </div>
+  </div>
 </template>
 
 <script lang="ts">

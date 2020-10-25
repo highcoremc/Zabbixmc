@@ -4,18 +4,29 @@
       <div class="bar">
         <div class="row">
           <div class="col-xs-2">
-            <a href="/" class="logotype"></a>
+            <a
+              href="/"
+              class="logotype"
+            />
           </div>
           <div class="col-md-10">
             <ul class="navigation">
-              <li class="navigation__item" v-for="(route, i) in navigation"
-                  :key="'nav_' + route.name + '_' + i"
-                  @mouseover="activeIndex = i"
-                  @mouseout="activeIndex = -1">
-                <router-link :to="route.path" class="navigation__link text-underline"
-                             :class="{'text-underline-hovered': activeIndex === i}">
-                  <i :class="route.icon"></i>
-                  <div class="label-buttonHead">{{ route.title }}</div>
+              <li
+                v-for="(route, i) in navigation"
+                :key="'nav_' + route.name + '_' + i"
+                class="navigation__item"
+                @mouseover="activeIndex = i"
+                @mouseout="activeIndex = -1"
+              >
+                <router-link
+                  :to="route.path"
+                  class="navigation__link text-underline"
+                  :class="{'text-underline-hovered': activeIndex === i}"
+                >
+                  <i :class="route.icon" />
+                  <div class="label-buttonHead">
+                    {{ route.title }}
+                  </div>
                 </router-link>
               </li>
             </ul>
@@ -25,56 +36,97 @@
     </div>
     <div class="container">
       <div class="content">
-        <router-view/>
+        <router-view />
       </div>
     </div>
     <div class="footer">
       <div class="footer__content container">
         <div class="footer__item footer__social">
-          <a href="/" class="logotype"></a>
+          <a
+            href="/"
+            class="logotype"
+          />
           <div class="footer__social-links">
-            <a href="https://discord.gg/DRJpBWP" target="_blank" class="footer__social-links__link"><i class="fab fa-discord"></i></a>
-            <a href="https://t.me/zabmc" target="_blank" class="footer__social-links__link"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://vk.com/zabmc" target="_blank" class="footer__social-links__link"><i class="fab fa-vk"></i></a>
+            <a
+              href="https://discord.gg/DRJpBWP"
+              target="_blank"
+              class="footer__social-links__link"
+            ><i class="fab fa-discord" /></a>
+            <a
+              href="https://t.me/zabmc"
+              target="_blank"
+              class="footer__social-links__link"
+            ><i class="fab fa-telegram-plane" /></a>
+            <a
+              href="https://vk.com/zabmc"
+              target="_blank"
+              class="footer__social-links__link"
+            ><i class="fab fa-vk" /></a>
           </div>
         </div>
         <div class="footer__item footer__navigation">
-          <div class="footer__item-title">Навигация</div>
+          <div class="footer__item-title">
+            Навигация
+          </div>
           <ul class="footer__navigation--list">
-            <li class="footer__navigation--item" v-for="(route, i) in navigation"
-                :key="'footer_' + route.name + '_' + i">
-              <router-link :to="route.path" class="footer__navigation--item_link">{{ route.title }}</router-link>
+            <li
+              v-for="(route, i) in navigation"
+              :key="'footer_' + route.name + '_' + i"
+              class="footer__navigation--item"
+            >
+              <router-link
+                :to="route.path"
+                class="footer__navigation--item_link"
+              >
+                {{ route.title }}
+              </router-link>
             </li>
           </ul>
         </div>
         <div class="footer__item footer__navigation">
-          <div class="footer__item-title">Помощь</div>
+          <div class="footer__item-title">
+            Помощь
+          </div>
           <ul class="footer__navigation--list">
             <li class="footer__navigation--item">
-              <a href="http://discord.gg/DRJpBWP" target="_blank" class="footer__navigation--item_link">Discord</a>
+              <a
+                href="http://discord.gg/DRJpBWP"
+                target="_blank"
+                class="footer__navigation--item_link"
+              >Discord</a>
             </li>
             <li class="footer__navigation--item">
-              <a href="https://t.me/helpzabmc" target="_blank" class="footer__navigation--item_link">Telegram</a>
+              <a
+                href="https://t.me/helpzabmc"
+                target="_blank"
+                class="footer__navigation--item_link"
+              >Telegram</a>
             </li>
             <li class="footer__navigation--item">
-              <a href="https://vk.me/zabmc" target="_blank" class="footer__navigation--item_link">VK</a>
+              <a
+                href="https://vk.me/zabmc"
+                target="_blank"
+                class="footer__navigation--item_link"
+              >VK</a>
             </li>
           </ul>
         </div>
-<!--        <div class="footer__item footer__navigation">-->
-<!--          <div class="footer__item-title">Почитать</div>-->
-<!--          <ul class="footer__navigation&#45;&#45;list">-->
-<!--            <li class="footer__navigation&#45;&#45;item">-->
-<!--              <a href="#" class="footer__navigation&#45;&#45;item_link">Публичная оферта</a>-->
-<!--            </li>-->
-<!--            <li class="footer__navigation&#45;&#45;item">-->
-<!--              <a href="#" class="footer__navigation&#45;&#45;item_link">Политика обработки персональных данных</a>-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--        </div>-->
+        <!--        <div class="footer__item footer__navigation">-->
+        <!--          <div class="footer__item-title">Почитать</div>-->
+        <!--          <ul class="footer__navigation&#45;&#45;list">-->
+        <!--            <li class="footer__navigation&#45;&#45;item">-->
+        <!--              <a href="#" class="footer__navigation&#45;&#45;item_link">Публичная оферта</a>-->
+        <!--            </li>-->
+        <!--            <li class="footer__navigation&#45;&#45;item">-->
+        <!--              <a href="#" class="footer__navigation&#45;&#45;item_link">Политика обработки персональных данных</a>-->
+        <!--            </li>-->
+        <!--          </ul>-->
+        <!--        </div>-->
       </div>
       <div class="footer__copyright">
-        <div class="text">ZabbixMC Все права защищены</div>
+        <div class="text">
+          ZabbixMC Все права защищены
+        </div>
       </div>
     </div>
   </div>
@@ -84,14 +136,14 @@
 import { Component, Vue } from 'vue-property-decorator'
 import LightGreenBadge from "@/components/LightGreenBadge.vue"
 import { MAIN_NAVIGATION, getRouteNavList } from '@/resources/navigation'
-import NavigationItem from "@/router/NavigationItem";
+import NavigationItem from "@/router/NavigationItem"
 
 @Component({
   components: {LightGreenBadge}
 })
 export default class App extends Vue {
   public navigation?: NavigationItem[] = getRouteNavList(MAIN_NAVIGATION)
-  public activeIndex: number = -1
+  public activeIndex = -1
 }
 </script>
 

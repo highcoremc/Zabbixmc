@@ -1,8 +1,12 @@
 <template>
-    <div class="subtitle">
-        <div class="subtitle__background">{{ title }}</div>
-        <div class="subtitle__content">{{ content }}</div>
+  <div class="subtitle">
+    <div class="subtitle__background">
+      {{ title }}
     </div>
+    <div class="subtitle__content">
+      {{ content }}
+    </div>
+  </div>
 </template>
 
 <script lang="ts">

@@ -2,27 +2,45 @@
   <div class="rules">
     <div class="row">
       <div class="col-md-12">
-        <Title class="animate__animated animate__fadeInDown"
-               :title="'правила'" :subtitle="'для тех, кто их читает'"
-               :content="'Незнание правил не освобождает от ответсвенности.'"/>
+        <Title
+          class="animate__animated animate__fadeInDown"
+          :title="'правила'"
+          :subtitle="'для тех, кто их читает'"
+          :content="'Незнание правил не освобождает от ответсвенности.'"
+        />
       </div>
 
       <div class="col-md-12">
         <div class="accordion animate__animated animate__fadeInUp">
-          <div v-for="(item, i) in contents" class="accordion-item" :key="i">
-            <button :id="`accordion-button-${i}`" :aria-expanded="i === selectedAccordion ? 'true' : 'false'"
-                    @click="changeAccordion(i)">
+          <div
+            v-for="(item, i) in contents"
+            :key="i"
+            class="accordion-item"
+          >
+            <button
+              :id="`accordion-button-${i}`"
+              :aria-expanded="i === selectedAccordion ? 'true' : 'false'"
+              @click="changeAccordion(i)"
+            >
               <span class="accordion-title">{{ i + 1 }}. {{ item.title }}</span>
-              <span class="icon" aria-hidden="true"></span>
+              <span
+                class="icon"
+                aria-hidden="true"
+              />
             </button>
             <div class="accordion-content">
-              <p class="accordion-text" v-for="(text, t) in item.content">{{ i + 1 }}.{{ t + 1 }} {{ text }}</p>
+              <p
+                v-for="(text, t) in item.content"
+                :key="i+t"
+                class="accordion-text"
+              >
+                {{ i + 1 }}.{{ t + 1 }} {{ text }}
+              </p>
             </div>
           </div>
         </div>
 
-        <div>
-        </div>
+        <div />
       </div>
     </div>
   </div>
@@ -38,7 +56,7 @@ import Title from '@/components/Title.vue'
   }
 })
 export default class extends Vue {
-  private selectedAccordion: number = -1
+  private selectedAccordion = -1
 
   private contents: {
     title: string
@@ -127,7 +145,7 @@ export default class extends Vue {
     },
   ]
 
-  public changeAccordion(index: number) {
+  public changeAccordion(index: number): void {
     this.selectedAccordion = index == this.selectedAccordion ? -1 : index
   }
 }

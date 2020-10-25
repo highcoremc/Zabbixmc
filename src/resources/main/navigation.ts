@@ -1,4 +1,4 @@
-import NavigationItem from "@/router/NavigationItem";
+import NavigationItem from "@/router/NavigationItem"
 
 const items: NavigationItem[] = [
     {

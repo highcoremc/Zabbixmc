@@ -1,9 +1,15 @@
 <template>
   <div class="title-block">
     <div class="title">
-      <div class="title__background">{{ title }}</div>
-      <div class="title__subtitle">{{ subtitle }}</div>
-      <div class="title__content">{{ content }}</div>
+      <div class="title__background">
+        {{ title }}
+      </div>
+      <div class="title__subtitle">
+        {{ subtitle }}
+      </div>
+      <div class="title__content">
+        {{ content }}
+      </div>
     </div>
   </div>
 </template>

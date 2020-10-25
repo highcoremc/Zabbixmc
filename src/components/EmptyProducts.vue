@@ -2,7 +2,7 @@
   <div>
     <div class="empty">
       в данном разделе нет товаров..
-      <i class="fas fa-alien-monster"></i>
+      <i class="fas fa-alien-monster" />
     </div>
   </div>
 </template>
@@ -12,7 +12,7 @@ import { Component, Vue } from 'vue-property-decorator'
 
 @Component({})
 export default class extends Vue {
-  public name: string = 'EmptyProducts'
+  public name = 'EmptyProducts'
 }
 </script>
 

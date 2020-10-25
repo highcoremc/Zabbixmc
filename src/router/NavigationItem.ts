@@ -1,7 +1,7 @@
 export default interface NavigationItem {
-    meta?: Object,
-    class?: string,
+    meta?: string[]
+    class?: string
     title: string
     icon?: string
-    name: string,
+    name: string
 }

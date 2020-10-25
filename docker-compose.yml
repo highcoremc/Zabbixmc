@@ -2,9 +2,10 @@ version: '3.8'
 
 services:
   app:
-    image: zabbixmc/app:latest
-    command: 'npm serve'
-    ports:
-      - "8080:8080"
+    build:
+      context: ./docker/app
+      dockerfile: Dockerfile
     volumes:
-      - .:/app:rw
+      - .:/app
+    ports:
+      - "8010:8080"
