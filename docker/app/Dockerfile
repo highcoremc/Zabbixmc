@@ -4,11 +4,11 @@ RUN set -xe \
     && apk add --no-cache bash \
     && apk add --no-cache yarn \
     && npm install \
-    && ls -la /
+    && ls -la /home \
+    && node --version
 
-ENV PATH /scripts:$PATH
-
+EXPOSE 8080
 WORKDIR /app
+VOLUME ["/app"]
 
-CMD bash -c 'yarn serve'
 ENTRYPOINT []

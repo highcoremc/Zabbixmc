@@ -1,0 +1,40 @@
+---
+before_script:
+  - docker info
+  - apt-get update -qq
+  - apt-get install -qq git
+
+variables:
+  APP_IMAGE_NAME: "registry.gitlab.com/zabbixmc/zabbixmc:${CI_COMMIT_SHORT_SHA}/app"
+
+stages:
+  - build
+  - prepare
+  - deploy
+
+build-images:
+  stage: build
+  script:
+    - docker build -t zabbixmc/app:latest -f docker/app/Dockerfile ./docker/app/
+    - docker tag zabbixmc/app:latest ${APP_IMAGE_NAME}
+    - docker push ${APP_IMAGE_NAME}
+
+eslint:
+  stage: prepare
+  script:
+    - docker run -v .:/app -it ${APP_IMAGE_NAME} yarn install
+    - docker run -v .:/app -it ${APP_IMAGE_NAME} yarn lint
+
+deploy:
+  before_script:
+    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 -d)
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  stage: deploy
+  script:
+    - ssh root@134.249.237.221 "docker pull ${APP_IMAGE_NAME} && exit"
+    - ssh root@134.249.237.221 "docker run -v $PWD:/app -it zabbixmc/app:latest yarn install && exit"
+    - ssh root@134.249.237.221 "docker run -v $PWD:/app -it zabbixmc/app:latest yarn build && exit"
+    - ssh root@134.249.237.221 "cd /home/www/zabbixmc && docker-compose rm -fsv nginx && docker-compose up -d && exit"

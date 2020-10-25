@@ -120,7 +120,7 @@ export default class extends Vue {
     this.categoryApi = new CategoryApi(httpClient)
   }
 
-  public async created(): void {
+  public async created(): Promise<void> {
     await this.loadCategories()
     await this.loadProducts()
     this.onRouteChange()
