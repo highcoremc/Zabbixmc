@@ -253,7 +253,7 @@ export default class extends Vue {}
   &-subtitle
     font-family AcromMedium, sans-serif
     letter-spacing .02rem
-    color #e6e5ed
+    color #acacaf
     padding-top 10px
     font-size 1rem
     height 55px
