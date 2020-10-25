@@ -1,18 +1,8 @@
 version: '3.8'
 
 services:
-  app:
-    build:
-      context: ./docker/app
-      dockerfile: Dockerfile
-    command: 'yarn serve'
-    volumes:
-      - .:/app
-    ports:
-      - "8010:8080"
-
-  nginx:
-    image: nginx:1.19.3-alpine
+  web:
+    image: registry.gitlab.com/zabbixmc/zabbixmc/app:latest
     volumes:
       - ./dist:/home/content
     command: ['nginx', '-g', 'daemon off;']

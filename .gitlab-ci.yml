@@ -1,40 +1,61 @@
 ---
+image: gitlab/dind
+
 before_script:
-  - docker info
-  - apt-get update -qq
-  - apt-get install -qq git
+  - ls -la
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq git
+
+services:
+  - docker:dind
 
 variables:
-  APP_IMAGE_NAME: "registry.gitlab.com/zabbixmc/zabbixmc:${CI_COMMIT_SHORT_SHA}/app"
+  GITLAB_REGISTRY: "registry.gitlab.com"
+  INTERNAL_IMAGE_TAG: "${GITLAB_REGISTRY}/zabbixmc/zabbixmc/app:latest"
+  EXTERNAL_IMAGE_TAG: "${GITLAB_REGISTRY}/zabbixmc/zabbixmc/app:${CI_COMMIT_SHORT_SHA}"
+  SSH_DSN: "${SSH_USERNAME}@${SSH_ADDRESS}"
 
 stages:
-  - build
   - prepare
+  - build
   - deploy
+
+#eslint:
+#  stage: prepare
+#  image: node:lts-alpine3.11
+#  before_script:
+#    - curl -o- -L https://yarnpkg.com/install.sh | bash
+#    - export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+#    - yarn install --cache-folder .yarn
+#  script:
+#    - yarn lint
+#  cache:
+#    paths:
+#      - node_modules
+#      - .yarn
 
 build-images:
   stage: build
+  before_script:
+    - docker info
   script:
-    - docker build -t zabbixmc/app:latest -f docker/app/Dockerfile ./docker/app/
-    - docker tag zabbixmc/app:latest ${APP_IMAGE_NAME}
-    - docker push ${APP_IMAGE_NAME}
+    - docker build -t ${EXTERNAL_IMAGE_TAG} -f docker/app/Dockerfile.prod .
+    - docker login $GITLAB_REGISTRY -u $CI_DEPLOY_USERNAME -p $CI_DEPLOY_TOKEN
+    - docker push ${EXTERNAL_IMAGE_TAG}
 
-eslint:
-  stage: prepare
-  script:
-    - docker run -v .:/app -it ${APP_IMAGE_NAME} yarn install
-    - docker run -v .:/app -it ${APP_IMAGE_NAME} yarn lint
-
-deploy:
+deploy-production:
   before_script:
     - 'which ssh-agent || ( apt-get install -qq openssh-client )'
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 -d)
     - mkdir -p ~/.ssh
-    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - touch ~/.ssh/known_hosts
+    - chmod u=rw,go= ~/.ssh/known_hosts
   stage: deploy
   script:
-    - ssh root@134.249.237.221 "docker pull ${APP_IMAGE_NAME} && exit"
-    - ssh root@134.249.237.221 "docker run -v $PWD:/app -it zabbixmc/app:latest yarn install && exit"
-    - ssh root@134.249.237.221 "docker run -v $PWD:/app -it zabbixmc/app:latest yarn build && exit"
-    - ssh root@134.249.237.221 "cd /home/www/zabbixmc && docker-compose rm -fsv nginx && docker-compose up -d && exit"
+    - ssh-keygen -R ${SSH_ADDRESS} && ssh-keyscan -H ${SSH_ADDRESS} >> ~/.ssh/known_hosts
+    - scp docker-compose.yml ${SSH_DSN}:/home/www/zabbixmc
+    - ssh ${SSH_DSN} "docker login $GITLAB_REGISTRY -u $CI_DEPLOY_USERNAME -p $CI_DEPLOY_TOKEN && exit"
+    - ssh ${SSH_DSN} "docker pull ${EXTERNAL_IMAGE_TAG} && exit"
+    - ssh ${SSH_DSN} "docker tag ${EXTERNAL_IMAGE_TAG} ${INTERNAL_IMAGE_TAG} && exit"
+    - ssh ${SSH_DSN} "cd /home/www/zabbixmc && docker-compose down && docker-compose up -d && exit"
