@@ -1,19 +1,18 @@
-import { RouteNavigationItem } from "@/router/RouteNavigationItem";
+import { RouteNavigationItem } from "@/router/RouteNavigationItem"
 import NavigationItem from "@/router/NavigationItem"
+import { RouteConfig } from "vue-router"
 
 import _ from 'lodash'
-import { RouteConfig } from "vue-router";
-
 export * from "./types"
 
 export function getRouteNavList(key: string): Array<RouteNavigationItem> {
-    const routes: Array<RouteNavigationItem> = [];
+    const routes: Array<RouteNavigationItem> = []
 
     const navigation = require(`../${key}/navigation.ts`)
     const routeList = require(`../${key}/routes.ts`)
 
     if (navigation.length === 0) {
-        throw new Error('Navigation list is empty.');
+        throw new Error('Navigation list is empty.')
     }
 
     navigation.default.forEach((route: RouteConfig) => {

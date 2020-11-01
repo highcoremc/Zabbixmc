@@ -1,23 +1,23 @@
-import { ResponseItem } from "@/http/Response";
-import HttpClient from "@/http/HttpClient";
-import Product from "@/shop/Product";
+import { ResponseItem } from "@/http/Response"
+import HttpClient from "@/http/HttpClient"
+import Product from "@/shop/Product"
 
 export default class ProductApi {
 
-    private httpClient: HttpClient;
+    private httpClient: HttpClient
 
     constructor(httpClient: HttpClient) {
-        this.httpClient = httpClient;
+        this.httpClient = httpClient
     }
 
     public async getProducts(): Promise<Product[]> {
-        const response = await this.httpClient.get<ResponseItem<Product>[]>('/products');
+        const response = await this.httpClient.get<ResponseItem<Product>[]>('/products')
 
         if (!response.data || !Array.isArray(response.data)) {
-            return Promise.reject();
+            return Promise.reject()
         }
 
-        const items = response.data;
+        const items = response.data
 
         const result: Product[] = [];
         for (const {id, attributes} of items) {

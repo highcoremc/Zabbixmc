@@ -18,4 +18,4 @@ const items: NavigationItem[] = [
     },
 ]
 
-export default items;
+export default items

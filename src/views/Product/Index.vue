@@ -112,14 +112,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import {Component, Vue} from 'vue-property-decorator'
 import TextInput from '@/components/TextInput.vue'
-import Card from "@/components/Card.vue";
-import HttpClient from "@/http/HttpClient";
-import ProductApi from "@/http/ProductApi";
-import Product from "@/shop/Product";
-import OrderApi from "@/http/OrderApi";
-import PaymentForm from "@/order/PaymentForm";
+import PaymentForm from "@/order/PaymentForm"
+import ProductApi from "@/http/ProductApi"
+import Card from "@/components/Card.vue"
+import OrderApi from "@/http/OrderApi"
+import Product from "@/shop/Product"
 
 @Component({
   components: {
@@ -132,19 +131,18 @@ export default class extends Vue {
   private username = ''
   private coupon = ''
 
-  private product?: Product = undefined;
-  private productApi: ProductApi;
-  private orderApi: OrderApi;
+  private productApi: ProductApi
+  private orderApi: OrderApi
+  private product: null|Product = null
 
   constructor() {
-    super();
-    const httpClient = new HttpClient('http://dev.highpay.io/public-api/shops/shop_ydu3vYgKzWaklxb5');
-    this.productApi = new ProductApi(httpClient)
-    this.orderApi = new OrderApi(httpClient)
+    super()
+    this.productApi = new ProductApi(this.$httpClient)
+    this.orderApi = new OrderApi(this.$httpClient)
   }
 
   public async created(): Promise<void> {
-    this.product = await this.productApi.getProduct(this.$route.params.productId);
+    this.product = await this.productApi.getProduct(this.$route.params.productId)
   }
 
   get isValidInput(): boolean {
@@ -161,7 +159,7 @@ export default class extends Vue {
 
   public async submitForm(): Promise<void>
   {
-    const id = this.product?.id || '';
+    const id = this.product?.id || ''
     const result = await this.orderApi.createOrder({
       recipient: {name: this.username},
       customer: {name: this.username},
@@ -170,33 +168,33 @@ export default class extends Vue {
 
     if (null === result) {
       alert('Произошла ошибка при создании заказа.')
-      return;
+      return
     }
 
-    const formResult = await this.orderApi.processOrder(result);
+    const formResult = await this.orderApi.processOrder(result)
 
     if (!formResult.action || !formResult.method) {
       alert('Произошла ошибка при проведении заказа.')
-      return;
+      return
     }
 
-    this.createAndSubmitDynamicForm(formResult);
+    this.createAndSubmitDynamicForm(formResult)
   }
 
   private createAndSubmitDynamicForm(formResult: PaymentForm) {
-    const form = document.createElement('form');
-    form.setAttribute("method", formResult.method);
-    form.setAttribute("action", formResult.action);
-    form.style.display = 'none';
+    const form = document.createElement('form')
+    form.setAttribute("method", formResult.method)
+    form.setAttribute("action", formResult.action)
+    form.style.display = 'none'
 
     for (const [name, val] of Object.entries(formResult.params)) {
-      const input = document.createElement('input');
-      input.setAttribute('name', name);
-      input.setAttribute('value', val);
-      form.appendChild(input);
+      const input = document.createElement('input')
+      input.setAttribute('name', name)
+      input.setAttribute('value', val)
+      form.appendChild(input)
     }
 
-    document.body.append(form);
+    document.body.append(form)
     form.submit()
   }
 }

@@ -84,13 +84,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator'
-import Category, { CategoryProducts } from '@/shop/Category'
+import {Component, Vue, Watch} from 'vue-property-decorator'
+import Category, {CategoryProducts} from '@/shop/Category'
 import EmptyProducts from "@/components/EmptyProducts.vue"
 import ProductCard from "@/components/ProductCard.vue"
 import CategoryApi from '@/http/CategoryApi'
 import Title from '@/components/Title.vue'
-import HttpClient from '@/http/HttpClient'
 import ProductApi from '@/http/ProductApi'
 import Product from "@/shop/Product"
 
@@ -107,24 +106,22 @@ export default class extends Vue {
   private categories: Category[] = []
   private activeCategory = ''
 
-  private categoryApi: CategoryApi;
-  private productApi: ProductApi;
+  private categoryApi: CategoryApi
+  private productApi: ProductApi
 
-  private loaded = false;
+  private loaded = false
 
   constructor() {
-    super();
-    const httpClient = new HttpClient('http://dev.highpay.io/public-api/shops/shop_ydu3vYgKzWaklxb5');
-
-    this.productApi = new ProductApi(httpClient)
-    this.categoryApi = new CategoryApi(httpClient)
+    super()
+    this.productApi = new ProductApi(this.$httpClient)
+    this.categoryApi = new CategoryApi(this.$httpClient)
   }
 
   public async created(): Promise<void> {
     await this.loadCategories()
     await this.loadProducts()
     this.onRouteChange()
-    this.loaded = true;
+    this.loaded = true
   }
 
   private async loadProducts(): Promise<void> {
@@ -165,8 +162,8 @@ export default class extends Vue {
     }
 
     this.selectAnotherCategory(this.$route.params.category)
-    this.relocateIfInvalid(this.activeCategory);
-    const first = this.categories[0];
+    this.relocateIfInvalid(this.activeCategory)
+    const first = this.categories[0]
 
     if (this.$route.name === 'shop' && !this.activeCategory) {
       this.$router.replace({
@@ -186,7 +183,7 @@ export default class extends Vue {
     const result = this.categories.filter(category => category.name === activeCategory)
 
     if (1 !== result.length) {
-      const first = this.categories[0];
+      const first = this.categories[0]
       return this.$router.replace({
         name: 'shop',
         params: {
@@ -197,8 +194,8 @@ export default class extends Vue {
   }
 
   private floorPrice(product: Product) {
-    product.price = Math.floor(product.price);
-    return product;
+    product.price = Math.floor(product.price)
+    return product
   }
 }
 </script>

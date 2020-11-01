@@ -1,4 +1,4 @@
-import RelationShip from "@/http/RelationShip";
+import RelationShip from "@/http/RelationShip"
 
 export interface ApiResponse<T> {
     data?: T
