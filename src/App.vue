@@ -85,7 +85,7 @@
         </div>
         <div class="footer__item footer__navigation">
           <div class="footer__item-title">
-            Помощь
+            Контакты
           </div>
           <ul class="footer__navigation--list">
             <li class="footer__navigation--item">
