@@ -113,6 +113,23 @@
         </div>
         <div class="footer__item footer__navigation">
           <div class="footer__item-title">
+            Почитать
+          </div>
+          <ul class="footer__navigation--list">
+            <li class="footer__navigation--item">
+              <router-link :to="{ name: 'oferta' }" class="footer__navigation--item_link">
+                Публичная оферта
+              </router-link>
+            </li>
+            <li class="footer__navigation--item">
+              <router-link :to="{ name: 'rules' }" class="footer__navigation--item_link">
+                Правила
+              </router-link>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__item footer__navigation" style="min-width: 350px">
+          <div class="footer__item-title">
             Контакты
           </div>
           <ul class="footer__navigation--list">
@@ -297,7 +314,7 @@ export default class App extends Vue {
 
   &__item
     display inline-flex
-    padding 60px 80px
+    padding 60px
 
     &:first-child
       padding 60px 80px 60px 0

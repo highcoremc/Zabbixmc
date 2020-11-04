@@ -1,9 +1,10 @@
 import { RouteConfig } from "vue-router/types/router"
-import Home from "@/views/Home.vue"
-import Shop from "@/views/Shop/Index.vue"
-import News from "@/views/News.vue"
-import Rules from "@/views/Rules.vue"
 import Product from "@/views/Product/Index.vue"
+import Shop from "@/views/Shop/Index.vue"
+import Oferta from '@/views/Oferta.vue'
+import Rules from "@/views/Rules.vue"
+import Home from "@/views/Home.vue"
+import News from "@/views/News.vue"
 
 const routes: Array<RouteConfig> = [
     {
@@ -30,6 +31,11 @@ const routes: Array<RouteConfig> = [
         path: '/rules',
         name: 'rules',
         component: Rules,
+    },
+    {
+        path: '/oferta',
+        name: 'oferta',
+        component: Oferta,
     },
 ]
 
