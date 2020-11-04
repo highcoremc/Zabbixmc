@@ -1,8 +1,10 @@
+import ProductDescription from "@/shop/ProductDescription";
+
 export default interface Product {
     id?: string
     title: string
     category?: string
-    description?: string
+    description?: ProductDescription[]
     metadata?: {
         level?: string
         src?: string

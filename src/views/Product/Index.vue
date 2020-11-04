@@ -25,27 +25,11 @@
           >
         </div>
         <div class="product__overview-content__description">
-          <p
-            class="product__overview-content__advantages"
-            title="Основные преимущества"
-          >
-            Основные преимущества
-          </p>
-          <p>Открыть личный верстак - /workbench</p>
-          <p>Открыть личный эндер сундук - /ec</p>
-          <p>Одеть любой блок на голову - /hat</p>
-          <p>Префикс в чате/табе/над головой</p>
-          <p>Включить режим АФК - /afk</p>
-          <p>Зарплата 1.000 - /salary</p>
-          <p
-            class="product__overview-content__benefits"
-            title="Дополнительно"
-          >
-            Дополнительно
-          </p>
-          <p>Набор HERO - /kit hero</p>
-          <p>Дополнительных слотов на аукционе - +2</p>
-          <p>Доступно 2 региона для привата - /rg claim</p>
+          <template v-for="(desc, i) in product.description">
+            <p :class="'product__overview-content__' + desc.class"
+               :title="desc.title">{{ desc.title }}</p>
+            <p v-for="(text, e) in desc.content" :key="e + ':' + i">{{ text}}</p>
+          </template>
         </div>
       </Card>
     </div>
@@ -450,4 +434,16 @@ export default class extends Vue {
 
       &:hover
         opacity .8
+
+@media screen and (max-width: 1366px)
+  .product > div
+    width 60%
+
+@media screen and (max-width: 1280px)
+  .product > div
+    width 70%
+
+@media screen and (max-width: 1024px)
+  .product > div
+    width 90%
 </style>
