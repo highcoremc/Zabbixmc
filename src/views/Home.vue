@@ -84,6 +84,14 @@
                 <div class="offers__card-subtitle">
                   Выбей топовый шмот за фикс прайс.
                 </div>
+<!--                <div class="offers__card-badge-price">-->
+<!--                  <div class="badge badge-price">-->
+<!--                    50 ₽-->
+<!--                  </div>-->
+<!--                  <div class="badge badge-price-old">-->
+<!--                    150 ₽-->
+<!--                  </div>-->
+<!--                </div>-->
               </div>
             </div>
           </div>
@@ -477,6 +485,12 @@ export default class extends Vue {}
     &:hover
       transform matrix(1, 0, 0, 1, 0, -8)
       text-decoration none
+
+    .card-subtitle
+      min-height 4rem
+    .card-link
+      position absolute
+      bottom 1.1rem
 
     &:hover .card-link
       text-decoration none

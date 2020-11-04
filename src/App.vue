@@ -85,7 +85,7 @@
         </div>
         <div class="footer__item footer__navigation">
           <div class="footer__item-title">
-            Контакты
+            Помощь
           </div>
           <ul class="footer__navigation--list">
             <li class="footer__navigation--item">
@@ -108,6 +108,19 @@
                 target="_blank"
                 class="footer__navigation--item_link"
               >VK</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__item footer__navigation">
+          <div class="footer__item-title">
+            Контакты
+          </div>
+          <ul class="footer__navigation--list">
+            <li>
+              Почта: <a href="mailto:contact@zabmc.ru" class="footer__navigation--item_link">contact@zabmc.ru</a>
+            </li>
+            <li>
+              Vk: <a href="https://vk.me/zabmc" target="_blank" class="footer__navigation--item_link">https://vk.me/zabmc</a>
             </li>
           </ul>
         </div>
@@ -349,8 +362,14 @@ export default class App extends Vue {
     display flex
     max-width 450px
 
+    &--list
+      > li
+        padding 5px 0
+
+      a:hover
+        color #676363
+
     &--item
-      padding 5px 0
       transition all .3s
 
       &:hover
