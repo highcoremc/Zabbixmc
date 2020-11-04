@@ -84,14 +84,6 @@
                 <div class="offers__card-subtitle">
                   Выбей топовый шмот за фикс прайс.
                 </div>
-                <div class="offers__card-badge-price">
-                  <div class="badge badge-price">
-                    50 ₽
-                  </div>
-                  <div class="badge badge-price-old">
-                    150 ₽
-                  </div>
-                </div>
               </div>
             </div>
           </div>
