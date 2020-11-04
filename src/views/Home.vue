@@ -209,6 +209,7 @@ export default class extends Vue {}
 
 .contacts__footer-title
   @extend .disable-highlight
+  padding-top 1rem
 
 .home
   position: relative
