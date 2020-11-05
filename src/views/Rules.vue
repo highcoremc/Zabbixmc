@@ -251,7 +251,7 @@ export default class extends Vue {
     & + .accordion-content
       opacity 1
       max-height 35rem
-      padding 20px 0
+      padding 0
       will-change opacity, height
 
 </style>
