@@ -41,6 +41,7 @@ export default class extends Vue {
 
   public update(): void {
     this.$emit('input', this.$refs.text.value)
+    this.$emit('change', this.$refs.text.value)
   }
 
   public unfocus(ev: KeyboardEvent): void {

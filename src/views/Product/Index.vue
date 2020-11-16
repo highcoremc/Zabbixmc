@@ -2,7 +2,7 @@
   <div
     v-if="!!product"
     class="product"
-    :class="[`product-${product.metadata.level}`, {'disabled': !isValidInput}]"
+    :class="[productClass, {'disabled': !isValidInput}]"
   >
     <div class="product__overview">
       <div
@@ -51,7 +51,8 @@
     <Card class="product__fields animate__animated animate__fadeInRight">
       <TextInput
         v-model="username"
-        :disabled="!isValidInput"
+        @change="calculatePrice"
+        :disabled="!isValidInput || progress"
         :placeholder="'Введите ваш ник на сервере'"
         :name="'username'"
         :level="product.metadata.level"
@@ -69,7 +70,7 @@
           <TextInput
             v-show="hasCoupon"
             v-model="coupon"
-            :disabled="!isValidCoupon || !isValidInput"
+            :disabled="(!isValidCoupon || !isValidInput) || progress"
             :placeholder="'Введите купон'"
             :name="'coupon'"
             :level="product.metadata.level"
@@ -83,7 +84,7 @@
           leave-active-class="animate__animated animate__fadeOutDownBig"
         >
           <div
-            v-show="isValidInput"
+            v-show="isValidInput && !progress"
             class="btn btn-primary product__buy-button__button"
             @click="submitForm"
           >
@@ -114,6 +115,8 @@ export default class extends Vue {
   private hasCoupon = false
   private username = ''
   private coupon = ''
+  private price = 0
+  private progress = false
 
   private productApi: ProductApi
   private orderApi: OrderApi
@@ -127,22 +130,57 @@ export default class extends Vue {
 
   public async created(): Promise<void> {
     this.product = await this.productApi.getProduct(this.$route.params.productId)
+    this.price = !this.product ? 0 : Math.floor(this.product.price)
   }
 
   get isValidInput(): boolean {
     return this.username.length >= 4 && !!this.username.match(/^[A-Za-z0-9_]+$/)
   }
 
-  get price(): number {
-    return !this.product ? 0 : Math.floor(this.product.price)
-  }
-
   get isValidCoupon(): boolean {
     return this.coupon.length >= 4
   }
 
+  get productClass(): string {
+    return this.progress ? '' : `product-${this.product?.metadata?.level}`
+  }
+
+  public async calculatePrice(): Promise<void>
+  {
+    const productId = this.product?.id;
+    if (!this.isValidInput || !productId) {
+      return
+    }
+
+    const result = await this.orderApi.calcPrice({
+      recipient: this.username,
+      product: productId,
+    })
+
+    console.log(result)
+
+    if (null === result) {
+      return
+    }
+
+    this.price = result
+  }
+
+  public orderInProgress(): void
+  {
+    this.progress = true;
+  }
+
+  public orderCanceled(): void
+  {
+    alert('Произошла ошибка при проведении заказа.')
+    this.progress = false
+  }
+
   public async submitForm(): Promise<void>
   {
+    this.orderInProgress()
+
     const id = this.product?.id || ''
     const result = await this.orderApi.createOrder({
       recipient: {name: this.username},
@@ -151,14 +189,14 @@ export default class extends Vue {
     })
 
     if (null === result) {
-      alert('Произошла ошибка при создании заказа.')
+      this.orderCanceled()
       return
     }
 
     const formResult = await this.orderApi.processOrder(result)
 
     if (!formResult.action || !formResult.method) {
-      alert('Произошла ошибка при проведении заказа.')
+      this.orderCanceled()
       return
     }
 

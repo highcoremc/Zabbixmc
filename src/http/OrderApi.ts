@@ -3,6 +3,9 @@ import PaymentForm from '@/order/PaymentForm'
 import HttpClient from '@/http/HttpClient'
 import Order from '@/shop/Order'
 import OrderCreateRequest from "@/order/OrderCreateRequest"
+import OrderCalc from "@/shop/OrderCalc"
+import PriceCalculateRequest from "@/order/PriceCalculateRequest"
+import qs from "query-string"
 
 export default class OrderApi {
 
@@ -10,6 +13,27 @@ export default class OrderApi {
 
     constructor(httpClient: HttpClient) {
         this.httpClient = httpClient
+    }
+
+    public async calcPrice(request: PriceCalculateRequest): Promise<null|number> {
+        const config = {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        }
+
+        const data = {
+            recipient: request.recipient,
+            product_id: request.product,
+        }
+
+        const response = await this.httpClient.post<ResponseItem<OrderCalc>>(`/orders/calc`, qs.stringify(data), config)
+
+        if (!response.data) {
+            return Promise.reject(null)
+        }
+
+        return Math.floor(response.data.attributes.total)
     }
 
     public async createOrder(request: OrderCreateRequest): Promise<null|string> {

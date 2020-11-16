@@ -34,7 +34,7 @@ export default class HttpClient {
     public delete = <T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.delete<T>(url, config)
     public head = <T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.head<T>(url, config)
     public options = <T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.options<T>(url, config)
-    public post = <T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.post<T>(url, config)
-    public put = <T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.put<T>(url, config)
-    public patch = <T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.patch<T>(url, config)
+    public post = <T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.post<T>(url, data, config)
+    public put = <T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.put<T>(url, data, config)
+    public patch = <T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => this.instance.patch<T>(url, data, config)
 }
