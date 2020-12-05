@@ -307,6 +307,7 @@ export default class extends Vue {
       &__description
         padding 0 0 0 20px
         position relative
+        margin-left 20px
         color gray
 
         &:before
