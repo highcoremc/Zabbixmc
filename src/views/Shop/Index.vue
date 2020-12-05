@@ -250,7 +250,7 @@ export default class extends Vue {
     &-cases a:before
       -webkit-mask-image url("~@mojang/web-theme-bootstrap/assets/svg/icons/line-box.svg")
 
-    &-amount a:before
+    &-tokens a:before
       -webkit-mask-image url("~@mojang/web-theme-bootstrap/assets/svg/icons/line-wallet.svg")
 
     &-other a:before
