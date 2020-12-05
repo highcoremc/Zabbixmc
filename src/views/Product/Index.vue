@@ -14,7 +14,9 @@
       <div class="product__overview--ago-button animate__animated animate__fadeInRight">
         <a
           href="javascript:void(0)"
-          @click="$router.back()"
+          @click="$router.back() || $router.push({name: 'shop', params: {
+            category: product.category
+          }})"
         >Назад</a>
       </div>
       <Card class="product__overview-content animate__animated animate__fadeInLeft">
@@ -28,7 +30,7 @@
           <template v-for="(desc, i) in product.description">
             <p :class="'product__overview-content__' + desc.class"
                :title="desc.title">{{ desc.title }}</p>
-            <p v-for="(text, e) in desc.content" :key="e + ':' + i">{{ text}}</p>
+            <p v-for="(text, e) in desc.content" :key="e + ':' + i">{{ text }}</p>
           </template>
         </div>
       </Card>
@@ -254,6 +256,7 @@ export default class extends Vue {
       -webkit-background-clip text
       font-size 3.5rem
       position relative
+      width 90%
 
       &:after
         -webkit-text-fill-color transparent
