@@ -56,6 +56,7 @@
             ]"
           >
             <router-link
+              style="max-width: 280px"
               v-for="product in item.products"
               :key="'pr'+product.id"
               :to="{name: 'product.overview', params: { productId: product.id }}"
@@ -140,6 +141,7 @@ export default class extends Vue {
       const products = input
           .filter(product => product.category === category.name)
           .map(product => this.floorPrice(product))
+          .sort((p: Product, c: Product) => p.key === c.key ? 1 : -1)
 
       result.push({
         category: category.name,

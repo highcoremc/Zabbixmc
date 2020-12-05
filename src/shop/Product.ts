@@ -1,6 +1,7 @@
 import ProductDescription from "@/shop/ProductDescription";
 
 export default interface Product {
+    key: string
     id?: string
     title: string
     category?: string

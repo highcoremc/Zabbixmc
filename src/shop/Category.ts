@@ -4,6 +4,7 @@ export default interface Category {
     metadata?: {
         icon?: string
     }
+    priority: number
     title: string
     name: string
 }
