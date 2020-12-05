@@ -54,6 +54,7 @@ export default class extends Vue {
     padding 30px
     font-family AcromBold, sans-serif
     font-weight 700
+    max-height 75px
     color #0f0f0f
     width 100%
 </style>
