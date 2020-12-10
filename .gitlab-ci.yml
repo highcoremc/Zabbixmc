@@ -56,7 +56,7 @@ deploy-production:
   stage: deploy
   script:
     - ssh-keygen -R ${SSH_ADDRESS} && ssh-keyscan -H ${SSH_ADDRESS} >> ~/.ssh/known_hosts
-    - scp docker-compose.yml ${SSH_DSN}:/home/www/zabbixmc
+    - scp docker-compose.yml ${SSH_DSN}:${HOME_FOLDER}
     - ssh ${SSH_DSN} "docker login $GITLAB_REGISTRY -u $CI_DEPLOY_USERNAME -p $CI_DEPLOY_TOKEN && exit"
     - ssh ${SSH_DSN} "docker pull ${EXTERNAL_IMAGE_TAG} && exit"
     - ssh ${SSH_DSN} "docker tag ${EXTERNAL_IMAGE_TAG} ${INTERNAL_IMAGE_TAG} && exit"
