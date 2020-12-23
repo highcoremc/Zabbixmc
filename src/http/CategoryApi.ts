@@ -1,6 +1,6 @@
+import Category from "@/shop/product/Category";
 import {ResponseItem} from "@/http/Response"
 import HttpClient from "@/http/HttpClient"
-import Category from "@/shop/Category"
 
 export default class CategoryApi {
 

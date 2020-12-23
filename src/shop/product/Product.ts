@@ -1,4 +1,4 @@
-import ProductDescription from "@/shop/ProductDescription";
+import ProductDescription from "@/shop/product/ProductDescription";
 
 export default interface Product {
     key: string

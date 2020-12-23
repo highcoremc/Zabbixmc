@@ -86,13 +86,13 @@
 
 <script lang="ts">
 import {Component, Vue, Watch} from 'vue-property-decorator'
-import Category, {CategoryProducts} from '@/shop/Category'
+import Category, {CategoryProducts} from '@/shop/product/Category'
 import EmptyProducts from "@/components/EmptyProducts.vue"
 import ProductCard from "@/components/ProductCard.vue"
 import CategoryApi from '@/http/CategoryApi'
 import Title from '@/components/Title.vue'
 import ProductApi from '@/http/ProductApi'
-import Product from "@/shop/Product"
+import Product from "@/shop/product/Product"
 
 @Component({
   components: {

@@ -1,6 +1,6 @@
 import { ResponseItem } from "@/http/Response"
 import HttpClient from "@/http/HttpClient"
-import Product from "@/shop/Product"
+import Product from "@/shop/product/Product"
 
 export default class ProductApi {
 

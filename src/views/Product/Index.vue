@@ -101,11 +101,11 @@
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator'
 import TextInput from '@/components/TextInput.vue'
-import PaymentForm from "@/order/PaymentForm"
+import PaymentForm from "@/shop/order/PaymentForm"
 import ProductApi from "@/http/ProductApi"
 import Card from "@/components/Card.vue"
 import OrderApi from "@/http/OrderApi"
-import Product from "@/shop/Product"
+import Product from "@/shop/product/Product"
 
 @Component({
   components: {

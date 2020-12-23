@@ -1,4 +1,4 @@
-import Product from "@/shop/Product"
+import Product from "@/shop/product/Product"
 
 export default interface Category {
     metadata?: {

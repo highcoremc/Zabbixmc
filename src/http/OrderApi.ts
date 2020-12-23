@@ -1,10 +1,10 @@
 import { ResponseItem } from '@/http/Response'
-import PaymentForm from '@/order/PaymentForm'
+import PaymentForm from '@/shop/order/PaymentForm'
 import HttpClient from '@/http/HttpClient'
-import Order from '@/shop/Order'
-import OrderCreateRequest from "@/order/OrderCreateRequest"
-import OrderCalc from "@/shop/OrderCalc"
-import PriceCalculateRequest from "@/order/PriceCalculateRequest"
+import Order from '@/shop/order/Order'
+import OrderCreateRequest from "@/shop/order/OrderCreateRequest"
+import OrderCalc from "@/shop/order/OrderCalc"
+import PriceCalculateRequest from "@/shop/order/PriceCalculateRequest"
 import qs from "query-string"
 
 export default class OrderApi {

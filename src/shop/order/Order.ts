@@ -1,6 +1,6 @@
-import Recipient from "@/shop/Recipient"
+import Recipient from "@/shop/order/Recipient"
 import Customer from "@/shop/Customer"
-import Product from "@/shop/Product"
+import Product from "@/shop/product/Product"
 
 export default interface Order {
     id?: string
