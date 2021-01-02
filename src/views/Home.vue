@@ -207,10 +207,6 @@ export default class extends Vue {}
 <style lang="stylus">
 @import '~@/styles/common.styl'
 
-.contacts__footer-title
-  @extend .disable-highlight
-  padding-top 1rem
-
 .home
   position: relative
   &:before
@@ -468,6 +464,11 @@ export default class extends Vue {}
 
 .contacts
   display flex
+  flex-flow row wrap
+
+  &__footer-title
+    @extend .disable-highlight
+    padding-top 1rem
 
   &__footer-title
     text-align center
@@ -606,7 +607,6 @@ export default class extends Vue {}
       width 50%
 
   .contacts
-    flex-flow row wrap
 
     &__card
       width 50%
@@ -619,9 +619,8 @@ export default class extends Vue {}
       width 100%
       height 100%
 
+@media screen and (max-width: 768px)
   .contacts
-    flex-flow row wrap
-
     &__card
       width 100%
       flex 100%
