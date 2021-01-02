@@ -598,4 +598,31 @@ export default class extends Vue {}
     margin-left 92px
     margin-top 80px
 
+@media screen and (max-width: 1280px)
+  .offers
+    &-center
+      display none
+    &-left, &-right
+      width 50%
+
+  .contacts
+    flex-flow row wrap
+
+    &__card
+      width 50%
+      flex 50%
+
+@media screen and (max-width: 1024px)
+  .offers
+    height auto
+    &-left, &-right
+      width 100%
+      height 100%
+
+  .contacts
+    flex-flow row wrap
+
+    &__card
+      width 100%
+      flex 100%
 </style>

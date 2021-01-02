@@ -1,29 +1,24 @@
 <template>
   <div id="root">
     <div class="container">
-      <div class="bar">
-        <div class="row">
-          <div class="col-xs-2">
-            <a
-              href="/"
-              class="logotype"
-            />
-          </div>
-          <div class="col-md-10">
+      <div class="row">
+        <div class="navbar">
+          <a href="/" class="navbar__logotype logotype"/>
+          <div class="navbar__default">
             <ul class="navigation">
               <li
-                v-for="(route, i) in navigation"
-                :key="'nav_' + route.name + '_' + i"
-                class="navigation__item"
-                @mouseover="activeIndex = i"
-                @mouseout="activeIndex = -1"
+                  v-for="(route, i) in navigation"
+                  :key="'nav_default_' + route.name + '_' + i"
+                  class="navigation__item"
+                  @mouseover="activeIndex = i"
+                  @mouseout="activeIndex = -1"
               >
                 <router-link
-                  :to="route.path"
-                  class="navigation__link text-underline"
-                  :class="{'text-underline-hovered': activeIndex === i}"
+                    :to="route.path"
+                    class="navigation__link text-underline"
+                    :class="{'text-underline-hovered': activeIndex === i}"
                 >
-                  <i :class="route.icon" />
+                  <i :class="route.icon"/>
                   <div class="label-buttonHead">
                     {{ route.title }}
                   </div>
@@ -31,37 +26,64 @@
               </li>
             </ul>
           </div>
+          <div class="navbar__mobile">
+            <HamburgButton
+                :default-color="'#8e8ea6'"
+                :active-color="'#f3f3fb'"
+                :is-open="mobileMenu"
+                class="navbar__mobile--toggle-button"
+                @click="toggleMobileMenu"/>
+            <div class="navbar__mobile--overlay" v-show="mobileMenu">
+              <ul class="navigation">
+                <li
+                    v-for="(route, i) in navigation"
+                    :key="'nav_mobile_' + route.name + '_' + i"
+                    class="navigation__item"
+                >
+                  <router-link
+                      :to="route.path"
+                      class="navigation__link"
+                      @click.native="hideMobileMenu"
+                  >
+                    <div class="label-buttonHead">
+                      {{ route.title }}
+                    </div>
+                  </router-link>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="container">
       <div class="content">
-        <router-view />
+        <router-view/>
       </div>
     </div>
     <div class="footer">
       <div class="footer__content container">
         <div class="footer__item footer__social">
           <a
-            href="/"
-            class="logotype"
+              href="/"
+              class="logotype"
           />
           <div class="footer__social-links">
             <a
-              href="https://discord.gg/DRJpBWP"
-              target="_blank"
-              class="footer__social-links__link"
-            ><i class="fab fa-discord" /></a>
+                href="https://discord.gg/DRJpBWP"
+                target="_blank"
+                class="footer__social-links__link"
+            ><i class="fab fa-discord"/></a>
             <a
-              href="https://t.me/zabmc"
-              target="_blank"
-              class="footer__social-links__link"
-            ><i class="fab fa-telegram-plane" /></a>
+                href="https://t.me/zabmc"
+                target="_blank"
+                class="footer__social-links__link"
+            ><i class="fab fa-telegram-plane"/></a>
             <a
-              href="https://vk.com/zabmc"
-              target="_blank"
-              class="footer__social-links__link"
-            ><i class="fab fa-vk" /></a>
+                href="https://vk.com/zabmc"
+                target="_blank"
+                class="footer__social-links__link"
+            ><i class="fab fa-vk"/></a>
           </div>
         </div>
         <div class="footer__item footer__navigation">
@@ -70,13 +92,13 @@
           </div>
           <ul class="footer__navigation--list">
             <li
-              v-for="(route, i) in navigation"
-              :key="'footer_' + route.name + '_' + i"
-              class="footer__navigation--item"
+                v-for="(route, i) in navigation"
+                :key="'footer_' + route.name + '_' + i"
+                class="footer__navigation--item"
             >
               <router-link
-                :to="route.path"
-                class="footer__navigation--item_link"
+                  :to="route.path"
+                  class="footer__navigation--item_link"
               >
                 {{ route.title }}
               </router-link>
@@ -90,23 +112,23 @@
           <ul class="footer__navigation--list">
             <li class="footer__navigation--item">
               <a
-                href="http://discord.gg/DRJpBWP"
-                target="_blank"
-                class="footer__navigation--item_link"
+                  href="http://discord.gg/DRJpBWP"
+                  target="_blank"
+                  class="footer__navigation--item_link"
               >Discord</a>
             </li>
             <li class="footer__navigation--item">
               <a
-                href="https://t.me/helpzabmc"
-                target="_blank"
-                class="footer__navigation--item_link"
+                  href="https://t.me/helpzabmc"
+                  target="_blank"
+                  class="footer__navigation--item_link"
               >Telegram</a>
             </li>
             <li class="footer__navigation--item">
               <a
-                href="https://vk.me/zabmc"
-                target="_blank"
-                class="footer__navigation--item_link"
+                  href="https://vk.me/zabmc"
+                  target="_blank"
+                  class="footer__navigation--item_link"
               >VK</a>
             </li>
           </ul>
@@ -166,14 +188,27 @@
 import { Component, Vue } from 'vue-property-decorator'
 import LightGreenBadge from "@/components/LightGreenBadge.vue"
 import { MAIN_NAVIGATION, getRouteNavList } from '@/resources/navigation'
+import HamburgButton from "@/components/HamburgButton.vue";
 import NavigationItem from "@/router/NavigationItem"
 
 @Component({
-  components: {LightGreenBadge}
+  components: {
+    LightGreenBadge,
+    HamburgButton
+  }
 })
 export default class App extends Vue {
   public navigation?: NavigationItem[] = getRouteNavList(MAIN_NAVIGATION)
   public activeIndex = -1
+  public mobileMenu = false
+
+  public toggleMobileMenu(): void {
+    this.mobileMenu = !this.mobileMenu
+  }
+
+  public hideMobileMenu(): void {
+    this.mobileMenu = false
+  }
 }
 </script>
 
@@ -221,16 +256,6 @@ export default class App extends Vue {
   position relative
   z-index 1
 
-.bar
-  min-height 150px
-  position relative
-  background-color #f5f5fd
-  z-index 100
-
-  .logotype
-    top 75px
-    padding 60px
-
 .logotype
   content ''
   background-image url("~@/assets/images/logotype.png") !important
@@ -245,46 +270,103 @@ export default class App extends Vue {
   &:hover
     opacity .85
 
-.navigation
-  justify-content center
-  display flex
-  padding 0
-  overflow hidden
-  margin-top 49px
-  list-style-type none
+.navbar
+  width 100%
 
-  &__item
-    float left
-    text-align center
-    margin 0 45px 0
-    padding-top 5px
+  &__logotype
+    position absolute
+    padding 60px
+    top 20px
+    z-index 1
 
-    > i
-      font-size 5rem
+  &__default
+    background-color #f5f5fd
+    margin-left 250px
+    min-height 150px
+    z-index 10
+    width 100%
 
-  &__link
-    color #3c3737
-    font-size 1.05rem
-    text-align center
-    font-family AcromBold, sans-serif
-    text-decoration none
-    position relative
-    display inline-block
-    background-color transparent
+    .navigation
+      justify-content center
+      margin-left -250px
+      display flex
+      padding 0
+      overflow hidden
+      margin-top 49px
+      list-style-type none
 
-    &:hover,
-    &:focus,
-    &:active
-      color #5b5b77
-      transition 0.3s
-      text-decoration none
-      background-color transparent
+      &__item
+        float left
+        text-align center
+        margin 0 45px 0
+        padding-top 5px
 
-    &::before
-      left 50%
+        > i
+          font-size 5rem
 
-    &::after
-      right 50%
+      &__link
+        color #3c3737
+        font-size 1.05rem
+        text-align center
+        font-family AcromBold, sans-serif
+        text-decoration none
+        position relative
+        display inline-block
+        background-color transparent
+
+        &:hover,
+        &:focus,
+        &:active
+          color #5b5b77
+          transition 0.3s
+          text-decoration none
+          background-color transparent
+
+        &::before
+          left 50%
+
+        &::after
+          right 50%
+
+  &__mobile
+    display none
+    height 100%
+    width 100%
+
+    &--toggle-button
+      position absolute
+      right 0
+      top 60px
+      z-index 9999
+
+    &--overlay
+      background-color rgba(0, 0, 0, .9)
+      overscroll-behavior contain
+      position: fixed
+      z-index 1000
+      height 100%
+      width 100%
+      right 0
+      left 0
+      top 0
+      bottom 0
+
+    .navigation
+      justify-content center
+      flex-direction column
+      align-items center
+      display flex
+      height 100%
+      width 100%
+
+      &__item
+        position: relative
+        text-align left
+        height 3rem
+
+        a
+          font-size 2.2rem
+          color #FFFFFF
 
 .footer
   background-color #FFFFFF
@@ -402,4 +484,15 @@ export default class App extends Vue {
           text-decoration none
           background transparent
           color #000000
+
+
+@media screen and (max-width: 1024px)
+  .navbar
+    &__default
+      display none
+    &__mobile
+      display block
+
+  .content
+    margin-top 140px;
 </style>

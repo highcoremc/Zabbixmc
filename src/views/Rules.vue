@@ -254,4 +254,8 @@ export default class extends Vue {
       padding 0
       will-change opacity, height
 
+@media screen and (max-width: 1024px)
+  .accordion
+    &-item
+      width 100%
 </style>

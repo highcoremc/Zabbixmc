@@ -56,7 +56,7 @@
             ]"
           >
             <router-link
-              style="max-width: 280px"
+              class="products__product-wrapper"
               v-for="product in item.products"
               :key="'pr'+product.id"
               :to="{name: 'product.overview', params: { productId: product.id }}"
@@ -218,7 +218,8 @@ export default class extends Vue {
     font-family AcromBold
     border-radius 4px
     position relative
-    margin 0 20px
+    min-width: 200px
+    margin 10px 20px
 
     &:hover
       transform scale(1.05)
@@ -280,8 +281,7 @@ export default class extends Vue {
 
   > div
     display flex
-    flex-wrap wrap
-    flex-direction row
+    flex-flow row wrap
     justify-content center
     margin-top 3rem
 
@@ -290,6 +290,9 @@ export default class extends Vue {
     justify-content space-between
     flex-direction column
     display flex
+
+    &-wrapper
+      max-width 280px
 
     img
       max-height 164px
@@ -331,5 +334,14 @@ export default class extends Vue {
       background-color high-primary
       background-image linearGradient(high-primary, high-secondary, to right, 0%, 100%)
       text-shadow 2px 2px 8px high-primary
+
+
+@media screen and (max-width: 768px)
+  .products
+    &__product
+      &-wrapper
+        width: 100%
+        max-width none
+
 </style>
 

@@ -1,27 +1,27 @@
 <template>
   <div
-    class="form__group"
-    :class="`form__${level}`"
+      class="form__group"
+      :class="`form__${level}`"
   >
     <input
-      :id="`field${name}`"
-      ref="text"
-      :class="{ 'disabled': disabled }"
-      :name="name"
-      :value="value"
-      :placeholder="placeholder"
-      type="text"
-      autocomplete="off"
-      class="form__field"
-      spellcheck="false"
-      required
-      @keydown="unfocus"
-      @input="update()"
+        :id="`field${name}`"
+        ref="text"
+        :class="{ 'disabled': disabled }"
+        :name="name"
+        :value="value"
+        :placeholder="placeholder"
+        type="text"
+        autocomplete="off"
+        class="form__field"
+        spellcheck="false"
+        required
+        @keydown="unfocus"
+        @input="update()"
     >
-    <span class="form__field-border" />
+    <span class="form__field-border"/>
     <label
-      :for="`field${name}`"
-      class="form__label"
+        :for="`field${name}`"
+        class="form__label"
     >{{ placeholder }}</label>
   </div>
 </template>
