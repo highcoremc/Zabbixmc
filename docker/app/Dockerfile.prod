@@ -1,10 +1,11 @@
 FROM node:lts-alpine AS build-stage
 
-COPY . /app
+COPY ./frontend/ /app/
 WORKDIR /app
 
 RUN set -xe \
     && apk add --no-cache yarn \
+    && ls -la /app \
     && yarn install && yarn build
 
 FROM nginx:1.19.3-alpine
