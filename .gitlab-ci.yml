@@ -61,3 +61,5 @@ deploy-production:
     - ssh ${SSH_DSN} "docker pull ${EXTERNAL_IMAGE_TAG} && exit"
     - ssh ${SSH_DSN} "docker tag ${EXTERNAL_IMAGE_TAG} ${INTERNAL_IMAGE_TAG} && exit"
     - ssh ${SSH_DSN} "cd "$HOME_FOLDER" && docker-compose down && docker-compose up -d && exit"
+  only:
+    - master
