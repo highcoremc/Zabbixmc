@@ -20,12 +20,12 @@ export default class HttpClientPlugin {
 
     private static _instance?: HttpClientPlugin
 
-    public install = (Vue: any, options: object) => {
+    public install = (Vue: any) => {
         Vue.prototype.$httpClient = new HttpClient(
             process.env.VUE_APP_BASE_URL)
     }
 
-    public static instance() {
+    public static instance(): HttpClientPlugin {
         if (undefined === this._instance) {
             this._instance = new HttpClientPlugin()
         }

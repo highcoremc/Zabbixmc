@@ -15,6 +15,7 @@
  */
 
 import HttpClientPlugin from "@/plugin/HttpClientPlugin"
+import globalMixins from './mixin'
 import router from './router'
 import App from './App.vue'
 
@@ -28,6 +29,9 @@ import './styles/common.styl'
 
 Vue.config.productionTip = false
 Vue.use(HttpClientPlugin.instance())
+Vue.mixin(globalMixins)
+
+console.log(process.env)
 
 new Vue({
     router,

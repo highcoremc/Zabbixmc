@@ -5,6 +5,6 @@ services:
     image: registry.gitlab.com/zabbixmc/zabbixmc/app:latest
     command: ['nginx', '-g', 'daemon off;']
     volumes:
-      - .env:/app/.env
+      - .env.local:/app/.env.local
     ports:
       - "8090:80"

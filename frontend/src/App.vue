@@ -19,22 +19,25 @@
     <div class="container">
       <div class="row">
         <div class="navbar">
-          <a href="/" class="navbar__logotype logotype"/>
+          <a
+            href="/"
+            class="navbar__logotype logotype"
+          />
           <div class="navbar__default">
             <ul class="navigation">
               <li
-                  v-for="(route, i) in navigation"
-                  :key="'nav_default_' + route.name + '_' + i"
-                  class="navigation__item"
-                  @mouseover="activeIndex = i"
-                  @mouseout="activeIndex = -1"
+                v-for="(route, i) in navigation"
+                :key="'nav_default_' + route.name + '_' + i"
+                class="navigation__item"
+                @mouseover="activeIndex = i"
+                @mouseout="activeIndex = -1"
               >
                 <router-link
-                    :to="route.path"
-                    class="navigation__link text-underline"
-                    :class="{'text-underline-hovered': activeIndex === i}"
+                  :to="route.path"
+                  class="navigation__link text-underline"
+                  :class="{'text-underline-hovered': activeIndex === i}"
                 >
-                  <i :class="route.icon"/>
+                  <i :class="route.icon" />
                   <div class="label-buttonHead">
                     {{ route.title }}
                   </div>
@@ -44,22 +47,26 @@
           </div>
           <div class="navbar__mobile">
             <HamburgButton
-                :default-color="'#8e8ea6'"
-                :active-color="'#f3f3fb'"
-                :is-open="mobileMenu"
-                class="navbar__mobile--toggle-button"
-                @click="toggleMobileMenu"/>
-            <div class="navbar__mobile--overlay" v-show="mobileMenu">
+              :default-color="'#8e8ea6'"
+              :active-color="'#f3f3fb'"
+              :is-open="mobileMenu"
+              class="navbar__mobile--toggle-button"
+              @click="toggleMobileMenu"
+            />
+            <div
+              v-show="mobileMenu"
+              class="navbar__mobile--overlay"
+            >
               <ul class="navigation">
                 <li
-                    v-for="(route, i) in navigation"
-                    :key="'nav_mobile_' + route.name + '_' + i"
-                    class="navigation__item"
+                  v-for="(route, i) in navigation"
+                  :key="'nav_mobile_' + route.name + '_' + i"
+                  class="navigation__item"
                 >
                   <router-link
-                      :to="route.path"
-                      class="navigation__link"
-                      @click.native="hideMobileMenu"
+                    :to="route.path"
+                    class="navigation__link"
+                    @click="hideMobileMenu"
                   >
                     <div class="label-buttonHead">
                       {{ route.title }}
@@ -74,32 +81,32 @@
     </div>
     <div class="container">
       <div class="content">
-        <router-view/>
+        <router-view />
       </div>
     </div>
     <div class="footer">
       <div class="footer__content container">
         <div class="footer__item footer__social">
           <a
-              href="/"
-              class="logotype"
+            href="/"
+            class="logotype"
           />
           <div class="footer__social-links">
             <a
-                href="https://discord.gg/DRJpBWP"
-                target="_blank"
-                class="footer__social-links__link"
-            ><i class="fab fa-discord"/></a>
+              :href="discordChannel"
+              target="_blank"
+              class="footer__social-links__link"
+            ><i class="fab fa-discord" /></a>
             <a
-                href="https://t.me/zabmc"
-                target="_blank"
-                class="footer__social-links__link"
-            ><i class="fab fa-telegram-plane"/></a>
+              :href="channelTelegram"
+              target="_blank"
+              class="footer__social-links__link"
+            ><i class="fab fa-telegram-plane" /></a>
             <a
-                href="https://vk.com/zabmc"
-                target="_blank"
-                class="footer__social-links__link"
-            ><i class="fab fa-vk"/></a>
+              :href="groupVk"
+              target="_blank"
+              class="footer__social-links__link"
+            ><i class="fab fa-vk" /></a>
           </div>
         </div>
         <div class="footer__item footer__navigation">
@@ -108,13 +115,13 @@
           </div>
           <ul class="footer__navigation--list">
             <li
-                v-for="(route, i) in navigation"
-                :key="'footer_' + route.name + '_' + i"
-                class="footer__navigation--item"
+              v-for="(route, i) in navigation"
+              :key="'footer_' + route.name + '_' + i"
+              class="footer__navigation--item"
             >
               <router-link
-                  :to="route.path"
-                  class="footer__navigation--item_link"
+                :to="route.path"
+                class="footer__navigation--item_link"
               >
                 {{ route.title }}
               </router-link>
@@ -128,23 +135,23 @@
           <ul class="footer__navigation--list">
             <li class="footer__navigation--item">
               <a
-                  href="http://discord.gg/DRJpBWP"
-                  target="_blank"
-                  class="footer__navigation--item_link"
+                :href="discordChannel"
+                target="_blank"
+                class="footer__navigation--item_link"
               >Discord</a>
             </li>
             <li class="footer__navigation--item">
               <a
-                  href="https://t.me/helpzabmc"
-                  target="_blank"
-                  class="footer__navigation--item_link"
+                :href="channelTelegram"
+                target="_blank"
+                class="footer__navigation--item_link"
               >Telegram</a>
             </li>
             <li class="footer__navigation--item">
               <a
-                  href="https://vk.me/zabmc"
-                  target="_blank"
-                  class="footer__navigation--item_link"
+                :href="contactVk"
+                target="_blank"
+                class="footer__navigation--item_link"
               >VK</a>
             </li>
           </ul>
@@ -155,27 +162,43 @@
           </div>
           <ul class="footer__navigation--list">
             <li class="footer__navigation--item">
-              <router-link :to="{ name: 'oferta' }" class="footer__navigation--item_link">
+              <router-link
+                :to="{ name: 'oferta' }"
+                class="footer__navigation--item_link"
+              >
                 Публичная оферта
               </router-link>
             </li>
             <li class="footer__navigation--item">
-              <router-link :to="{ name: 'rules' }" class="footer__navigation--item_link">
+              <router-link
+                :to="{ name: 'rules' }"
+                class="footer__navigation--item_link"
+              >
                 Правила
               </router-link>
             </li>
           </ul>
         </div>
-        <div class="footer__item footer__navigation" style="min-width: 350px">
+        <div
+          class="footer__item footer__navigation"
+          style="min-width: 350px"
+        >
           <div class="footer__item-title">
             Контакты
           </div>
           <ul class="footer__navigation--list">
             <li>
-              Почта: <a href="mailto:contact@zabmc.ru" class="footer__navigation--item_link">contact@zabmc.ru</a>
+              Почта: <a
+                :href="'mailto:' + contactMail"
+                class="footer__navigation--item_link"
+              >{{ contactMail }}</a>
             </li>
             <li>
-              Vk: <a href="https://vk.me/zabmc" target="_blank" class="footer__navigation--item_link">https://vk.me/zabmc</a>
+              Vk: <a
+                :href="contactVk"
+                target="_blank"
+                class="footer__navigation--item_link"
+              >{{ contactVk }}</a>
             </li>
           </ul>
         </div>
@@ -193,7 +216,7 @@
       </div>
       <div class="footer__copyright">
         <div class="text">
-          ZabbixMC Все права защищены
+          {{ projectName }} Все права защищены
         </div>
       </div>
     </div>
@@ -293,7 +316,7 @@ export default class App extends Vue {
     position absolute
     padding 60px
     top 20px
-    z-index 1
+    z-index 100
 
   &__default
     background-color #f5f5fd

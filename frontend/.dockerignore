@@ -10,7 +10,7 @@ var/*
 *.log
 .gitignore
 .gitlab-ci.yml
-.env
+.env.local
 .gitlab
 .idea
 .git

@@ -20,14 +20,13 @@
       <div class="col-md-12">
         <div class="title">
           <div class="title__background animate__animated animate__fadeInDown">
-            zabbixmc
+            {{ projectName }}
           </div>
           <div class="title__content animate__animated animate__fadeInLeft">
-            Почувствуй себя настоящим майнкрафтером!
+            Мы превзойдем твои ожидания
           </div>
           <div class="title__subtitle animate__animated animate__fadeInRight">
-            Выживание на 1.15.2 с друзьями. Только у нас ты сможешь почувствовать всю
-            силу этой прекрасной игры!
+            Выживание на 1.12.2 с друзьями. Открой для себя мир развлечений!
           </div>
         </div>
       </div>
@@ -172,7 +171,7 @@
             </div>
           </a>
           <a
-            href="https://t.me/helpzabmc"
+            :href="contactVk"
             target="_blank"
             class="contacts__card contacts__telegram animate__animated animate__fadeInUp"
           >
@@ -186,7 +185,7 @@
             </div>
           </a>
           <a
-            href="http://vk.me/zabmc"
+            :href="contactVk"
             target="_blank"
             class="contacts__card contacts__vk animate__animated animate__fadeInRight"
           >
